@@ -5,9 +5,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385091</millis>
   <sequence>0</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>main</method>
   <thread>1</thread>
   <message>Character : 	 Frequency:2</message>
@@ -16,9 +16,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385156</millis>
   <sequence>1</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>main</method>
   <thread>1</thread>
   <message>Character :p	 Frequency:1</message>
@@ -27,9 +27,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385157</millis>
   <sequence>2</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>main</method>
   <thread>1</thread>
   <message>Character :r	 Frequency:1</message>
@@ -38,9 +38,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385159</millis>
   <sequence>3</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>main</method>
   <thread>1</thread>
   <message>Character :s	 Frequency:1</message>
@@ -49,9 +49,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385160</millis>
   <sequence>4</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>main</method>
   <thread>1</thread>
   <message>Character :e	 Frequency:1</message>
@@ -60,9 +60,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385161</millis>
   <sequence>5</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>main</method>
   <thread>1</thread>
   <message>Character :g	 Frequency:3</message>
@@ -71,9 +71,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385161</millis>
   <sequence>6</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>main</method>
   <thread>1</thread>
   <message>Character :h	 Frequency:1</message>
@@ -82,9 +82,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385162</millis>
   <sequence>7</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>main</method>
   <thread>1</thread>
   <message>Character :o	 Frequency:3</message>
@@ -93,9 +93,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385163</millis>
   <sequence>8</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>buildTree</method>
   <thread>1</thread>
   <message>Queue so far:</message>
@@ -104,9 +104,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385164</millis>
   <sequence>9</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>buildTree</method>
   <thread>1</thread>
   <message>Queue so far:</message>
@@ -115,9 +115,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385165</millis>
   <sequence>10</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>buildTree</method>
   <thread>1</thread>
   <message>Queue so far:</message>
@@ -126,9 +126,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385165</millis>
   <sequence>11</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>buildTree</method>
   <thread>1</thread>
   <message>Queue so far:</message>
@@ -137,9 +137,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385166</millis>
   <sequence>12</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>buildTree</method>
   <thread>1</thread>
   <message>Queue so far:</message>
@@ -148,9 +148,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385168</millis>
   <sequence>13</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>buildTree</method>
   <thread>1</thread>
   <message>Queue so far:</message>
@@ -159,9 +159,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385169</millis>
   <sequence>14</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>buildTree</method>
   <thread>1</thread>
   <message>Queue so far:</message>
@@ -170,9 +170,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385170</millis>
   <sequence>15</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>main</method>
   <thread>1</thread>
   <message>Character : 	 Code:001</message>
@@ -181,9 +181,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385171</millis>
   <sequence>16</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>main</method>
   <thread>1</thread>
   <message>Character :p	 Code:1110</message>
@@ -192,9 +192,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385171</millis>
   <sequence>17</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>main</method>
   <thread>1</thread>
   <message>Character :r	 Code:1111</message>
@@ -203,9 +203,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385173</millis>
   <sequence>18</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>main</method>
   <thread>1</thread>
   <message>Character :s	 Code:000</message>
@@ -214,9 +214,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385176</millis>
   <sequence>19</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>main</method>
   <thread>1</thread>
   <message>Character :e	 Code:1100</message>
@@ -225,9 +225,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385179</millis>
   <sequence>20</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>main</method>
   <thread>1</thread>
   <message>Character :g	 Code:01</message>
@@ -236,9 +236,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385181</millis>
   <sequence>21</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>main</method>
   <thread>1</thread>
   <message>Character :h	 Code:1101</message>
@@ -247,9 +247,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385181</millis>
   <sequence>22</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>main</method>
   <thread>1</thread>
   <message>Character :o	 Code:10</message>
@@ -258,9 +258,9 @@
   <date>2023-01-04T00:29:45</date>
   <millis>1672772385186</millis>
   <sequence>23</sequence>
-  <logger>Main</logger>
+  <logger>com.CapEx.Main</logger>
   <level>INFO</level>
-  <class>Main</class>
+  <class>com.CapEx.Main</class>
   <method>main</method>
   <thread>1</thread>
   <message>we went from storing 104 bits of data to 48 bits. That's a 53.846153 % decrease!!</message>

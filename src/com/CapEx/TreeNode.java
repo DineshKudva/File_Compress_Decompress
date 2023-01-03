@@ -1,3 +1,5 @@
+package com.CapEx;
+
 public class TreeNode {
     private Character ch;
     private Integer frequency;

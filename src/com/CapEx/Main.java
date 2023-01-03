@@ -1,3 +1,4 @@
+package com.CapEx;
 
 import java.io.*;
 import java.util.*;
@@ -48,7 +49,7 @@ public class Main {
 //			char ch = mapElement.getKey();
 //			int freq = mapElement.getValue();
 //
-//			TreeNode newNode = new TreeNode(ch, freq);
+//			com.CapEx.TreeNode newNode = new com.CapEx.TreeNode(ch, freq);
 //			nodeQueue.add(newNode);
 //
 //
