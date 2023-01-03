@@ -1,7 +1,15 @@
-import java.util.Arrays;
+
+import java.io.*;
 import java.util.*;
+import java.util.logging.*;
+
 
 public class Main {
+
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
+    static FileHandler fileHandler;
+
+
     public static HashMap<Character, Integer> freqTable = new HashMap<>();
     public static PriorityQueue<TreeNode> nodeQueue = new PriorityQueue<TreeNode>(new CharComparator());
     public static HashMap<Character, String> characterCodes = new HashMap<>();
@@ -46,6 +54,8 @@ public class Main {
 //
 //		}
 
+        
+
         for(TreeNode temp : nodeList)
             nodeQueue.add(temp);
 
@@ -53,12 +63,14 @@ public class Main {
 
         while (!(nodeQueue.size() == 1)) {
 
-            System.out.println("Queue so far:");
+//            System.out.println("Queue so far:");
+
+            logger.info("Queue so far:");
 
             for(TreeNode temp : nodeQueue) {
-                System.out.print(temp.getChar()+"("+temp.getFreq()+")"+"\t");
+//                System.out.print(temp.getChar()+"("+temp.getFreq()+")"+"\t");
             }
-            System.out.println();
+//            System.out.println();
 
             TreeNode leftNode = nodeQueue.poll();
             TreeNode rightNode = nodeQueue.poll();
@@ -91,29 +103,38 @@ public class Main {
 
     public static void main(String args[]) {
 
+        try {
+             fileHandler = new FileHandler("MyLog.log",false);
+             logger.addHandler(fileHandler);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         String sourceData = "go go gophers";
         String compressedData = "";
 
         generateFrequency(sourceData);
 
-//		for(Map.Entry<Character, Integer> mapElement : freqTable.entrySet()) {
-//			char ch = mapElement.getKey();
-//			int freq = mapElement.getValue();
-//
+		for(Map.Entry<Character, Integer> mapElement : freqTable.entrySet()) {
+			char ch = mapElement.getKey();
+			int freq = mapElement.getValue();
+
 //			System.out.println("Character :"+ch+"\t Frequency:"+freq);
-//		}
+            logger.info("Character :"+ch+"\t Frequency:"+freq);
+		}
 
         TreeNode root = buildTree(sourceData);
         buildCode(root, "");
 
         compressedData = dataCompression(sourceData);
 
-//		for (Map.Entry<Character, String> mapEle : characterCodes.entrySet()) {
-//			char ch = mapEle.getKey();
-//			String code = mapEle.getValue();
-//
+		for (Map.Entry<Character, String> mapEle : characterCodes.entrySet()) {
+			char ch = mapEle.getKey();
+			String code = mapEle.getValue();
+
 //			System.out.println("Character :" + ch + "\t Code:" + code);
-//		}
+            logger.info("Character :" + ch + "\t Code:" + code);
+		}
 
         System.out.println("Compressed data : "+compressedData);
 
@@ -122,11 +143,11 @@ public class Main {
 //			System.out.println("\tBinary equivalent : "+getBinary((int)ch));
 //		}
 
-//		int size1 = sourceData.length()*8;
-//		int size2 = compressedData.length()*8;
-//
-//		System.out.println("we went from storing "+size1+" bits of data to "+size2+" bits. That's a "+((float)(size1-size2)*100/(float)size1)+" % decrease!!");
+		int size1 = sourceData.length()*8;
+		int size2 = compressedData.length()*8;
 
+//		System.out.println("we went from storing "+size1+" bits of data to "+size2+" bits. That's a "+((float)(size1-size2)*100/(float)size1)+" % decrease!!");
+        logger.info("we went from storing "+size1+" bits of data to "+size2+" bits. That's a "+((float)(size1-size2)*100/(float)size1)+" % decrease!!");
 
     }
 
@@ -213,7 +234,5 @@ public class Main {
         return binaryStr.toString();
     }
 
-    private static void sortPriorityQueue() {
 
-    }
 }
