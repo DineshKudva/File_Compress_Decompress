@@ -111,8 +111,10 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        String sourceData = "go go gophers";
+        String sourceData = "a red racecar";
         String compressedData = "";
+
+
 
         generateFrequency(sourceData);
 
@@ -137,7 +139,6 @@ public class Main {
             logger.info("Character :" + ch + "\t Code:" + code);
 		}
 
-        System.out.println("Compressed data : "+compressedData);
 
 //		for(char ch:compressedData.toCharArray()) {
 //			System.out.print("Decimal Value : "+(int)ch);
@@ -150,6 +151,65 @@ public class Main {
 //		System.out.println("we went from storing "+size1+" bits of data to "+size2+" bits. That's a "+((float)(size1-size2)*100/(float)size1)+" % decrease!!");
         logger.info("we went from storing "+size1+" bits of data to "+size2+" bits. That's a "+((float)(size1-size2)*100/(float)size1)+" % decrease!!");
 
+
+        String uncompressedData = "";
+
+        uncompressedData = decompressData(compressedData,uncompressedData,root);
+
+        System.out.println("Source data:"+sourceData);
+        System.out.println("Compressed data :"+compressedData);
+        System.out.println("Decompressed data:"+uncompressedData);
+
+        logger.info("obtained uncompressed data:"+uncompressedData);
+
+        if(uncompressedData.equals(sourceData)){
+            logger.info("Compression-Decompression carried out successfully");
+        }
+
+    }
+
+    private static String decompressData(String compressedData, String uncompressedData,TreeNode root) {
+
+        String binaryStr = "";
+
+        for(char ch: compressedData.toCharArray()){
+            String binary_val = getBinaryFromChar(ch);
+//            String binary_val = getBinary((int)ch);
+            binaryStr += binary_val;
+        }
+
+
+        TreeNode temp = root;
+
+        for(char ch:binaryStr.toCharArray()){
+            if(ch == '1')
+                temp = temp.right;
+            else
+                temp = temp.left;
+
+            if(temp.left == null && temp.right ==null){
+                uncompressedData += temp.getChar();
+                temp = root;
+            }
+        }
+
+        return uncompressedData;
+    }
+
+    private static String getBinaryFromChar(char ch) {
+        int deci_val = (int) ch;
+        String result = "";
+
+        while(deci_val!=0){
+            int rem = deci_val%2;
+            deci_val /= 2;
+            result = rem + result;
+        }
+
+        while(result.length()!=7)
+            result = '0' + result;
+
+        return result;
     }
 
     private static String dataCompression(String sourceData) {
@@ -224,13 +284,10 @@ public class Main {
             num/=2;
         }
 
-
         while(binaryStr.length()!=7)
             binaryStr.append(0);
 
         binaryStr.reverse();
-
-
 
         return binaryStr.toString();
     }
