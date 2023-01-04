@@ -10,10 +10,12 @@ public class Main {
     private static final Logger logger = Logger.getLogger(Main.class.getName());
     static FileHandler fileHandler;
 
-
+    public static int size_of_compressed_string = 0;
     public static HashMap<Character, Integer> freqTable = new HashMap<>();
     public static PriorityQueue<TreeNode> nodeQueue = new PriorityQueue<TreeNode>(new CharComparator());
     public static HashMap<Character, String> characterCodes = new HashMap<>();
+
+    public static ArrayList<TreeNode> nodeArrayList = new ArrayList<>();
 
     public static TreeNode[] nodeList;
 
@@ -29,7 +31,7 @@ public class Main {
 
     public static void buildNodeList() {
         nodeList = new TreeNode[freqTable.size()];
-        int i=0;
+        int i = 0;
 
         for (Map.Entry<Character, Integer> mapElement : freqTable.entrySet()) {
             char ch = mapElement.getKey();
@@ -41,53 +43,69 @@ public class Main {
 
         Arrays.sort(nodeList, new CharComparator());
 
+        for(TreeNode x:nodeList){
+            nodeArrayList.add(x);
+        }
+
+//        System.out.println("Node List:");
+//        System.out.println("Char\tFreq\tAscii");
+//        for(TreeNode temp:nodeList){
+//            System.out.println(temp.getChar()+"\t("+temp.getFreq()+")"+"\t["+temp.getAscii()+"]");
+//        }
+
+
     }
 
     public static TreeNode buildTree(String data) {
 
-//		for (Map.Entry<Character, Integer> mapElement : freqTable.entrySet()) {
-//			char ch = mapElement.getKey();
-//			int freq = mapElement.getValue();
-//
-//			com.CapEx.TreeNode newNode = new com.CapEx.TreeNode(ch, freq);
-//			nodeQueue.add(newNode);
-//
-//
-//		}
-
-        
-
-        for(TreeNode temp : nodeList)
+        for (TreeNode temp : nodeList)
             nodeQueue.add(temp);
 
 
-
-        while (!(nodeQueue.size() == 1)) {
-
-//            System.out.println("Queue so far:");
-
+//        while (!(nodeQueue.size() == 1)) {
+          while(!(nodeArrayList.size() == 1)){
             logger.info("Queue so far:");
 
-            for(TreeNode temp : nodeQueue) {
-//                System.out.print(temp.getChar()+"("+temp.getFreq()+")"+"\t");
-            }
-//            System.out.println();
 
-            TreeNode leftNode = nodeQueue.poll();
-            TreeNode rightNode = nodeQueue.poll();
+//            System.out.println("\nQueue so far");
+//            for(TreeNode temp: nodeArrayList){
+//                System.out.print(temp.getChar()+"("+temp.getFreq()+")"+"["+temp.getAscii()+"]\t\t");
+//            }
+
+//            TreeNode leftNode = nodeQueue.poll();
+//            TreeNode rightNode = nodeQueue.poll();
+
+            TreeNode leftNode = nodeArrayList.get(0);
+
+            nodeArrayList.remove(0);
+
+            TreeNode rightNode = nodeArrayList.get(0);
+            nodeArrayList.remove(0);
 
             TreeNode resultNode = new TreeNode('$', leftNode.getFreq() + rightNode.getFreq());
 
             resultNode.left = leftNode;
             resultNode.right = rightNode;
+            int a = leftNode.getAscii();
+            int b = rightNode.getAscii();
 
-            nodeQueue.add(resultNode);
+            resultNode.addAsciiVal(a,b);
 
+//            nodeQueue.add(resultNode);
+            nodeArrayList.add(resultNode);
 
+            Collections.sort(nodeArrayList,new CharComparator());
 
         }
 
-        return nodeQueue.peek();
+//        System.out.println("\nQueue so far");
+//        for(TreeNode temp:nodeArrayList){
+//            System.out.print(temp.getChar()+"("+temp.getFreq()+")"+"["+temp.getAscii()+"]\t\t");
+//        }
+
+
+        return nodeArrayList.get(0);
+//        return nodeQueue.peek();
     }
 
     public static void buildCode(TreeNode root, String code) {
@@ -105,108 +123,86 @@ public class Main {
     public static void main(String args[]) {
 
         try {
-             fileHandler = new FileHandler("MyLog.log",false);
-             logger.addHandler(fileHandler);
+            fileHandler = new FileHandler("MyLog.log", false);
+            logger.addHandler(fileHandler);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        String sourceData = "a red racecar";
+        String sourceData = "sentence 1.\nsentence 2.\nsentence 3.";
         String compressedData = "";
-
 
 
         generateFrequency(sourceData);
 
-		for(Map.Entry<Character, Integer> mapElement : freqTable.entrySet()) {
-			char ch = mapElement.getKey();
-			int freq = mapElement.getValue();
-
-//			System.out.println("Character :"+ch+"\t Frequency:"+freq);
-            logger.info("Character :"+ch+"\t Frequency:"+freq);
-		}
+        for (Map.Entry<Character, Integer> mapElement : freqTable.entrySet()) {
+            char ch = mapElement.getKey();
+            int freq = mapElement.getValue();
+            logger.info("Character :" + ch + "\t Frequency:" + freq);
+        }
 
         TreeNode root = buildTree(sourceData);
+
+        System.out.println("\nInorder Traversal");
+        inOrderTraverse(root);
+        System.out.println();
+
         buildCode(root, "");
 
         compressedData = dataCompression(sourceData);
 
-		for (Map.Entry<Character, String> mapEle : characterCodes.entrySet()) {
-			char ch = mapEle.getKey();
-			String code = mapEle.getValue();
-
-//			System.out.println("Character :" + ch + "\t Code:" + code);
+        for (Map.Entry<Character, String> mapEle : characterCodes.entrySet()) {
+            char ch = mapEle.getKey();
+            String code = mapEle.getValue();
+//            System.out.println("Character :" + ch + "\t Code:" + code);
             logger.info("Character :" + ch + "\t Code:" + code);
-		}
+        }
 
 
-//		for(char ch:compressedData.toCharArray()) {
-//			System.out.print("Decimal Value : "+(int)ch);
-//			System.out.println("\tBinary equivalent : "+getBinary((int)ch));
-//		}
+        int size1 = sourceData.length() * 8;
+        int size2 = compressedData.length() * 8;
 
-		int size1 = sourceData.length()*8;
-		int size2 = compressedData.length()*8;
-
-//		System.out.println("we went from storing "+size1+" bits of data to "+size2+" bits. That's a "+((float)(size1-size2)*100/(float)size1)+" % decrease!!");
-        logger.info("we went from storing "+size1+" bits of data to "+size2+" bits. That's a "+((float)(size1-size2)*100/(float)size1)+" % decrease!!");
+        logger.info("we went from storing " + size1 + " bits of data to " + size2 + " bits. That's a " + ((float) (size1 - size2) * 100 / (float) size1) + " % decrease!!");
 
 
         String uncompressedData = "";
 
-        uncompressedData = decompressData(compressedData,uncompressedData,root);
+        uncompressedData = decompressData(compressedData, uncompressedData, root);
 
-        System.out.println("Source data:"+sourceData);
-        System.out.println("Compressed data :"+compressedData);
-        System.out.println("Decompressed data:"+uncompressedData);
+        System.out.println("Source data:" + sourceData);
+        System.out.println("Compressed data :" + compressedData);
+        System.out.println("Decompressed data:" + uncompressedData);
 
-        logger.info("obtained uncompressed data:"+uncompressedData);
+        logger.info("obtained uncompressed data:" + uncompressedData);
 
-        if(uncompressedData.equals(sourceData)){
+        if (uncompressedData.equals(sourceData)) {
             logger.info("Compression-Decompression carried out successfully");
         }
 
     }
 
-    private static String decompressData(String compressedData, String uncompressedData,TreeNode root) {
+    private static void inOrderTraverse(TreeNode root) {
+        if(root == null)
+            return;
 
-        String binaryStr = "";
-
-        for(char ch: compressedData.toCharArray()){
-            String binary_val = getBinaryFromChar(ch);
-//            String binary_val = getBinary((int)ch);
-            binaryStr += binary_val;
-        }
-
-
-        TreeNode temp = root;
-
-        for(char ch:binaryStr.toCharArray()){
-            if(ch == '1')
-                temp = temp.right;
-            else
-                temp = temp.left;
-
-            if(temp.left == null && temp.right ==null){
-                uncompressedData += temp.getChar();
-                temp = root;
-            }
-        }
-
-        return uncompressedData;
+        inOrderTraverse(root.left);
+        System.out.print(root.getChar()+"\t");
+        inOrderTraverse(root.right);
     }
+
+
 
     private static String getBinaryFromChar(char ch) {
         int deci_val = (int) ch;
         String result = "";
 
-        while(deci_val!=0){
-            int rem = deci_val%2;
+        while (deci_val != 0) {
+            int rem = deci_val % 2;
             deci_val /= 2;
             result = rem + result;
         }
 
-        while(result.length()!=7)
+        while (result.length() != 7)
             result = '0' + result;
 
         return result;
@@ -221,24 +217,26 @@ public class Main {
         for (char ch : sourceData.toCharArray()) {
             String presentCode = characterCodes.get(ch);
 
-//			System.out.println("Character : "+ch+"\tCode : "+presentCode);
+//            System.out.println("Character:"+ch+"\tPresent Code:"+presentCode);
 
             curCode += presentCode;
-//			System.out.println("Presently : "+curCode);
 
-            if (curCode.length() > 7) {
+//            System.out.println("\tCurrent Code:"+curCode);
+
+            if (curCode.length() >= 7) {
                 rem = curCode.substring(7);
                 curCode = curCode.substring(0, 7);
+//                System.out.println("\tRemaining:"+rem);
             }
 
             if (curCode.length() == 7) {
-//				System.out.println("Entering get ascii with :\t"+curCode);
-//				System.out.println("Remaining bits : "+rem);
+
                 char characterObtained = getAscii(curCode);
                 compressedData += characterObtained;
-                curCode = "";
-            }
-            else if(curCode.length()<7)
+                size_of_compressed_string += 7;
+//                System.out.println("\tCode Cut down:"+curCode+"\tCharacter :"+characterObtained);
+
+            } else if (curCode.length() < 7)
                 continue;
 
 
@@ -246,11 +244,14 @@ public class Main {
 
         }
 
-        if(!curCode.equals("")) {
+        if (!curCode.equals("")) {
+            size_of_compressed_string += curCode.length();
             int x = 7 - curCode.length();
-            for(int i=0;i<x;i++)
-                curCode += '0';
+            for (int i = 0; i < x; i++)
+                curCode += "0";
+
             char remCharacter = getAscii(curCode);
+//            System.out.println("***Finally***\tCode Cut down:"+curCode+"\tCharacter :"+remCharacter);
             compressedData += remCharacter;
         }
 
@@ -261,15 +262,11 @@ public class Main {
         int binaryNum = Integer.parseInt(curCode);
         int deciVal = 0;
 
-//		System.out.print("Binary Number:"+binaryNum);
-
         for (int i = 0; i < curCode.length(); i++) {
-            deciVal += (binaryNum % 10) * (int)Math.pow(2, i);
+            deciVal += (binaryNum % 10) * (int) Math.pow(2, i);
             binaryNum /= 10;
         }
 
-
-//		System.out.println("\t\tDecimal Equivalent:"+deciVal+"\n------------------");
 
         return (char) deciVal;
     }
@@ -279,17 +276,53 @@ public class Main {
 
         StringBuilder binaryStr = new StringBuilder();
 
-        while(num!=0) {
-            binaryStr.append(num%2);
-            num/=2;
+        while (num != 0) {
+            binaryStr.append(num % 2);
+            num /= 2;
         }
 
-        while(binaryStr.length()!=7)
+        while (binaryStr.length() != 7)
             binaryStr.append(0);
 
         binaryStr.reverse();
 
         return binaryStr.toString();
+    }
+
+    //  ----------------- Decompression of data ------------
+    private static String decompressData(String compressedData, String uncompressedData, TreeNode root) {
+
+        String binaryStr = "";
+
+        for (char ch : compressedData.toCharArray()) {
+            String binary_val = getBinaryFromChar(ch);
+//            System.out.println("Character:"+ch+"\tBinary Value:"+binary_val);
+            binaryStr += binary_val;
+        }
+
+        binaryStr = binaryStr.substring(0,size_of_compressed_string);
+        TreeNode temp = root;
+        String code = "";
+
+        for (char ch : binaryStr.toCharArray()) {
+            if (ch == '1') {
+                code += '1';
+                temp = temp.right;
+            }
+            else {
+                code += '0';
+                temp = temp.left;
+            }
+
+            if (temp.left == null && temp.right == null) {
+//                System.out.println("------Reached leaf-----\n\tCharacter:"+temp.getChar()+"\tCode:"+code);
+                uncompressedData += temp.getChar();
+                temp = root;
+                code = "";
+            }
+        }
+
+        return uncompressedData;
     }
 
 

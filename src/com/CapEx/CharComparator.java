@@ -9,12 +9,13 @@ public class CharComparator implements Comparator<TreeNode> {
         // TODO Auto-generated method stub
 
 
-        if(o1.getFreq() == o2.getFreq()) {
+        if (o1.getFreq() == o2.getFreq()) {
 
-            if((int)o1.getChar()>(int)o2.getChar())
-                return 1;
-            else
-                return -1;
+//            if ((int) o1.getChar() > (int) o2.getChar())
+//                return 1;
+//            else
+//                return -1;
+             return o1.getAscii()-o2.getAscii();
         }
 
         return o1.getFreq() - o2.getFreq();
