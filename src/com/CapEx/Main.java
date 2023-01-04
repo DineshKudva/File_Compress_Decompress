@@ -169,9 +169,13 @@ public class Main {
 
         uncompressedData = decompressData(compressedData, uncompressedData, root);
 
-        System.out.println("Source data:" + sourceData);
-        System.out.println("Compressed data :" + compressedData);
-        System.out.println("Decompressed data:" + uncompressedData);
+//        System.out.println("Source data:" + sourceData);
+//        System.out.println("Compressed data :" + compressedData);
+//        System.out.println("Decompressed data:" + uncompressedData);
+
+        logger.info("Source data:" + sourceData);
+        logger.info("Compressed data :" + compressedData);
+        logger.info("Decompressed data:" + uncompressedData);
 
         logger.info("obtained uncompressed data:" + uncompressedData);
 
