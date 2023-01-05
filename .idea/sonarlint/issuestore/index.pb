@@ -7,5 +7,3 @@ w
 G.idea/sonarlint/issuestore/1/c/1cf86e28f4b25b2d58f6e2a0e2b34c9f4725ba59,6\7\67df86d85d72c725f04f6d8c19d9bf1fe6547cc1
 w
 G.idea/sonarlint/issuestore/6/7/67df86d85d72c725f04f6d8c19d9bf1fe6547cc1,7\9\79400a167f9b050959f941f7977802ca40b2fc19
-9
-	MyLog.log,7\0\708f7ef3e411ae4a32cde458c6f7859f30b58239
