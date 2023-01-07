@@ -1,5 +1,7 @@
 package com.cap_ex.compression;
 
+import com.cap_ex.File_handle.File_Handler;
+import com.cap_ex.File_handle.IFile_Handler;
 import com.cap_ex.TreeNode;
 
 import java.util.Map;
