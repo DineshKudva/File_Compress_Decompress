@@ -13,3 +13,11 @@ G.idea/sonarlint/issuestore/7/0/708f7ef3e411ae4a32cde458c6f7859f30b58239,6\e\6e
 	MyLog.log,7\0\708f7ef3e411ae4a32cde458c6f7859f30b58239
 L
 src/com/cap_ex/TreeNode.java,c\a\ca111b515e6eafed9dc1eede923b11e459ab49ce
+R
+"src/com/cap_ex/CharComparator.java,f\d\fd0aa0dc284d4634d20a5b8039bbd12d900526eb
+]
+-src/com/cap_ex/File_handle/IFile_Handler.java,e\2\e2af709bf21d30acf332a2b8dfdf8284338a8075
+H
+src/com/cap_ex/Main.java,3\7\3791e9970533ea58b1b3f5cae1a2d4b550fb4a67
+\
+,src/com/cap_ex/File_handle/File_Handler.java,5\2\522e16bd8bda13a276bf1a19960612f799b4f4ae
