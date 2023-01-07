@@ -1,4 +1,4 @@
-package com.CapEx;
+package com.cap_ex;
 
 import java.util.*;
 
