@@ -1,7 +1,6 @@
 package com.cap_ex.compression;
 
-import com.cap_ex.File_handle.File_Handler;
-import com.cap_ex.File_handle.IFile_Handler;
+
 import com.cap_ex.TreeNode;
 
 import java.util.Map;
@@ -9,7 +8,7 @@ import java.util.PriorityQueue;
 
 public class Compressor implements ICompress{
     @Override
-    public Map<Character, Integer> generateFrequency(String file_path) {
+    public Map<Character, Integer> generateFrequency(String filePath) {
         return null;
     }
 
@@ -19,15 +18,13 @@ public class Compressor implements ICompress{
     }
 
     @Override
-    public String writeFile(TreeNode root, String file_path) {
+    public String writeFile(TreeNode root, String filePath) {
         return null;
     }
 
-    String compressFile(String file_path){
-        String final_file_path = "";
+    String compressFile(String filePath){
+        String finalFilePath = "";
 
-        ICompress compressObj = new Compressor();
-
-        return final_file_path;
+        return finalFilePath;
     }
 }

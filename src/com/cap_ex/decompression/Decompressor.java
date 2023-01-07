@@ -9,15 +9,13 @@ public class Decompressor implements IDecompress{
     }
 
     @Override
-    public String writeFile(TreeNode root, String file_path) {
+    public String writeFile(TreeNode root, String filePath) {
         return null;
     }
 
-    String decompressFile(String file_path){
-        String final_file_path = "";
+    String decompressFile(String filePath){
+        String finalFilePath = "";
 
-        IDecompress decompressor = new Decompressor();
-
-        return final_file_path;
+        return finalFilePath;
     }
 }
