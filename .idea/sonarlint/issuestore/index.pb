@@ -17,7 +17,9 @@ R
 "src/com/cap_ex/CharComparator.java,f\d\fd0aa0dc284d4634d20a5b8039bbd12d900526eb
 ]
 -src/com/cap_ex/File_handle/IFile_Handler.java,e\2\e2af709bf21d30acf332a2b8dfdf8284338a8075
-H
-src/com/cap_ex/Main.java,3\7\3791e9970533ea58b1b3f5cae1a2d4b550fb4a67
 \
 ,src/com/cap_ex/File_handle/File_Handler.java,5\2\522e16bd8bda13a276bf1a19960612f799b4f4ae
+e
+5src/com/cap_ex/decompression/HuffmanDecompressor.java,c\2\c2a56ba962c3ded55fb62737c171bc2ad93ba520
+d
+4src/com/cap_ex/decompression/IHuffmanDecompress.java,b\6\b69cc530ce247b6edec5298c3f445cd9a4cba6f3
