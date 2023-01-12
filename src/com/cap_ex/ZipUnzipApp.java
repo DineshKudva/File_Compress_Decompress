@@ -2,7 +2,7 @@ package com.cap_ex;
 
 public class ZipUnzipApp {
     public static void main(String[] args){
-        String inputFilePath = "";
+        String inputFilePath = "/C:/Users/Dinesh/Desktop/test.txt";
         String outputFilePath;
         String resultPath;
 
@@ -10,7 +10,7 @@ public class ZipUnzipApp {
 
         outputFilePath = fileZipUnzip.compressFile(inputFilePath);
 
-        resultPath = fileZipUnzip.decompressFile(outputFilePath);
+//        resultPath = fileZipUnzip.decompressFile(outputFilePath);
 
     }
 }

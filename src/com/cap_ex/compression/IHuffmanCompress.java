@@ -2,16 +2,19 @@ package com.cap_ex.compression;
 
 import com.cap_ex.*;
 
+import java.io.File;
 import java.util.*;
 
 public interface IHuffmanCompress {
-    Map<Character, Integer> generateFrequency(String inputFilePath);
+    Map<Character, Integer> generateFrequency(File fileObj);
 
-    TreeNode buildTree(Map<Character, Integer> freqTable);
+    List<TreeNode> buildNodeList(Map<Character, Integer> freqTable);
+
+    TreeNode buildTree(List<TreeNode> nodeList);
 
     Map<Character, String> getCodes(TreeNode root);
 
-    String compressFile(Map<Character, String> characterCodes, String inputFilePath);
+    String compress(Map<Character,String> characterCodes,String inputFilePath);
 
 
 }

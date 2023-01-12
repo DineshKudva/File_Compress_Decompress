@@ -123,7 +123,9 @@ public class Main {
         for (Map.Entry<Character, String> mapEle : characterCodes.entrySet()) {
             char ch = mapEle.getKey();
             String code = mapEle.getValue();
-            logger.info("Character : {}" + ch + "\t Code:" + code);
+//            logger.info("Character :" + ch + "\t Code:" + code);
+
+            System.out.println("Character :" + ch + "\t Code:" + code);
         }
 
 

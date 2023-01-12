@@ -5,10 +5,10 @@ public class TreeNode {
     private Integer frequency;
     private Integer asciiVal;
 
-    TreeNode left;
-    TreeNode right;
+    public TreeNode left;
+    public TreeNode right;
 
-    TreeNode(char a, int b) {
+    public TreeNode(char a, int b) {
 
         this.ch = a;
         this.frequency = b;
