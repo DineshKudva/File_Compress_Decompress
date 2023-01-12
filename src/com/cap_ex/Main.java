@@ -118,6 +118,8 @@ public class Main {
 
         compressedData = dataCompression(sourceData);
 
+        computeSize();
+
         for (Map.Entry<Character, String> mapEle : characterCodes.entrySet()) {
             char ch = mapEle.getKey();
             String code = mapEle.getValue();
@@ -230,7 +232,25 @@ public class Main {
             compressedData += remCharacter;
         }
 
+        System.out.println("Size of compressed data : "+size_of_compressed_string);
+
         return compressedData;
+    }
+
+
+    public static void computeSize(){
+        int size = 0;
+
+        for(Map.Entry<Character,Integer> mapEle : freqTable.entrySet()){
+            char ch = mapEle.getKey();
+            int freq = mapEle.getValue();
+            int bitSize = characterCodes.get(ch).length();
+
+            size += (freq*bitSize);
+
+        }
+
+        System.out.println("Size called in main:"+size);
     }
 
 
