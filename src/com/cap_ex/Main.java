@@ -271,6 +271,13 @@ public class Main {
         TreeNode temp = root;
 
         for (char ch : binaryStr.toCharArray()) {
+
+            if (temp.left == null && temp.right == null) {
+                uncompressedData.append(temp.getChar());
+                temp = root;
+                continue;
+            }
+
             if (ch == '1')
                 temp = temp.right;
             else
