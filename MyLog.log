@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008823</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901771</millis>
   <sequence>0</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -13,8 +13,8 @@
   <message>Character : {} 	 	 Frequency:3</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008875</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901835</millis>
   <sequence>1</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -24,8 +24,8 @@
   <message>Character : {} 	1	 Frequency:1</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008876</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901836</millis>
   <sequence>2</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -35,8 +35,8 @@
   <message>Character : {} 	2	 Frequency:1</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008878</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901836</millis>
   <sequence>3</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -46,8 +46,8 @@
   <message>Character : {} 	s	 Frequency:3</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008879</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901838</millis>
   <sequence>4</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -57,8 +57,8 @@
   <message>Character : {} 	c	 Frequency:3</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008879</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901838</millis>
   <sequence>5</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -68,8 +68,8 @@
   <message>Character : {} 	3	 Frequency:1</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008880</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901839</millis>
   <sequence>6</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -79,8 +79,8 @@
   <message>Character : {} 	t	 Frequency:3</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008881</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901840</millis>
   <sequence>7</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -90,8 +90,8 @@
   <message>Character : {} 	e	 Frequency:9</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008882</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901841</millis>
   <sequence>8</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -102,8 +102,8 @@
 	 Frequency:2</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008882</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901842</millis>
   <sequence>9</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -113,8 +113,8 @@
   <message>Character : {} 	n	 Frequency:6</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008882</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901844</millis>
   <sequence>10</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -124,8 +124,8 @@
   <message>Character : {} 	.	 Frequency:3</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008882</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901844</millis>
   <sequence>11</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -135,8 +135,8 @@
   <message>Queue so far:</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008885</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901845</millis>
   <sequence>12</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -146,8 +146,8 @@
   <message>Queue so far:</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008885</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901847</millis>
   <sequence>13</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -157,8 +157,8 @@
   <message>Queue so far:</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008885</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901849</millis>
   <sequence>14</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -168,8 +168,8 @@
   <message>Queue so far:</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008888</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901850</millis>
   <sequence>15</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -179,8 +179,8 @@
   <message>Queue so far:</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008888</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901850</millis>
   <sequence>16</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -190,8 +190,8 @@
   <message>Queue so far:</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008888</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901851</millis>
   <sequence>17</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -201,8 +201,8 @@
   <message>Queue so far:</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008888</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901851</millis>
   <sequence>18</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -212,8 +212,8 @@
   <message>Queue so far:</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008888</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901852</millis>
   <sequence>19</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -223,8 +223,8 @@
   <message>Queue so far:</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008888</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901853</millis>
   <sequence>20</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -234,8 +234,8 @@
   <message>Queue so far:</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008900</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901858</millis>
   <sequence>21</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -245,8 +245,8 @@
   <message>we went from storing 280 bits of data to 128 bits. That's a 54.285713 % decrease!!</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008901</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901859</millis>
   <sequence>22</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -258,8 +258,8 @@ sentence 2.
 sentence 3.</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008901</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901860</millis>
   <sequence>23</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -269,8 +269,8 @@ sentence 3.</message>
   <message>Compressed data :Ub;Y].[MMjq,</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008901</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901861</millis>
   <sequence>24</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -282,8 +282,8 @@ sentence 2.
 sentence 3.</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008901</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901861</millis>
   <sequence>25</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
@@ -295,8 +295,8 @@ sentence 2.
 sentence 3.</message>
 </record>
 <record>
-  <date>2023-01-14T12:03:28</date>
-  <millis>1673678008901</millis>
+  <date>2023-01-14T19:15:01</date>
+  <millis>1673703901862</millis>
   <sequence>26</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>

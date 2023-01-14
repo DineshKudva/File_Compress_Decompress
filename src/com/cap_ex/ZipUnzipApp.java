@@ -10,7 +10,7 @@ public class ZipUnzipApp {
 
         outputFilePath = fileZipUnzip.compressFile(inputFilePath);
 
-//        resultPath = fileZipUnzip.decompressFile(outputFilePath);
+        resultPath = fileZipUnzip.decompressFile(outputFilePath);
 
     }
 }
