@@ -16,5 +16,8 @@ public interface IHuffmanCompress {
 
     String compress(Map<Character,String> characterCodes,String inputFilePath);
 
+    String dataCompression(String sourceData,Map<Character,String> characterCodes);
+
+    char getAscii(String curCode);
 
 }

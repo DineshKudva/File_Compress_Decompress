@@ -105,4 +105,61 @@ public class HuffmanCompressor implements IHuffmanCompress {
     public String compress(Map<Character,String> characterCodes,String inputFilePath) {
         return null;
     }
+
+    @Override
+    public String dataCompression(String sourceData,Map<Character,String> characterCodes) {
+        String compressedData = "";
+        String curCode = "";
+        String rem = "";
+
+        for (char ch : sourceData.toCharArray()) {
+            String presentCode = characterCodes.get(ch);
+
+
+            curCode += presentCode;
+
+            if (curCode.length() >= 7) {
+                rem = curCode.substring(7);
+                curCode = curCode.substring(0, 7);
+            }
+
+            if (curCode.length() == 7) {
+
+                char characterObtained = getAscii(curCode);
+                compressedData += characterObtained;
+
+            } else if (curCode.length() < 7)
+                continue;
+
+
+            curCode = rem;
+
+        }
+
+        if (!curCode.equals("")) {
+            int x = 7 - curCode.length();
+            for (int i = 0; i < x; i++)
+                curCode += "0";
+
+            char remCharacter = getAscii(curCode);
+            compressedData += remCharacter;
+        }
+
+
+        return compressedData;
+    }
+
+    @Override
+    public char getAscii(String curCode) {
+        int binaryNum = Integer.parseInt(curCode);
+        int deciVal = 0;
+
+        for (int i = 0; i < curCode.length(); i++) {
+            deciVal += (binaryNum % 10) * (int) Math.pow(2, i);
+            binaryNum /= 10;
+        }
+
+
+        return (char) deciVal;
+    }
 }
