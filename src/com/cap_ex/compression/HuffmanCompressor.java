@@ -9,6 +9,8 @@ import java.util.*;
 
 public class HuffmanCompressor implements IHuffmanCompress {
 
+    Scanner fileName = new Scanner(System.in);
+
     @Override
     public Map<Character, Integer> generateFrequency(File fileObj) {
 
@@ -20,7 +22,7 @@ public class HuffmanCompressor implements IHuffmanCompress {
                 String data = fileScanner.nextLine();
 
                 if(fileScanner.hasNext())
-                    data += '\n';
+                    data += "\n\n";
 
                 for(char character : data.toCharArray())
                     freqTable.put(character, freqTable.getOrDefault(character, 0) + 1);
@@ -102,8 +104,37 @@ public class HuffmanCompressor implements IHuffmanCompress {
     }
 
     @Override
-    public String compress(Map<Character,String> characterCodes,String inputFilePath) {
-        return null;
+    public String compress(Map<Character,String> characterCodes,File fileObj) {
+
+        System.out.println("Enter name for compressed file:(without any extensions)");
+        String outputFilePath = fileName.nextLine();
+
+        outputFilePath = "/C:/Users/Dinesh/Desktop/"+outputFilePath+".txt";
+
+        try {
+            FileWriter fw = new FileWriter(outputFilePath);
+            Scanner fileScanner = new Scanner(fileObj);
+
+            while(fileScanner.hasNext()){
+                String data = fileScanner.nextLine();
+
+                if(fileScanner.hasNext())
+                    data += "\n\n";
+
+                String compressedData = dataCompression(data,characterCodes);
+                System.out.print(compressedData);
+                fw.write(compressedData);
+
+            }
+
+            fileScanner.close();
+            fw.close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return outputFilePath;
     }
 
     @Override
