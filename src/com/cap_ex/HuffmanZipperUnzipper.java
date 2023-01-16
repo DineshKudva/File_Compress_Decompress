@@ -39,6 +39,12 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
         String outputFilePath = compressor.compress(characterCodes, fileObj);
 
+        for (Map.Entry<Character, String> mapElement : characterCodes.entrySet()) {
+            char ch = mapElement.getKey();
+            String str = mapElement.getValue();
+            System.out.println("Character : {} \t" + ch + "\t code:" + str);
+        }
+
         size_compressed_data = calculateSize(freqTable,characterCodes);
         rem_bits = HuffmanCompressor.extraBits;
 

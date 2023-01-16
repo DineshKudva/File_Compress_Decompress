@@ -29,6 +29,8 @@ public class HuffmanCompressor implements IHuffmanCompress {
                     freqTable.put(character, freqTable.getOrDefault(character, 0) + 1);
             }
 
+
+
             fileScanner.close();
         }
         catch(IOException e){
@@ -123,7 +125,6 @@ public class HuffmanCompressor implements IHuffmanCompress {
 
 //                System.out.print(data);
 //                String compressedData = dataCompression(data,characterCodes);
-//                System.out.print(compressedData);
 //                fw.write(compressedData);
 
             }

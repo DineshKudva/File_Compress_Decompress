@@ -95,7 +95,8 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        String sourceData = "sentence 1.\nsentence 2.\nsentence 3.";
+        String sourceData = "AAAA BB " +
+                "cc";
         String compressedData = "";
 
 
