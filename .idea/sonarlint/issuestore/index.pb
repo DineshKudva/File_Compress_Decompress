@@ -21,3 +21,7 @@ d
 0src/com/cap_ex/compression/IHuffmanCompress.java,8\5\85477dc46feab87257f39f2ea5f99607c70195d7
 S
 #src/com/cap_ex/IZipperUnzipper.java,e\b\ebc849ed9ae83acc99d31d496069f5720a4fbd29
+9
+	MyLog.log,7\0\708f7ef3e411ae4a32cde458c6f7859f30b58239
+H
+src/com/cap_ex/Main.java,3\7\3791e9970533ea58b1b3f5cae1a2d4b550fb4a67

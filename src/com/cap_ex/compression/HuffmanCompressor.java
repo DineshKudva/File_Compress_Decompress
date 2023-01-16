@@ -16,20 +16,15 @@ public class HuffmanCompressor implements IHuffmanCompress {
     public Map<Character, Integer> generateFrequency(File fileObj) {
 
         Map<Character,Integer> freqTable = new HashMap<>();
-
         try{
-            Scanner fileScanner = new Scanner(fileObj);
-            while(fileScanner.hasNext()){
-                String data = fileScanner.nextLine();
-
-                if(fileScanner.hasNext())
-                    data += "\n";
-
-                for(char character : data.toCharArray())
+            FileReader fileScanner = new FileReader(fileObj);
+            int val = fileScanner.read();
+            char character;
+            while(val!=-1){
+                    character = (char) val;
                     freqTable.put(character, freqTable.getOrDefault(character, 0) + 1);
+                    val =fileScanner.read();
             }
-
-
 
             fileScanner.close();
         }
@@ -59,7 +54,7 @@ public class HuffmanCompressor implements IHuffmanCompress {
 
     @Override
     public TreeNode buildTree(List<TreeNode> nodeList) {
-        while (!(nodeList.size() == 1)) {
+        while (nodeList.size() != 1) {
 
 
             TreeNode leftNode = nodeList.get(0);
@@ -114,25 +109,25 @@ public class HuffmanCompressor implements IHuffmanCompress {
         outputFilePath = "/C:/Users/Dinesh/Desktop/"+outputFilePath+".txt";
 
         try {
-            FileWriter fw = new FileWriter(outputFilePath);
-            Scanner fileScanner = new Scanner(fileObj);
-            String data = "";
-            while(fileScanner.hasNext()){
-//                String data = fileScanner.nextLine();
-                data += fileScanner.nextLine();
-                if(fileScanner.hasNext())
-                    data += "\n";
+            FileReader fileScanner = new FileReader(fileObj);
 
-//                System.out.print(data);
-//                String compressedData = dataCompression(data,characterCodes);
-//                fw.write(compressedData);
+            StringBuilder encodedString = new StringBuilder();
 
+            int val = fileScanner.read();
+            char character;
+
+            while(val!=-1){
+                character = (char) val;
+                encodedString.append(characterCodes.get(character));
+                val=fileScanner.read();
             }
 
-            String compressedData = dataCompression(data,characterCodes);
-            fw.write(compressedData);
-
             fileScanner.close();
+
+            String compressedString = dataCompression(encodedString.toString(), characterCodes);
+            FileWriter fw = new FileWriter(outputFilePath);
+            fw.write(compressedString);
+
             fw.close();
 
         } catch (IOException e) {
@@ -143,46 +138,31 @@ public class HuffmanCompressor implements IHuffmanCompress {
     }
 
     @Override
-    public String dataCompression(String sourceData,Map<Character,String> characterCodes) {
-        String compressedData = "";
-        String curCode = "";
-        String rem = "";
+    public String dataCompression(String encodedBits,Map<Character,String> characterCodes) {
+        StringBuilder compressedData = new StringBuilder();
 
-        for (char ch : sourceData.toCharArray()) {
-            String presentCode = characterCodes.get(ch);
+        int i=0;
 
+        int iterations = (encodedBits.length()/7);
 
-            curCode += presentCode;
+        for(int j=0;j<iterations;j++){
+            String curCode = encodedBits.substring(i,i+7);
+            char equiChar = getAscii(curCode);
 
-            if (curCode.length() >= 7) {
-                rem = curCode.substring(7);
-                curCode = curCode.substring(0, 7);
-            }
+            compressedData.append(equiChar);
 
-            if (curCode.length() == 7) {
-
-                char characterObtained = getAscii(curCode);
-                compressedData += characterObtained;
-
-            } else if (curCode.length() < 7)
-                continue;
-
-
-            curCode = rem;
+            i+=7;
 
         }
 
-        if (!curCode.equals("")) {
-            extraBits = 7 - curCode.length();
-            for (int i = 0; i < extraBits; i++)
-                curCode += '0';
 
-            char remCharacter = getAscii(curCode);
-            compressedData += remCharacter;
-        }
+        extraBits = 7 - (encodedBits.length()%7);
+        String endingCode = encodedBits.substring(i,encodedBits.length());
+        for(int j=0;j<extraBits;j++)
+            endingCode += '0';
 
-
-        return compressedData;
+        compressedData.append(getAscii(endingCode));
+        return compressedData.toString();
     }
 
     @Override
@@ -194,8 +174,6 @@ public class HuffmanCompressor implements IHuffmanCompress {
             deciVal += (binaryNum % 10) * (int) Math.pow(2, i);
             binaryNum /= 10;
         }
-
-
         return (char) deciVal;
     }
 }

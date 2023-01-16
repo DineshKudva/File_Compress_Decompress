@@ -1,20 +1,15 @@
 package com.cap_ex;
 
-import com.cap_ex.compression.HuffmanCompressor;
-import com.cap_ex.compression.IHuffmanCompress;
-import com.cap_ex.decompression.HuffmanDecompressor;
-import com.cap_ex.decompression.IHuffmanDecompress;
+import com.cap_ex.compression.*;
+import com.cap_ex.decompression.*;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.io.*;
+import java.util.*;
 
 public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
     TreeNode root;
-    int size_compressed_data,rem_bits;
+    private int sizeCompressedData,remBits;
 
     @Override
     public String compressFile(String inputFilePath) {
@@ -39,14 +34,9 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
         String outputFilePath = compressor.compress(characterCodes, fileObj);
 
-        for (Map.Entry<Character, String> mapElement : characterCodes.entrySet()) {
-            char ch = mapElement.getKey();
-            String str = mapElement.getValue();
-            System.out.println("Character : {} \t" + ch + "\t code:" + str);
-        }
 
-        size_compressed_data = calculateSize(freqTable,characterCodes);
-        rem_bits = HuffmanCompressor.extraBits;
+        sizeCompressedData = calculateSize(freqTable,characterCodes);
+        remBits = HuffmanCompressor.extraBits;
 
         return outputFilePath;
     }
@@ -80,7 +70,9 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
         IHuffmanDecompress decompressor = new HuffmanDecompressor();
 
-        String resultPath = decompressor.decompress(filObj,root,rem_bits);
+        String resultPath = decompressor.decompress(filObj,root,remBits);
+
+        System.out.println("Compressed and Decompressed files are generated successfully.\nCompressed file can be found at:"+outputFilePath+"\nDecompressed file can be found at:"+resultPath);
 
         return resultPath;
     }

@@ -2,16 +2,14 @@ package com.cap_ex.decompression;
 
 import com.cap_ex.TreeNode;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class HuffmanDecompressor implements IHuffmanDecompress {
 
     Scanner fileName = new Scanner(System.in);
     @Override
-    public String decompress(File fileObj, TreeNode root,int size) {
+    public String decompress(File fileObj, TreeNode root,int extraBits) {
         System.out.println("\nEnter name for decompressed file:(without any extensions)");
         String resultFilePath = fileName.nextLine();
 
@@ -19,24 +17,28 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
 
         try {
             FileWriter fw = new FileWriter(resultFilePath);
-            Scanner fileScanner = new Scanner(fileObj);
-            while(fileScanner.hasNext()){
-                String data = fileScanner.nextLine();
-                String decompressedData="";
-                System.out.println("In while loop");
-                if(!fileScanner.hasNext())
-                    decompressedData= dataDecompression(data,root,0);
-                else
-                    decompressedData = dataDecompression(data,root,size);
+            FileReader fileReader = new FileReader(fileObj);
 
-                fw.write(decompressedData);
+            int val = fileReader.read();
+            StringBuilder binaryCode = new StringBuilder();
+            char character;
 
+            while(val!=-1){
+                character = (char) val;
+
+                String binaryEqui = getBinaryFromChar(character);
+
+                binaryCode.append(binaryEqui);
+
+                val = fileReader.read();
             }
 
-            System.out.println("Out of while!");
+            String decompressedData = dataDecompression(binaryCode.toString(),root,extraBits);
 
-            fileScanner.close();
+            fw.write(decompressedData);
+
             fw.close();
+
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -46,21 +48,15 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
     }
 
     @Override
-    public String dataDecompression(String compressedData, TreeNode root,int size_of_compressed_string) {
-        String binaryStr = "";
+    public String dataDecompression(String binaryCode, TreeNode root,int extraBits) {
         StringBuilder uncompressedData = new StringBuilder();
 
-        for (char ch : compressedData.toCharArray()) {
-            String binary_val = getBinaryFromChar(ch);
-            binaryStr += binary_val;
-        }
 
-        if(size_of_compressed_string!=0)
-            binaryStr = binaryStr.substring(0, size_of_compressed_string);
-
+        int length = binaryCode.length() - extraBits;
         TreeNode temp = root;
 
-        for (char ch : binaryStr.toCharArray()) {
+        for(int i=0;i<length;i++) {
+            char ch = binaryCode.charAt(i);
 
             if (temp.left == null && temp.right == null) {
                 uncompressedData.append(temp.getChar());
@@ -78,18 +74,20 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
                 uncompressedData.append(temp.getChar());
                 temp = root;
             }
+
         }
+
         return uncompressedData.toString();
     }
 
     @Override
     public String getBinaryFromChar(char ch) {
-        int deci_val = ch;
+        int deciVal = ch;
         String result = "";
 
-        while (deci_val != 0) {
-            int rem = deci_val % 2;
-            deci_val /= 2;
+        while (deciVal != 0) {
+            int rem = deciVal % 2;
+            deciVal /= 2;
             result = rem + result;
         }
 
