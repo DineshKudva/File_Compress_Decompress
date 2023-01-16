@@ -13,3 +13,5 @@ G.idea/sonarlint/issuestore/7/0/708f7ef3e411ae4a32cde458c6f7859f30b58239,6\e\6e
 ,src/com/cap_ex/File_handle/File_Handler.java,5\2\522e16bd8bda13a276bf1a19960612f799b4f4ae
 L
 src/com/cap_ex/TreeNode.java,c\a\ca111b515e6eafed9dc1eede923b11e459ab49ce
+R
+"src/com/cap_ex/CharComparator.java,f\d\fd0aa0dc284d4634d20a5b8039bbd12d900526eb

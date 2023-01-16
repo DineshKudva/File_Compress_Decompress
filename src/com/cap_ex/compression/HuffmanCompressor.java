@@ -10,6 +10,7 @@ import java.util.*;
 public class HuffmanCompressor implements IHuffmanCompress {
 
     Scanner fileName = new Scanner(System.in);
+    public static int extraBits;
 
     @Override
     public Map<Character, Integer> generateFrequency(File fileObj) {
@@ -22,7 +23,7 @@ public class HuffmanCompressor implements IHuffmanCompress {
                 String data = fileScanner.nextLine();
 
                 if(fileScanner.hasNext())
-                    data += "\n\n";
+                    data += "\n";
 
                 for(char character : data.toCharArray())
                     freqTable.put(character, freqTable.getOrDefault(character, 0) + 1);
@@ -87,7 +88,6 @@ public class HuffmanCompressor implements IHuffmanCompress {
 
         buildCode(root,"",characterCodes);
 
-
         return characterCodes;
     }
 
@@ -114,18 +114,22 @@ public class HuffmanCompressor implements IHuffmanCompress {
         try {
             FileWriter fw = new FileWriter(outputFilePath);
             Scanner fileScanner = new Scanner(fileObj);
-
+            String data = "";
             while(fileScanner.hasNext()){
-                String data = fileScanner.nextLine();
-
+//                String data = fileScanner.nextLine();
+                data += fileScanner.nextLine();
                 if(fileScanner.hasNext())
-                    data += "\n\n";
+                    data += "\n";
 
-                String compressedData = dataCompression(data,characterCodes);
-                System.out.print(compressedData);
-                fw.write(compressedData);
+//                System.out.print(data);
+//                String compressedData = dataCompression(data,characterCodes);
+//                System.out.print(compressedData);
+//                fw.write(compressedData);
 
             }
+
+            String compressedData = dataCompression(data,characterCodes);
+            fw.write(compressedData);
 
             fileScanner.close();
             fw.close();
@@ -168,9 +172,9 @@ public class HuffmanCompressor implements IHuffmanCompress {
         }
 
         if (!curCode.equals("")) {
-            int x = 7 - curCode.length();
-            for (int i = 0; i < x; i++)
-                curCode += "0";
+            extraBits = 7 - curCode.length();
+            for (int i = 0; i < extraBits; i++)
+                curCode += '0';
 
             char remCharacter = getAscii(curCode);
             compressedData += remCharacter;

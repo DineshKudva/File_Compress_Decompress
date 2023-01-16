@@ -14,7 +14,7 @@ import java.util.PriorityQueue;
 public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
     TreeNode root;
-    int size_compressed_data;
+    int size_compressed_data,rem_bits;
 
     @Override
     public String compressFile(String inputFilePath) {
@@ -40,6 +40,7 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
         String outputFilePath = compressor.compress(characterCodes, fileObj);
 
         size_compressed_data = calculateSize(freqTable,characterCodes);
+        rem_bits = HuffmanCompressor.extraBits;
 
         return outputFilePath;
     }
@@ -73,7 +74,7 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
         IHuffmanDecompress decompressor = new HuffmanDecompressor();
 
-        String resultPath = decompressor.decompress(filObj,root,size_compressed_data);
+        String resultPath = decompressor.decompress(filObj,root,rem_bits);
 
         return resultPath;
     }

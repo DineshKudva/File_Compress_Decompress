@@ -20,11 +20,15 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
         try {
             FileWriter fw = new FileWriter(resultFilePath);
             Scanner fileScanner = new Scanner(fileObj);
-
             while(fileScanner.hasNext()){
                 String data = fileScanner.nextLine();
+                String decompressedData="";
+                System.out.println("In while loop");
+                if(!fileScanner.hasNext())
+                    decompressedData= dataDecompression(data,root,0);
+                else
+                    decompressedData = dataDecompression(data,root,size);
 
-                String decompressedData = dataDecompression(data,root,size);
                 fw.write(decompressedData);
 
             }
@@ -46,25 +50,23 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
         String binaryStr = "";
         StringBuilder uncompressedData = new StringBuilder();
 
-        System.out.println(compressedData);
-
         for (char ch : compressedData.toCharArray()) {
             String binary_val = getBinaryFromChar(ch);
             binaryStr += binary_val;
         }
 
+        if(size_of_compressed_string!=0)
+            binaryStr = binaryStr.substring(0, size_of_compressed_string);
 
-//        binaryStr = binaryStr.substring(0, size_of_compressed_string);
         TreeNode temp = root;
 
         for (char ch : binaryStr.toCharArray()) {
 
-//            if (temp.left == null && temp.right == null) {
-//                System.out.println(temp.getChar());
-//                uncompressedData.append(temp.getChar());
-//                temp = root;
-//                continue;
-//            }
+            if (temp.left == null && temp.right == null) {
+                uncompressedData.append(temp.getChar());
+                temp = root;
+                continue;
+            }
 
             if (ch == '1')
                 temp = temp.right;
@@ -73,12 +75,10 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
 
 
             if (temp.left == null && temp.right == null) {
-//                System.out.println(temp.getChar()+"\t"+temp.getFreq());
                 uncompressedData.append(temp.getChar());
                 temp = root;
             }
         }
-        System.out.println(uncompressedData.toString());
         return uncompressedData.toString();
     }
 
