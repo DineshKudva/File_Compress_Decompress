@@ -27,12 +27,12 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
         // forming the tree using the nodeList generated
         root = compressor.buildTree(nodeList);
 
-//        inorderTraversal(root);
+        inorderTraversal(root);
 
         // getting the codes of the characters using the huffman tree
         Map<Character,String> characterCodes = compressor.getCodes(root);
 
-        String outputFilePath = compressor.compress(characterCodes, fileObj);
+        String outputFilePath = compressor.compress(characterCodes, fileObj,root);
 
 
         sizeCompressedData = calculateSize(freqTable,characterCodes);

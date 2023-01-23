@@ -8,18 +8,36 @@ import java.util.*;
 public class HuffmanDecompressor implements IHuffmanDecompress {
 
     Scanner fileName = new Scanner(System.in);
+    int t;
     @Override
     public String decompress(File fileObj, TreeNode root,int extraBits) {
         System.out.println("\nEnter name for decompressed file:(without any extensions)");
         String resultFilePath = fileName.nextLine();
 
+
         resultFilePath = "/C:/Users/Dinesh/Desktop/"+resultFilePath+".txt";
 
         try {
+
+            TreeNode treeRoot = null;
+            int extra_bits;
+
             FileWriter fw = new FileWriter(resultFilePath);
             FileReader fileReader = new FileReader(fileObj);
 
-            int val = fileReader.read();
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String huffTree = bufferedReader.readLine();
+
+            treeRoot = deserialize(huffTree);
+
+            inorderTraversal(treeRoot);
+
+            extra_bits = Integer.parseInt(bufferedReader.readLine());
+            System.out.println("Extra bits:"+extra_bits);
+
+//            int val = fileReader.read();
+            int val = bufferedReader.read();
             StringBuilder binaryCode = new StringBuilder();
             char character;
 
@@ -30,10 +48,13 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
 
                 binaryCode.append(binaryEqui);
 
-                val = fileReader.read();
+                val = bufferedReader.read();
             }
 
-            String decompressedData = dataDecompression(binaryCode.toString(),root,extraBits);
+            bufferedReader.close();
+            fileReader.close();
+
+            String decompressedData = dataDecompression(binaryCode.toString(),treeRoot,extra_bits);
 
             fw.write(decompressedData);
 
@@ -80,6 +101,37 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
         return uncompressedData.toString();
     }
 
+    public TreeNode deserialize(String nodeList){
+        if(nodeList == null)
+            return null;
+        t = 0;
+        String[] arr = nodeList.split(",");
+        for(String x:arr){
+            System.out.print(x+"\t");
+        }
+        System.out.println();
+        return treeBuilder(arr);
+    }
+
+    public TreeNode treeBuilder(String[] arr){
+        if(arr[t].equals("#"))
+            return null;
+
+        TreeNode root;
+
+        if(arr[t].equals("$"))
+            root = new TreeNode(arr[t].charAt(0),0);
+        else
+            root = new TreeNode((char)Integer.parseInt(arr[t]),0);
+
+        t++;
+        root.left = treeBuilder(arr);
+        t++;
+        root.right = treeBuilder(arr);
+
+        return root;
+    }
+
     @Override
     public String getBinaryFromChar(char ch) {
         int deciVal = ch;
@@ -95,5 +147,14 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
             result = '0' + result;
 
         return result;
+    }
+
+    private void inorderTraversal(TreeNode root) {
+        if (root == null)
+            return;
+
+        inorderTraversal(root.left);
+        System.out.print(root.getChar() + "\t");
+        inorderTraversal(root.right);
     }
 }

@@ -101,7 +101,7 @@ public class HuffmanCompressor implements IHuffmanCompress {
     }
 
     @Override
-    public String compress(Map<Character,String> characterCodes,File fileObj) {
+    public String compress(Map<Character,String> characterCodes, File fileObj, TreeNode root) {
 
         System.out.println("Enter name for compressed file:(without any extensions)");
         String outputFilePath = fileName.nextLine();
@@ -126,8 +126,16 @@ public class HuffmanCompressor implements IHuffmanCompress {
 
             String compressedString = dataCompression(encodedString.toString(), characterCodes);
             FileWriter fw = new FileWriter(outputFilePath);
-            fw.write(compressedString);
+            PrintWriter pw = new PrintWriter(fw);
 
+            String serializedTree = serialize(root);
+            String remBits = ""+extraBits;
+
+            pw.println(serializedTree);
+            pw.println(remBits);
+            pw.println(compressedString);
+
+            pw.close();
             fw.close();
 
         } catch (IOException e) {
@@ -175,5 +183,34 @@ public class HuffmanCompressor implements IHuffmanCompress {
             binaryNum /= 10;
         }
         return (char) deciVal;
+    }
+
+    public String serialize(TreeNode root){
+
+        if(root == null)
+            return null;
+
+        Stack<TreeNode> nodeStack = new Stack<>();
+        nodeStack.push(root);
+
+        List<String> charList = new ArrayList<>();
+        while(!nodeStack.empty()){
+
+            TreeNode node = nodeStack.pop();
+
+            if(node == null)
+                charList.add("#");
+            else{
+                if(node.right ==null && node.left==null)
+                    charList.add(""+node.getAscii());
+                else
+                    charList.add("$");
+                nodeStack.push(node.right);
+                nodeStack.push(node.left);
+            }
+
+        }
+
+        return String.join(",",charList);
     }
 }
