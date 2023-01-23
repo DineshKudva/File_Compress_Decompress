@@ -33,7 +33,8 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
 
             inorderTraversal(treeRoot);
 
-            extra_bits = Integer.parseInt(bufferedReader.readLine());
+            String extra = bufferedReader.readLine();
+            extra_bits = Integer.parseInt(extra);
             System.out.println("Extra bits:"+extra_bits);
 
 //            int val = fileReader.read();
