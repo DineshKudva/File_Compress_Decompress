@@ -2,7 +2,7 @@ package com.cap_ex;
 
 public class ZipUnzipApp {
     public static void main(String[] args){
-        String inputFilePath = "/C:/Users/Dinesh/Desktop/test.txt";
+        String inputFilePath = "/C:/Users/Dinesh/Desktop/myTest.txt";
         String outputFilePath;
         String resultPath;
 
