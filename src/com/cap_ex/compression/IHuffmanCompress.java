@@ -18,6 +18,6 @@ public interface IHuffmanCompress {
 
     String dataCompression(String sourceData,Map<Character,String> characterCodes);
 
-    char getAscii(String curCode);
+//    char getAscii(String curCode);
 
 }

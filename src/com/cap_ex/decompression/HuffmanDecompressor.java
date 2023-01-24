@@ -1,16 +1,19 @@
 package com.cap_ex.decompression;
 
 import com.cap_ex.TreeNode;
+import com.cap_ex.auxiliary.GeneralMethods;
+import com.cap_ex.auxiliary.IGeneralMethods;
 
 import java.io.*;
 import java.util.*;
 
 public class HuffmanDecompressor implements IHuffmanDecompress {
 
+    IGeneralMethods method = new GeneralMethods();
     Scanner fileName = new Scanner(System.in);
-    int t;
+    int nodeListIdx;
     @Override
-    public String decompress(File fileObj, TreeNode root,int extraBits) {
+    public String decompress(File fileObj, TreeNode root, int extraBits) {
         System.out.println("\nEnter name for decompressed file:(without any extensions)");
         String resultFilePath = fileName.nextLine();
 
@@ -31,13 +34,10 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
 
             treeRoot = deserialize(huffTree);
 
-            inorderTraversal(treeRoot);
-
             String extra = bufferedReader.readLine();
             extra_bits = Integer.parseInt(extra);
             System.out.println("Extra bits:"+extra_bits);
 
-//            int val = fileReader.read();
             int val = bufferedReader.read();
             StringBuilder binaryCode = new StringBuilder();
             char character;
@@ -45,7 +45,7 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
             while(val!=-1){
                 character = (char) val;
 
-                String binaryEqui = getBinaryFromChar(character);
+                String binaryEqui = method.getBinaryFromChar(character);
 
                 binaryCode.append(binaryEqui);
 
@@ -70,11 +70,12 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
     }
 
     @Override
-    public String dataDecompression(String binaryCode, TreeNode root,int extraBits) {
+    public String dataDecompression(String binaryCode, TreeNode root, int extra_bits) {
         StringBuilder uncompressedData = new StringBuilder();
 
-
-        int length = binaryCode.length() - extraBits;
+        System.out.println(binaryCode);
+        int length = binaryCode.length() - extra_bits;
+        System.out.println(binaryCode.substring(0,length));
         TreeNode temp = root;
 
         for(int i=0;i<length;i++) {
@@ -105,57 +106,49 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
     public TreeNode deserialize(String nodeList){
         if(nodeList == null)
             return null;
-        t = 0;
+       nodeListIdx= 0;
         String[] arr = nodeList.split(",");
-        for(String x:arr){
-            System.out.print(x+"\t");
-        }
-        System.out.println();
+//        for(String x:arr){
+//            System.out.print(x+"\t");
+//        }
+//        System.out.println();
         return treeBuilder(arr);
     }
 
     public TreeNode treeBuilder(String[] arr){
-        if(arr[t].equals("#"))
+        if(arr[nodeListIdx].equals("#"))
             return null;
 
         TreeNode root;
 
-        if(arr[t].equals("$"))
-            root = new TreeNode(arr[t].charAt(0),0);
+        if(arr[nodeListIdx].equals("$"))
+            root = new TreeNode(arr[nodeListIdx].charAt(0),0);
         else
-            root = new TreeNode((char)Integer.parseInt(arr[t]),0);
+            root = new TreeNode((char)Integer.parseInt(arr[nodeListIdx]),0);
 
-        t++;
+       nodeListIdx++;
         root.left = treeBuilder(arr);
-        t++;
+       nodeListIdx++;
         root.right = treeBuilder(arr);
 
         return root;
     }
+//
+//    @Override
+//    public String getBinaryFromChar(char ch) {
+//        int deciVal = ch;
+//        String result = "";
+//
+//        while (deciVal != 0) {
+//            int rem = deciVal % 2;
+//            deciVal /= 2;
+//            result = rem + result;
+//        }
+//
+//        while (result.length() != 7)
+//            result = '0' + result;
+//
+//        return result;
+//    }
 
-    @Override
-    public String getBinaryFromChar(char ch) {
-        int deciVal = ch;
-        String result = "";
-
-        while (deciVal != 0) {
-            int rem = deciVal % 2;
-            deciVal /= 2;
-            result = rem + result;
-        }
-
-        while (result.length() != 7)
-            result = '0' + result;
-
-        return result;
-    }
-
-    private void inorderTraversal(TreeNode root) {
-        if (root == null)
-            return;
-
-        inorderTraversal(root.left);
-        System.out.print(root.getChar() + "\t");
-        inorderTraversal(root.right);
-    }
 }

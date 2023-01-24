@@ -9,7 +9,7 @@ import java.util.*;
 public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
     TreeNode root;
-    private int sizeCompressedData,remBits;
+    private int remBits;
 
     @Override
     public String compressFile(String inputFilePath) {
@@ -27,42 +27,16 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
         // forming the tree using the nodeList generated
         root = compressor.buildTree(nodeList);
 
-        inorderTraversal(root);
-
         // getting the codes of the characters using the huffman tree
         Map<Character,String> characterCodes = compressor.getCodes(root);
 
         String outputFilePath = compressor.compress(characterCodes, fileObj,root);
-
-
-        sizeCompressedData = calculateSize(freqTable,characterCodes);
+        
         remBits = HuffmanCompressor.extraBits;
 
         return outputFilePath;
     }
-
-    private int calculateSize(Map<Character, Integer> freqTable, Map<Character, String> characterCodes) {
-        int size = 0;
-
-        for(Map.Entry<Character,Integer> mapEle : freqTable.entrySet()){
-            char ch = mapEle.getKey();
-            int freq = mapEle.getValue();
-            int bitSize = characterCodes.get(ch).length();
-
-            size += (freq*bitSize);
-
-        }
-        return size;
-    }
-
-    private void inorderTraversal(TreeNode root) {
-        if (root == null)
-            return;
-
-        inorderTraversal(root.left);
-        System.out.print(root.getChar() + "\t");
-        inorderTraversal(root.right);
-    }
+    
 
     @Override
     public String decompressFile(String outputFilePath) {

@@ -3,6 +3,8 @@ package com.cap_ex.compression;
 
 import com.cap_ex.CharComparator;
 import com.cap_ex.TreeNode;
+import com.cap_ex.auxiliary.GeneralMethods;
+import com.cap_ex.auxiliary.IGeneralMethods;
 
 import java.io.*;
 import java.util.*;
@@ -11,6 +13,8 @@ public class HuffmanCompressor implements IHuffmanCompress {
 
     Scanner fileName = new Scanner(System.in);
     public static int extraBits;
+
+    IGeneralMethods method = new GeneralMethods();
 
     @Override
     public Map<Character, Integer> generateFrequency(File fileObj) {
@@ -88,7 +92,7 @@ public class HuffmanCompressor implements IHuffmanCompress {
         return characterCodes;
     }
 
-    public static void buildCode(TreeNode root, String code,Map<Character, String> characterCodes) {
+    public static void buildCode(TreeNode root, String code, Map<Character, String> characterCodes) {
         if (root == null)
             return;
         else if (root.left == null && root.right == null) {
@@ -128,7 +132,7 @@ public class HuffmanCompressor implements IHuffmanCompress {
             FileWriter fw = new FileWriter(outputFilePath);
             PrintWriter pw = new PrintWriter(fw);
 
-            String serializedTree = serialize(root);
+            String serializedTree = method.serialize(root);
             String remBits = ""+extraBits;
 
             pw.println(serializedTree);
@@ -155,7 +159,7 @@ public class HuffmanCompressor implements IHuffmanCompress {
 
         for(int j=0;j<iterations;j++){
             String curCode = encodedBits.substring(i,i+7);
-            char equiChar = getAscii(curCode);
+            char equiChar = method.getAscii(curCode);
 
             compressedData.append(equiChar);
 
@@ -169,48 +173,47 @@ public class HuffmanCompressor implements IHuffmanCompress {
         for(int j=0;j<extraBits;j++)
             endingCode += '0';
 
-        compressedData.append(getAscii(endingCode));
+        compressedData.append(method.getAscii(endingCode));
         return compressedData.toString();
     }
 
-    @Override
-    public char getAscii(String curCode) {
-        int binaryNum = Integer.parseInt(curCode);
-        int deciVal = 0;
-
-        for (int i = 0; i < curCode.length(); i++) {
-            deciVal += (binaryNum % 10) * (int) Math.pow(2, i);
-            binaryNum /= 10;
-        }
-        return (char) deciVal;
-    }
-
-    public String serialize(TreeNode root){
-
-        if(root == null)
-            return null;
-
-        Stack<TreeNode> nodeStack = new Stack<>();
-        nodeStack.push(root);
-
-        List<String> charList = new ArrayList<>();
-        while(!nodeStack.empty()){
-
-            TreeNode node = nodeStack.pop();
-
-            if(node == null)
-                charList.add("#");
-            else{
-                if(node.right ==null && node.left==null)
-                    charList.add(""+node.getAscii());
-                else
-                    charList.add("$");
-                nodeStack.push(node.right);
-                nodeStack.push(node.left);
-            }
-
-        }
-
-        return String.join(",",charList);
-    }
+//    public char getAscii(String curCode) {
+//        int binaryNum = Integer.parseInt(curCode);
+//        int deciVal = 0;
+//
+//        for (int i = 0; i < curCode.length(); i++) {
+//            deciVal += (binaryNum % 10) * (int) Math.pow(2, i);
+//            binaryNum /= 10;
+//        }
+//        return (char) deciVal;
+//    }
+//
+//    public String serialize(TreeNode root){
+//
+//        if(root == null)
+//            return null;
+//
+//        Stack<TreeNode> nodeStack = new Stack<>();
+//        nodeStack.push(root);
+//
+//        List<String> charList = new ArrayList<>();
+//        while(!nodeStack.empty()){
+//
+//            TreeNode node = nodeStack.pop();
+//
+//            if(node == null)
+//                charList.add("#");
+//            else{
+//                if(node.right ==null && node.left==null)
+//                    charList.add(""+node.getAscii());
+//                else
+//                    charList.add("$");
+//                nodeStack.push(node.right);
+//                nodeStack.push(node.left);
+//            }
+//
+//        }
+//
+//        return String.join(",",charList);
+//    }
 }
