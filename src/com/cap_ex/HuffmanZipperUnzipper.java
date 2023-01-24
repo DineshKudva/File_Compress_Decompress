@@ -9,7 +9,6 @@ import java.util.*;
 public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
     TreeNode root;
-    private int remBits;
 
     @Override
     public String compressFile(String inputFilePath) {
@@ -31,8 +30,7 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
         Map<Character,String> characterCodes = compressor.getCodes(root);
 
         String outputFilePath = compressor.compress(characterCodes, fileObj,root);
-        
-        remBits = HuffmanCompressor.extraBits;
+
 
         return outputFilePath;
     }
@@ -44,7 +42,7 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
         IHuffmanDecompress decompressor = new HuffmanDecompressor();
 
-        String resultPath = decompressor.decompress(filObj,root,remBits);
+        String resultPath = decompressor.decompress(filObj);
 
         System.out.println("Compressed and Decompressed files are generated successfully.\nCompressed file can be found at:"+outputFilePath+"\nDecompressed file can be found at:"+resultPath);
 
