@@ -1,8 +1,7 @@
 package com.cap_ex.decompression;
 
 import com.cap_ex.TreeNode;
-import com.cap_ex.auxiliary.GeneralMethods;
-import com.cap_ex.auxiliary.IGeneralMethods;
+import com.cap_ex.auxiliary.*;
 
 import java.io.*;
 import java.util.*;
@@ -13,7 +12,7 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
     Scanner fileName = new Scanner(System.in);
     int nodeListIdx;
     @Override
-    public String decompress(File fileObj, TreeNode root, int extraBits) {
+    public String decompress(File fileObj) {
         System.out.println("\nEnter name for decompressed file:(without any extensions)");
         String resultFilePath = fileName.nextLine();
 
@@ -108,10 +107,7 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
             return null;
        nodeListIdx= 0;
         String[] arr = nodeList.split(",");
-//        for(String x:arr){
-//            System.out.print(x+"\t");
-//        }
-//        System.out.println();
+
         return treeBuilder(arr);
     }
 
@@ -133,22 +129,6 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
 
         return root;
     }
-//
-//    @Override
-//    public String getBinaryFromChar(char ch) {
-//        int deciVal = ch;
-//        String result = "";
-//
-//        while (deciVal != 0) {
-//            int rem = deciVal % 2;
-//            deciVal /= 2;
-//            result = rem + result;
-//        }
-//
-//        while (result.length() != 7)
-//            result = '0' + result;
-//
-//        return result;
-//    }
+
 
 }
