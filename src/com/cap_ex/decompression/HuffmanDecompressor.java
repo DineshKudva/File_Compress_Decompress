@@ -22,7 +22,7 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
         try {
 
             TreeNode treeRoot = null;
-            int extra_bits;
+            int extraBits;
 
             FileWriter fw = new FileWriter(resultFilePath);
             FileReader fileReader = new FileReader(fileObj);
@@ -34,8 +34,7 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
             treeRoot = deserialize(huffTree);
 
             String extra = bufferedReader.readLine();
-            extra_bits = Integer.parseInt(extra);
-            System.out.println("Extra bits:"+extra_bits);
+            extraBits = Integer.parseInt(extra);
 
             int val = bufferedReader.read();
             StringBuilder binaryCode = new StringBuilder();
@@ -54,7 +53,7 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
             bufferedReader.close();
             fileReader.close();
 
-            String decompressedData = dataDecompression(binaryCode.toString(),treeRoot,extra_bits);
+            String decompressedData = dataDecompression(binaryCode.toString(),treeRoot,extraBits);
 
             fw.write(decompressedData);
 
@@ -69,10 +68,10 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
     }
 
     @Override
-    public String dataDecompression(String binaryCode, TreeNode root, int extra_bits) {
+    public String dataDecompression(String binaryCode, TreeNode root, int extraBits) {
         StringBuilder uncompressedData = new StringBuilder();
 
-        int length = binaryCode.length() - (14+extra_bits);
+        int length = binaryCode.length() - (14+extraBits);
         TreeNode temp = root;
 
         for(int i=0;i<length;i++) {

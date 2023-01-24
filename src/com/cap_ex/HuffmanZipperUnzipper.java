@@ -29,10 +29,8 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
         // getting the codes of the characters using the huffman tree
         Map<Character,String> characterCodes = compressor.getCodes(root);
 
-        String outputFilePath = compressor.compress(characterCodes, fileObj,root);
+        return compressor.compress(characterCodes, fileObj,root);
 
-
-        return outputFilePath;
     }
     
 
