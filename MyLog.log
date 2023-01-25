@@ -2,141 +2,295 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2023-01-16T16:51:21</date>
-  <millis>1673868081253</millis>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287130</millis>
   <sequence>0</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
   <class>com.cap_ex.Main</class>
   <method>main</method>
   <thread>1</thread>
-  <message>Character : {} 	 	 Frequency:2</message>
+  <message>Character : {} 	 	 Frequency:5</message>
 </record>
 <record>
-  <date>2023-01-16T16:51:21</date>
-  <millis>1673868081306</millis>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287156</millis>
   <sequence>1</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
   <class>com.cap_ex.Main</class>
   <method>main</method>
   <thread>1</thread>
-  <message>Character : {} 	A	 Frequency:4</message>
+  <message>Character : {} 	a	 Frequency:3</message>
 </record>
 <record>
-  <date>2023-01-16T16:51:21</date>
-  <millis>1673868081308</millis>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287156</millis>
   <sequence>2</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
   <class>com.cap_ex.Main</class>
   <method>main</method>
   <thread>1</thread>
-  <message>Character : {} 	B	 Frequency:2</message>
+  <message>Character : {} 	r	 Frequency:1</message>
 </record>
 <record>
-  <date>2023-01-16T16:51:21</date>
-  <millis>1673868081310</millis>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287157</millis>
   <sequence>3</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
   <class>com.cap_ex.Main</class>
   <method>main</method>
   <thread>1</thread>
-  <message>Character : {} 	c	 Frequency:2</message>
+  <message>Character : {} 	S	 Frequency:1</message>
 </record>
 <record>
-  <date>2023-01-16T16:51:21</date>
-  <millis>1673868081311</millis>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287157</millis>
   <sequence>4</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
   <class>com.cap_ex.Main</class>
-  <method>buildTree</method>
+  <method>main</method>
   <thread>1</thread>
-  <message>Queue so far:</message>
+  <message>Character : {} 	s	 Frequency:7</message>
 </record>
 <record>
-  <date>2023-01-16T16:51:21</date>
-  <millis>1673868081312</millis>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287158</millis>
   <sequence>5</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
   <class>com.cap_ex.Main</class>
-  <method>buildTree</method>
+  <method>main</method>
   <thread>1</thread>
-  <message>Queue so far:</message>
+  <message>Character : {} 	t	 Frequency:2</message>
 </record>
 <record>
-  <date>2023-01-16T16:51:21</date>
-  <millis>1673868081314</millis>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287158</millis>
   <sequence>6</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
   <class>com.cap_ex.Main</class>
-  <method>buildTree</method>
+  <method>main</method>
   <thread>1</thread>
-  <message>Queue so far:</message>
+  <message>Character : {} 	e	 Frequency:7</message>
 </record>
 <record>
-  <date>2023-01-16T16:51:21</date>
-  <millis>1673868081319</millis>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287159</millis>
   <sequence>7</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
   <class>com.cap_ex.Main</class>
   <method>main</method>
   <thread>1</thread>
-  <message>we went from storing 80 bits of data to 24 bits. That's a 70.0 % decrease!!</message>
+  <message>Character : {} 	h	 Frequency:4</message>
 </record>
 <record>
-  <date>2023-01-16T16:51:21</date>
-  <millis>1673868081321</millis>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287159</millis>
   <sequence>8</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
   <class>com.cap_ex.Main</class>
   <method>main</method>
   <thread>1</thread>
-  <message>Source data:AAAA BB cc</message>
+  <message>Character : {} 	l	 Frequency:4</message>
 </record>
 <record>
-  <date>2023-01-16T16:51:21</date>
-  <millis>1673868081321</millis>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287160</millis>
   <sequence>9</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
   <class>com.cap_ex.Main</class>
   <method>main</method>
   <thread>1</thread>
-  <message>Compressed data :E</message>
+  <message>Character : {} 	.	 Frequency:1</message>
 </record>
 <record>
-  <date>2023-01-16T16:51:21</date>
-  <millis>1673868081323</millis>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287161</millis>
   <sequence>10</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
   <class>com.cap_ex.Main</class>
   <method>main</method>
   <thread>1</thread>
-  <message>Decompressed data:AAAA BB cc</message>
+  <message>Character : {} 	o	 Frequency:1</message>
 </record>
 <record>
-  <date>2023-01-16T16:51:21</date>
-  <millis>1673868081324</millis>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287161</millis>
   <sequence>11</sequence>
+  <logger>com.cap_ex.Main</logger>
+  <level>INFO</level>
+  <class>com.cap_ex.Main</class>
+  <method>buildTree</method>
+  <thread>1</thread>
+  <message>Queue so far:</message>
+</record>
+<record>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287161</millis>
+  <sequence>12</sequence>
+  <logger>com.cap_ex.Main</logger>
+  <level>INFO</level>
+  <class>com.cap_ex.Main</class>
+  <method>buildTree</method>
+  <thread>1</thread>
+  <message>Queue so far:</message>
+</record>
+<record>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287162</millis>
+  <sequence>13</sequence>
+  <logger>com.cap_ex.Main</logger>
+  <level>INFO</level>
+  <class>com.cap_ex.Main</class>
+  <method>buildTree</method>
+  <thread>1</thread>
+  <message>Queue so far:</message>
+</record>
+<record>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287162</millis>
+  <sequence>14</sequence>
+  <logger>com.cap_ex.Main</logger>
+  <level>INFO</level>
+  <class>com.cap_ex.Main</class>
+  <method>buildTree</method>
+  <thread>1</thread>
+  <message>Queue so far:</message>
+</record>
+<record>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287163</millis>
+  <sequence>15</sequence>
+  <logger>com.cap_ex.Main</logger>
+  <level>INFO</level>
+  <class>com.cap_ex.Main</class>
+  <method>buildTree</method>
+  <thread>1</thread>
+  <message>Queue so far:</message>
+</record>
+<record>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287163</millis>
+  <sequence>16</sequence>
+  <logger>com.cap_ex.Main</logger>
+  <level>INFO</level>
+  <class>com.cap_ex.Main</class>
+  <method>buildTree</method>
+  <thread>1</thread>
+  <message>Queue so far:</message>
+</record>
+<record>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287163</millis>
+  <sequence>17</sequence>
+  <logger>com.cap_ex.Main</logger>
+  <level>INFO</level>
+  <class>com.cap_ex.Main</class>
+  <method>buildTree</method>
+  <thread>1</thread>
+  <message>Queue so far:</message>
+</record>
+<record>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287164</millis>
+  <sequence>18</sequence>
+  <logger>com.cap_ex.Main</logger>
+  <level>INFO</level>
+  <class>com.cap_ex.Main</class>
+  <method>buildTree</method>
+  <thread>1</thread>
+  <message>Queue so far:</message>
+</record>
+<record>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287164</millis>
+  <sequence>19</sequence>
+  <logger>com.cap_ex.Main</logger>
+  <level>INFO</level>
+  <class>com.cap_ex.Main</class>
+  <method>buildTree</method>
+  <thread>1</thread>
+  <message>Queue so far:</message>
+</record>
+<record>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287164</millis>
+  <sequence>20</sequence>
+  <logger>com.cap_ex.Main</logger>
+  <level>INFO</level>
+  <class>com.cap_ex.Main</class>
+  <method>buildTree</method>
+  <thread>1</thread>
+  <message>Queue so far:</message>
+</record>
+<record>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287167</millis>
+  <sequence>21</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
   <class>com.cap_ex.Main</class>
   <method>main</method>
   <thread>1</thread>
-  <message>obtained uncompressed data:AAAA BB cc</message>
+  <message>we went from storing 288 bits of data to 136 bits. That's a 52.77778 % decrease!!</message>
 </record>
 <record>
-  <date>2023-01-16T16:51:21</date>
-  <millis>1673868081324</millis>
-  <sequence>12</sequence>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287168</millis>
+  <sequence>22</sequence>
+  <logger>com.cap_ex.Main</logger>
+  <level>INFO</level>
+  <class>com.cap_ex.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Source data:She sells seashells at the seashore.</message>
+</record>
+<record>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287168</millis>
+  <sequence>23</sequence>
+  <logger>com.cap_ex.Main</logger>
+  <level>INFO</level>
+  <class>com.cap_ex.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Compressed data :M=Y'h]Y;t}|@</message>
+</record>
+<record>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287168</millis>
+  <sequence>24</sequence>
+  <logger>com.cap_ex.Main</logger>
+  <level>INFO</level>
+  <class>com.cap_ex.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Decompressed data:She sells seashells at the seashore.</message>
+</record>
+<record>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287169</millis>
+  <sequence>25</sequence>
+  <logger>com.cap_ex.Main</logger>
+  <level>INFO</level>
+  <class>com.cap_ex.Main</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>obtained uncompressed data:She sells seashells at the seashore.</message>
+</record>
+<record>
+  <date>2023-01-25T23:58:07</date>
+  <millis>1674671287169</millis>
+  <sequence>26</sequence>
   <logger>com.cap_ex.Main</logger>
   <level>INFO</level>
   <class>com.cap_ex.Main</class>
