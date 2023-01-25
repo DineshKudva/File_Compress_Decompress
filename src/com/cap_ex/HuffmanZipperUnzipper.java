@@ -15,6 +15,9 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
         File fileObj = new File(inputFilePath);
 
+        if(!fileObj.exists())
+            return "";
+
         IHuffmanCompress compressor = new HuffmanCompressor();
 
         // frequency table for the characters of the file
@@ -36,13 +39,14 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
     @Override
     public String decompressFile(String outputFilePath) {
-        File filObj = new File(outputFilePath);
+        File fileObj = new File(outputFilePath);
+
+        if(!fileObj.exists())
+            return "";
 
         IHuffmanDecompress decompressor = new HuffmanDecompressor();
 
-        String resultPath = decompressor.decompress(filObj);
-
-        System.out.println("Compressed and Decompressed files are generated successfully.\nCompressed file can be found at:"+outputFilePath+"\nDecompressed file can be found at:"+resultPath);
+        String resultPath = decompressor.decompress(fileObj);
 
         return resultPath;
     }
