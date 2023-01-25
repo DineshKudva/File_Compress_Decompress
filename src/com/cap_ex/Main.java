@@ -37,7 +37,7 @@ public class Main {
             char ch = mapElement.getKey();
             int freq = mapElement.getValue();
 
-            TreeNode newNode = new TreeNode(ch, freq);
+            TreeNode newNode = new TreeNode(ch, freq,null,null);
             nodeArrayList.add(newNode);
         }
 
@@ -59,12 +59,10 @@ public class Main {
             TreeNode rightNode = nodeArrayList.get(0);
             nodeArrayList.remove(0);
 
-            TreeNode resultNode = new TreeNode('$', leftNode.getFreq() + rightNode.getFreq());
+            TreeNode resultNode = new TreeNode('$', leftNode.getFreq() + rightNode.getFreq(),leftNode,rightNode);
 
-            resultNode.left = leftNode;
-            resultNode.right = rightNode;
-            int a = leftNode.getAscii();
-            int b = rightNode.getAscii();
+            int a = leftNode.getAsciiVal();
+            int b = rightNode.getAsciiVal();
 
             resultNode.addAsciiVal(a, b);
 
@@ -80,13 +78,13 @@ public class Main {
     public static void buildCode(TreeNode root, String code) {
         if (root == null)
             return;
-        else if (root.left == null && root.right == null) {
+        else if (root.getLeftChild()== null && root.getRightChild()== null) {
             characterCodes.put(root.getChar(), code.length() > 0 ? code : "1");
             return;
         }
 
-        buildCode(root.left, code + '0');
-        buildCode(root.right, code + '1');
+        buildCode(root.getLeftChild(), code + '0');
+        buildCode(root.getRightChild(), code + '1');
     }
 
     public static void main(String args[]) {
@@ -98,8 +96,7 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        String sourceData = "AAAA BB " +
-                "cc";
+        String sourceData = "She sells seashells at the seashore.";
         String compressedData = "";
 
 
@@ -162,9 +159,9 @@ public class Main {
         if (root == null)
             return;
 
-        inOrderTraverse(root.left);
+        inOrderTraverse(root.getLeftChild());
         System.out.print(root.getChar() + "\t");
-        inOrderTraverse(root.right);
+        inOrderTraverse(root.getRightChild());
 
 
     }
@@ -278,19 +275,19 @@ public class Main {
 
         for (char ch : binaryStr.toCharArray()) {
 
-            if (temp.left == null && temp.right == null) {
+            if (temp.getLeftChild()== null && temp.getRightChild()== null) {
                 uncompressedData.append(temp.getChar());
                 temp = root;
                 continue;
             }
 
             if (ch == '1')
-                temp = temp.right;
+                temp = temp.getRightChild();
             else
-                temp = temp.left;
+                temp = temp.getLeftChild();
 
 
-            if (temp.left == null && temp.right == null) {
+            if (temp.getLeftChild()== null && temp.getRightChild()== null) {
                 uncompressedData.append(temp.getChar());
                 temp = root;
             }

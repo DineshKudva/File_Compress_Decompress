@@ -5,16 +5,16 @@ public class TreeNode {
     private Integer frequency;
     private Integer asciiVal;
 
-    public TreeNode left;
-    public TreeNode right;
+    private TreeNode left;
+    private TreeNode right;
 
-    public TreeNode(char a, int b) {
+    public TreeNode(char a, int b,TreeNode left,TreeNode right) {
 
         this.ch = a;
         this.frequency = b;
         this.asciiVal = (int) a;
-        this.left = null;
-        this.right = null;
+        this.left = left;
+        this.right = right;
 
     }
 
@@ -26,12 +26,28 @@ public class TreeNode {
         return this.frequency;
     }
 
-    public int getAscii() {
+    public int getAsciiVal() {
         return this.asciiVal;
     }
 
     public void addAsciiVal(int a,int b){
         this.asciiVal = a+b;
+    }
+
+    public TreeNode getLeftChild(){
+        return this.left;
+    }
+
+    public TreeNode getRightChild(){
+        return this.right;
+    }
+
+    public void setLeft(TreeNode node){
+        this.left = node;
+    }
+
+    public void setRight(TreeNode node){
+        this.right = node;
     }
 
 }

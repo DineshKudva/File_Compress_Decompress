@@ -31,12 +31,12 @@ public class GeneralMethods implements IGeneralMethods{
             if(node == null)
                 charList.add("#");
             else{
-                if(node.right ==null && node.left==null)
-                    charList.add(""+node.getAscii());
+                if(node.getRightChild() ==null && node.getLeftChild()==null)
+                    charList.add(""+node.getAsciiVal());
                 else
                     charList.add("$");
-                nodeStack.push(node.right);
-                nodeStack.push(node.left);
+                nodeStack.push(node.getRightChild());
+                nodeStack.push(node.getLeftChild());
             }
 
         }
