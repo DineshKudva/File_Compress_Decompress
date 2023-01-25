@@ -1,4 +1,6 @@
-package com.cap_ex;
+package com.cap_ex.auxiliary;
+
+import com.cap_ex.auxiliary.TreeNode;
 
 import java.util.*;
 

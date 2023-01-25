@@ -1,7 +1,6 @@
 package com.cap_ex.compression;
 
 
-import com.cap_ex.*;
 import com.cap_ex.auxiliary.*;
 
 import java.io.*;

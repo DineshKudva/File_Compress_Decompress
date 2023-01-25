@@ -1,5 +1,8 @@
 package com.cap_ex;
 
+import com.cap_ex.zipUnzipOp.HuffmanZipperUnzipper;
+import com.cap_ex.zipUnzipOp.IZipperUnzipper;
+
 import java.util.Scanner;
 
 public class ZipUnzipApp {

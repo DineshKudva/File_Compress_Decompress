@@ -1,5 +1,8 @@
 package com.cap_ex;
 
+import com.cap_ex.auxiliary.CharComparator;
+import com.cap_ex.auxiliary.TreeNode;
+
 import java.io.*;
 import java.util.*;
 import java.util.logging.*;

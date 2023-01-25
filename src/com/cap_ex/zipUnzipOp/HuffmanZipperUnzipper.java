@@ -1,5 +1,6 @@
-package com.cap_ex;
+package com.cap_ex.zipUnzipOp;
 
+import com.cap_ex.auxiliary.TreeNode;
 import com.cap_ex.compression.*;
 import com.cap_ex.decompression.*;
 

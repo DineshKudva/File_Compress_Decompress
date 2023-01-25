@@ -1,4 +1,4 @@
-package com.cap_ex;
+package com.cap_ex.auxiliary;
 
 public class TreeNode {
     private Character ch;

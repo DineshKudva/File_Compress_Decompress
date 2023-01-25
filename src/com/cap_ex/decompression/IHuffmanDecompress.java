@@ -1,6 +1,6 @@
 package com.cap_ex.decompression;
 
-import com.cap_ex.TreeNode;
+import com.cap_ex.auxiliary.TreeNode;
 
 import java.io.File;
 
