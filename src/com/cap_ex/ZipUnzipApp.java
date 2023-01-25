@@ -18,7 +18,7 @@ public class ZipUnzipApp {
             System.out.println("Enter Choice:\n1-Compress\n2-Decompress");
             choice = inp.nextLine();
 
-            System.out.println("Enter name of file tobe compressed or decompressed:");
+            System.out.println("Enter name of file to be compressed or decompressed:");
             inputFilePath = inp.nextLine();
             inputFilePath = "/C:/Users/Dinesh/Desktop/"+inputFilePath+".txt";
 
