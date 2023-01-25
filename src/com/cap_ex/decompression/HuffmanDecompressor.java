@@ -77,19 +77,19 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
         for(int i=0;i<length;i++) {
             char ch = binaryCode.charAt(i);
 
-            if (temp.left == null && temp.right == null) {
+            if (temp.getLeftChild() == null && temp.getRightChild() == null) {
                 uncompressedData.append(temp.getChar());
                 temp = root;
                 continue;
             }
 
             if (ch == '1')
-                temp = temp.right;
+                temp = temp.getRightChild();
             else
-                temp = temp.left;
+                temp = temp.getLeftChild();
 
 
-            if (temp.left == null && temp.right == null) {
+            if (temp.getLeftChild() == null && temp.getRightChild() == null) {
                 uncompressedData.append(temp.getChar());
                 temp = root;
             }
@@ -115,15 +115,14 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
         TreeNode root;
 
         if(arr[nodeListIdx].equals("$"))
-            root = new TreeNode(arr[nodeListIdx].charAt(0),0);
+            root = new TreeNode(arr[nodeListIdx].charAt(0),0,null,null);
         else
-            root = new TreeNode((char)Integer.parseInt(arr[nodeListIdx]),0);
+            root = new TreeNode((char)Integer.parseInt(arr[nodeListIdx]),0,null,null);
 
        nodeListIdx++;
-        root.left = treeBuilder(arr);
+        root.setLeft(treeBuilder(arr));
        nodeListIdx++;
-        root.right = treeBuilder(arr);
-
+          root.setRight(treeBuilder(arr));
         return root;
     }
 
