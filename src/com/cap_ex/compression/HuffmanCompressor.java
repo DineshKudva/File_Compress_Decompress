@@ -38,46 +38,38 @@ public class HuffmanCompressor implements IHuffmanCompress {
     }
 
     @Override
-    public List<TreeNode> buildNodeList(Map<Character, Integer> freqTable) {
-        List<TreeNode> nodeList = new ArrayList<>();
-        for (Map.Entry<Character, Integer> mapElement : freqTable.entrySet()) {
-            char ch = mapElement.getKey();
-            int freq = mapElement.getValue();
+    public Queue<TreeNode> buildNodeQueue(Map<Character, Integer> freqTable) {
+        Queue<TreeNode> nodeQueue = new PriorityQueue<>(new CharComparator());
 
-            TreeNode newNode = new TreeNode(ch, freq);
-            nodeList.add(newNode);
+        for(Map.Entry<Character, Integer> mapEle : freqTable.entrySet()){
+            char character = mapEle.getKey();
+            int freq = mapEle.getValue();
+
+            TreeNode node = new TreeNode(character,freq,null,null);
+
+            nodeQueue.add(node);
         }
 
-        Collections.sort(nodeList, new CharComparator());
-
-        return nodeList;
+        return nodeQueue;
     }
 
     @Override
-    public TreeNode buildTree(List<TreeNode> nodeList) {
-        while (nodeList.size() != 1) {
+    public TreeNode buildTree(Queue<TreeNode> nodeQueue) {
+        while (nodeQueue.size() != 1) {
 
 
-            TreeNode leftNode = nodeList.get(0);
-            nodeList.remove(0);
+            TreeNode leftNode = nodeQueue.poll();
+            TreeNode rightNode = nodeQueue.poll();
 
-            TreeNode rightNode = nodeList.get(0);
-            nodeList.remove(0);
+            TreeNode resultNode = new TreeNode('$', leftNode.getFreq() + rightNode.getFreq(),leftNode,rightNode);
 
-            TreeNode resultNode = new TreeNode('$', leftNode.getFreq() + rightNode.getFreq());
+            resultNode.addAsciiVal(leftNode.getAsciiVal(), rightNode.getAsciiVal());
 
-            resultNode.left = leftNode;
-            resultNode.right = rightNode;
-
-            resultNode.addAsciiVal(leftNode.getAscii(), rightNode.getAscii());
-
-            nodeList.add(resultNode);
-
-            Collections.sort(nodeList, new CharComparator());
+            nodeQueue.add(resultNode);
 
         }
 
-        return nodeList.get(0);
+        return nodeQueue.poll();
     }
 
     @Override
@@ -92,13 +84,13 @@ public class HuffmanCompressor implements IHuffmanCompress {
     public static void buildCode(TreeNode root, String code, Map<Character, String> characterCodes) {
         if (root == null)
             return;
-        else if (root.left == null && root.right == null) {
+        else if (root.getLeftChild() == null && root.getRightChild() == null) {
             characterCodes.put(root.getChar(), code.length() > 0 ? code : "1");
             return;
         }
 
-        buildCode(root.left, code + '0',characterCodes);
-        buildCode(root.right, code + '1',characterCodes);
+        buildCode(root.getLeftChild(), code + '0',characterCodes);
+        buildCode(root.getRightChild(), code + '1',characterCodes);
     }
 
     @Override

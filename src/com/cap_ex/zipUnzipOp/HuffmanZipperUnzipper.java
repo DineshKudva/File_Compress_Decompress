@@ -25,10 +25,10 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
         Map<Character,Integer> freqTable = compressor.generateFrequency(fileObj);
 
         // nodes of the Huffman tree
-        List<TreeNode> nodeList = compressor.buildNodeList(freqTable);
+        Queue<TreeNode> nodeQueue = compressor.buildNodeQueue(freqTable);
 
         // forming the tree using the nodeList generated
-        root = compressor.buildTree(nodeList);
+        root = compressor.buildTree(nodeQueue);
 
         // getting the codes of the characters using the huffman tree
         Map<Character,String> characterCodes = compressor.getCodes(root);

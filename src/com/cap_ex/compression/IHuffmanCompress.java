@@ -8,9 +8,9 @@ import java.util.*;
 public interface IHuffmanCompress {
     Map<Character, Integer> generateFrequency(File fileObj);
 
-    List<TreeNode> buildNodeList(Map<Character, Integer> freqTable);
+    Queue<TreeNode> buildNodeQueue(Map<Character, Integer> freqTable);
 
-    TreeNode buildTree(List<TreeNode> nodeList);
+    TreeNode buildTree(Queue<TreeNode> nodeQueue);
 
     Map<Character, String> getCodes(TreeNode root);
 
