@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class ZipUnzipApp {
     public static void main(String[] args){
 
-        long start = System.nanoTime();
+        long start = System.currentTimeMillis();
 
         String inputFilePath;
         String resultPath = null;
@@ -41,7 +41,7 @@ public class ZipUnzipApp {
         }
         System.out.println("Resultant file at :"+resultPath);
 
-        long end = System.nanoTime();
+        long end = System.currentTimeMillis();
 
         System.out.println("Time taken: "+(end-start));
 
