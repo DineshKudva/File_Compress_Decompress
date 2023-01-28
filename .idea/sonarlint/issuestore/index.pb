@@ -1,6 +1,4 @@
 
-w
-G.idea/sonarlint/issuestore/6/7/67df86d85d72c725f04f6d8c19d9bf1fe6547cc1,7\9\79400a167f9b050959f941f7977802ca40b2fc19
 \
 ,src/com/cap_ex/File_handle/File_Handler.java,5\2\522e16bd8bda13a276bf1a19960612f799b4f4ae
 ]
