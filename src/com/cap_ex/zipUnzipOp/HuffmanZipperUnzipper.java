@@ -17,7 +17,9 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
         File fileObj = new File(inputFilePath);
 
         if(!fileObj.exists())
-            return "";
+            return "nan";
+        else if(fileObj.length() == 0)
+            return "empty";
 
         IHuffmanCompress compressor = new HuffmanCompressor();
 
@@ -45,6 +47,8 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
         if(!fileObj.exists())
             return "";
+        else if(fileObj.length() == 0)
+            return "empty";
 
         IHuffmanDecompress decompressor = new HuffmanDecompressor();
 

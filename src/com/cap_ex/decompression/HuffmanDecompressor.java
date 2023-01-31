@@ -18,6 +18,8 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
 
 
         resultFilePath = "/C:/Users/Dinesh/Desktop/"+resultFilePath+".txt";
+        File newFile = new File(resultFilePath);
+
 
         try {
 
@@ -64,6 +66,7 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
             throw new RuntimeException(e);
         }
 
+        System.out.println("Size of decompressed file:"+newFile.length()/1024+" Kb");
         return resultFilePath;
     }
 

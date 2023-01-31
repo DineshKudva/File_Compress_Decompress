@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class ZipUnzipApp {
     public static void main(String[] args){
 
-        long start = System.currentTimeMillis();
+
 
         String inputFilePath;
         String resultPath = null;
@@ -24,6 +24,8 @@ public class ZipUnzipApp {
 
             IZipperUnzipper fileZipUnzip = new HuffmanZipperUnzipper();
 
+        long start = System.currentTimeMillis();
+
             switch (choice){
                 case "1" :
                     resultPath = fileZipUnzip.compressFile(inputFilePath);
@@ -35,15 +37,20 @@ public class ZipUnzipApp {
                     System.out.println("Invalid choice! Try again....");
             }
 
-        if(resultPath.isEmpty()) {
-            System.out.println("File not found!!\nEnter valid file name");
-            return;
-        }
-        System.out.println("Resultant file at :"+resultPath);
-
         long end = System.currentTimeMillis();
 
-        System.out.println("Time taken: "+(end-start));
+        if(resultPath.equals("nan")) {
+            System.out.println("File not found!!\nEnter valid file name");
+            return;
+        } else if (resultPath.equals("empty")) {
+            System.out.println("File is empty!!");
+            return;
+        }
+
+        System.out.println("Resultant file at :"+resultPath);
+
+
+        System.out.println("Time taken: "+(end-start)+" ms");
 
     }
 }

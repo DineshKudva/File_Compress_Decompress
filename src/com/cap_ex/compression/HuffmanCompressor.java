@@ -100,7 +100,7 @@ public class HuffmanCompressor implements IHuffmanCompress {
         String outputFilePath = fileName.nextLine();
 
         outputFilePath = "/C:/Users/Dinesh/Desktop/"+outputFilePath+".txt";
-
+        File newFile = new File(outputFilePath);
         try {
             FileReader fileScanner = new FileReader(fileObj);
 
@@ -134,6 +134,10 @@ public class HuffmanCompressor implements IHuffmanCompress {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        System.out.println("Size of compressed file:"+newFile.length()/1024+" Kb");
+        float compRate = (fileObj.length() - newFile.length())*100/ fileObj.length();
+        System.out.println("Compression rate:"+compRate+"%");
 
         return outputFilePath;
     }
