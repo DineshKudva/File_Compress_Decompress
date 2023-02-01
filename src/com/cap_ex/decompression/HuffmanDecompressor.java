@@ -17,7 +17,7 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
         String resultFilePath = fileName.nextLine();
 
 
-        resultFilePath = "/C:/Users/Dinesh/Desktop/"+resultFilePath+".txt";
+        resultFilePath = "/home/dineshkudwa/Desktop/text_files/"+resultFilePath+".txt";
         File newFile = new File(resultFilePath);
 
 
@@ -74,7 +74,8 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
     public String dataDecompression(String binaryCode, TreeNode root, int extraBits) {
         StringBuilder uncompressedData = new StringBuilder();
 
-        int length = binaryCode.length() - (14+extraBits);
+
+        int length = binaryCode.length() - (7+extraBits);
         TreeNode temp = root;
 
         for(int i=0;i<length;i++) {
