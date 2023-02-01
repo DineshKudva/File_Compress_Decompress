@@ -1,6 +1,8 @@
 package com.cap_ex.auxiliary;
 
-public class TreeNode {
+import java.io.Serializable;
+
+public class TreeNode{
     private Character ch;
     private Integer frequency;
     private Integer asciiVal;

@@ -104,8 +104,6 @@ public class HuffmanCompressor implements IHuffmanCompress {
         try {
             FileReader fileScanner = new FileReader(fileObj);
 
-//            StringBuilder encodedString = new StringBuilder();
-
             byte[] byteArray = new byte[size];
             String curCode= "", rem = "";
             int idx = 0;
@@ -115,7 +113,6 @@ public class HuffmanCompressor implements IHuffmanCompress {
 
             while(val!=-1){
                 character = (char) val;
-//                encodedString.append(characterCodes.get(character));
 
                 curCode += characterCodes.get(character);
 
@@ -143,22 +140,11 @@ public class HuffmanCompressor implements IHuffmanCompress {
 
             fileScanner.close();
 
-//            String compressedString = dataCompression(encodedString.toString(), characterCodes);
-//            FileWriter fw = new FileWriter(outputFilePath);
-//            PrintWriter pw = new PrintWriter(fw);
 
             FileOutputStream fout = new FileOutputStream(outputFilePath);
             ObjectOutputStream obj = new ObjectOutputStream(fout);
 
-
-
-
             String serializedTree = method.serialize(root);
-//            String remBits = Integer.toString(extraBits);
-//
-//            pw.println(serializedTree);
-//            pw.println(remBits);
-//            pw.println(compressedString);
 
             obj.writeObject(serializedTree);
             obj.writeInt(extraBits);
@@ -167,13 +153,12 @@ public class HuffmanCompressor implements IHuffmanCompress {
 
             obj.close();
             fout.close();
-//            pw.close();
-//            fw.close();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
+        System.out.println("Size of original file:"+fileObj.length()/1024+" Kb");
         System.out.println("Size of compressed file:"+newFile.length()/1024+" Kb");
         float compRate = (fileObj.length() - newFile.length())*100/ fileObj.length();
         System.out.println("Compression rate:"+compRate+"%");
@@ -181,32 +166,5 @@ public class HuffmanCompressor implements IHuffmanCompress {
         return outputFilePath;
     }
 
-    @Override
-    public String dataCompression(String encodedBits,Map<Character,String> characterCodes) {
-        StringBuilder compressedData = new StringBuilder();
-
-        int i=0;
-
-        int iterations = (encodedBits.length()/7);
-
-        for(int j=0;j<iterations;j++){
-            String curCode = encodedBits.substring(i,i+7);
-            char equiChar = method.getAscii(curCode);
-
-            compressedData.append(equiChar);
-
-            i+=7;
-
-        }
-
-
-        extraBits = 7 - (encodedBits.length()%7);
-        String endingCode = encodedBits.substring(i,encodedBits.length());
-        for(int j=0;j<extraBits;j++)
-            endingCode += '0';
-
-        compressedData.append(method.getAscii(endingCode));
-        return compressedData.toString();
-    }
 
 }

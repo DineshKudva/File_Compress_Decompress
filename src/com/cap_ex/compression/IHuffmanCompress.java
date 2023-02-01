@@ -16,7 +16,6 @@ public interface IHuffmanCompress {
 
     String compress(Map<Character,String> characterCodes, File fileObj, TreeNode root,int size);
 
-    String dataCompression(String sourceData,Map<Character,String> characterCodes);
 
 
 }
