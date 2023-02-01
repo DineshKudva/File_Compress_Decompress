@@ -26,45 +26,64 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
             TreeNode treeRoot = null;
             int extraBits;
 
-            FileWriter fw = new FileWriter(resultFilePath);
-            FileReader fileReader = new FileReader(fileObj);
+//            FileWriter fw = new FileWriter(resultFilePath);
+//            FileReader fileReader = new FileReader(fileObj);
 
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-            String huffTree = bufferedReader.readLine();
+            FileInputStream fin = new FileInputStream(fileObj);
+            ObjectInputStream obj = new ObjectInputStream(fin);
+
+//            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+//            String huffTree = bufferedReader.readLine();
+            String huffTree = (String) obj.readObject();
 
             treeRoot = deserialize(huffTree);
 
-            String extra = bufferedReader.readLine();
-            extraBits = Integer.parseInt(extra);
 
-            int val = bufferedReader.read();
+//            String extra = bufferedReader.readLine();
+            extraBits = obj.readInt();
+            byte[] byteArray = (byte[]) obj.readObject();
+//            int val = bufferedReader.read();
             StringBuilder binaryCode = new StringBuilder();
-            char character;
+//            char character;
+            int val;
 
-            while(val!=-1){
-                character = (char) val;
+            for(byte myByte:byteArray){
+//            while(val!=-1){
+//                character = (char) val;
+                val = (int) myByte;
 
-                String binaryEqui = method.getBinaryFromChar(character);
+                if(val<0)
+                    val = (val+256)%256;
+
+//                String binaryEqui = method.getBinaryFromChar(character);
+                String binaryEqui = method.getBinaryFromInt(val);
 
                 binaryCode.append(binaryEqui);
-
-                val = bufferedReader.read();
+//                val = bufferedReader.read();
             }
+            System.out.println("ended");
 
-            bufferedReader.close();
-            fileReader.close();
+//            `bufferedReader.close();
+//            fileReader.close();
+
+            obj.close();
+            fin.close();
 
             String decompressedData = dataDecompression(binaryCode.toString(),treeRoot,extraBits);
+
+            FileWriter fw = new FileWriter(resultFilePath);
 
             fw.write(decompressedData);
 
             fw.close();
 
 
-        } catch (IOException e) {
+        } catch (IOException |ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+
 
         System.out.println("Size of decompressed file:"+newFile.length()/1024+" Kb");
         return resultFilePath;
@@ -75,7 +94,7 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
         StringBuilder uncompressedData = new StringBuilder();
 
 
-        int length = binaryCode.length() - (7+extraBits);
+        int length = binaryCode.length() - (extraBits);
         TreeNode temp = root;
 
         for(int i=0;i<length;i++) {

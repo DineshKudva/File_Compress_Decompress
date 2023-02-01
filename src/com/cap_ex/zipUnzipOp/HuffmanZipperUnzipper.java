@@ -1,5 +1,6 @@
 package com.cap_ex.zipUnzipOp;
 
+import com.cap_ex.auxiliary.GeneralMethods;
 import com.cap_ex.auxiliary.TreeNode;
 import com.cap_ex.compression.*;
 import com.cap_ex.decompression.*;
@@ -10,6 +11,7 @@ import java.util.*;
 public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
     TreeNode root;
+    GeneralMethods method = new GeneralMethods();
 
     @Override
     public String compressFile(String inputFilePath) {
@@ -35,8 +37,10 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
         // getting the codes of the characters using the huffman tree
         Map<Character,String> characterCodes = compressor.getCodes(root);
 
+        int byteArraySize = method.getArraySize(characterCodes,freqTable);
 
-        return compressor.compress(characterCodes, fileObj,root);
+
+        return compressor.compress(characterCodes, fileObj,root,byteArraySize);
 
     }
     
@@ -56,4 +60,5 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
         return resultPath;
     }
+
 }

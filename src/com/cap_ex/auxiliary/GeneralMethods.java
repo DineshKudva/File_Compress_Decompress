@@ -61,5 +61,40 @@ public class GeneralMethods implements IGeneralMethods{
         return result;
     }
 
+    @Override
+    public int getArraySize(Map<Character, String> charMap, Map<Character, Integer> freqMap) {
+        int size =0;
+        for(Map.Entry<Character,String> mapEle : charMap.entrySet()){
+            char ch = mapEle.getKey();
+            int len = mapEle.getValue().length();
+            int freq = freqMap.get(ch);
+
+            size += (len*freq);
+        }
+
+        if(size%8 ==0)
+            size /= 8;
+        else
+            size = (size/8) + 1;
+
+        return size;
+    }
+
+    @Override
+    public String getBinaryFromInt(int decival) {
+        String result = "";
+
+        while (decival != 0) {
+            int rem = decival % 2;
+            decival /= 2;
+            result = rem + result;
+        }
+
+        while (result.length() != 8)
+            result = '0' + result;
+
+        return result;
+    }
+
 
 }

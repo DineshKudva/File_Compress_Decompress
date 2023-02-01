@@ -94,7 +94,7 @@ public class HuffmanCompressor implements IHuffmanCompress {
     }
 
     @Override
-    public String compress(Map<Character,String> characterCodes, File fileObj, TreeNode root) {
+    public String compress(Map<Character,String> characterCodes, File fileObj, TreeNode root,int size) {
 
         System.out.println("Enter name for compressed file:(without any extensions)");
         String outputFilePath = fileName.nextLine();
@@ -104,32 +104,71 @@ public class HuffmanCompressor implements IHuffmanCompress {
         try {
             FileReader fileScanner = new FileReader(fileObj);
 
-            StringBuilder encodedString = new StringBuilder();
+//            StringBuilder encodedString = new StringBuilder();
+
+            byte[] byteArray = new byte[size];
+            String curCode= "", rem = "";
+            int idx = 0;
 
             int val = fileScanner.read();
             char character;
 
             while(val!=-1){
                 character = (char) val;
-                encodedString.append(characterCodes.get(character));
+//                encodedString.append(characterCodes.get(character));
+
+                curCode += characterCodes.get(character);
+
+                if(curCode.length()<8){
+                    val = fileScanner.read();
+                    continue;
+                }
+                else{
+                    byte curByte =(byte) Integer.parseInt(curCode.substring(0,8),2);
+                    rem = curCode.substring(8,curCode.length());
+                    byteArray[idx++] = curByte;
+                }
+
+                curCode = rem;
+
                 val=fileScanner.read();
+            }
+
+            if(!curCode.equals("")){
+                extraBits = 8 - curCode.length();
+                for(int i=0;i<extraBits;i++)
+                    curCode += '0';
+                byteArray[idx] = (byte) Integer.parseInt(curCode.substring(0,8),2);
             }
 
             fileScanner.close();
 
-            String compressedString = dataCompression(encodedString.toString(), characterCodes);
-            FileWriter fw = new FileWriter(outputFilePath);
-            PrintWriter pw = new PrintWriter(fw);
+//            String compressedString = dataCompression(encodedString.toString(), characterCodes);
+//            FileWriter fw = new FileWriter(outputFilePath);
+//            PrintWriter pw = new PrintWriter(fw);
+
+            FileOutputStream fout = new FileOutputStream(outputFilePath);
+            ObjectOutputStream obj = new ObjectOutputStream(fout);
+
+
+
 
             String serializedTree = method.serialize(root);
-            String remBits = Integer.toString(extraBits);
+//            String remBits = Integer.toString(extraBits);
+//
+//            pw.println(serializedTree);
+//            pw.println(remBits);
+//            pw.println(compressedString);
 
-            pw.println(serializedTree);
-            pw.println(remBits);
-            pw.println(compressedString);
+            obj.writeObject(serializedTree);
+            obj.writeInt(extraBits);
+            obj.writeObject(byteArray);
 
-            pw.close();
-            fw.close();
+
+            obj.close();
+            fout.close();
+//            pw.close();
+//            fw.close();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
