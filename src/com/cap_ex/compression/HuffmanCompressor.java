@@ -131,14 +131,22 @@ public class HuffmanCompressor implements IHuffmanCompress {
                 val=fileScanner.read();
             }
 
+
+            fileScanner.close();
+
+            while(curCode.length()>8){
+                byte curByte =(byte) Integer.parseInt(curCode.substring(0,8),2);
+                rem = curCode.substring(8,curCode.length());
+                byteArray[idx++] = curByte;
+                curCode = rem;
+            }
+
             if(!curCode.equals("")){
                 extraBits = 8 - curCode.length();
                 for(int i=0;i<extraBits;i++)
                     curCode += '0';
                 byteArray[idx] = (byte) Integer.parseInt(curCode.substring(0,8),2);
             }
-
-            fileScanner.close();
 
 
             FileOutputStream fout = new FileOutputStream(outputFilePath);
