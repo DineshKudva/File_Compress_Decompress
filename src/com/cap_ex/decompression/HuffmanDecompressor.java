@@ -2,7 +2,9 @@ package com.cap_ex.decompression;
 
 import com.cap_ex.auxiliary.TreeNode;
 import com.cap_ex.auxiliary.*;
+import sun.reflect.generics.tree.Tree;
 
+import javax.xml.soap.Node;
 import java.io.*;
 import java.util.*;
 
@@ -30,14 +32,14 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
             ObjectInputStream obj = new ObjectInputStream(fin);
 
             String huffTree = (String) obj.readObject();
-            treeRoot = deserialize(huffTree);
-
             extraBits = obj.readInt();
-
             byte[] byteArray = (byte[]) obj.readObject();
 
-            StringBuilder binaryCode = new StringBuilder();
+            obj.close();
+            fin.close();
 
+            treeRoot = deserialize(huffTree);
+            StringBuilder binaryCode = new StringBuilder();
             int val;
 
             for(byte myByte:byteArray){
@@ -51,9 +53,6 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
                 binaryCode.append(binaryEqui);
         }
 
-            obj.close();
-            fin.close();
-
             String decompressedData = dataDecompression(binaryCode.toString(),treeRoot,extraBits);
 
             FileWriter fw = new FileWriter(resultFilePath);
@@ -61,7 +60,7 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
             fw.write(decompressedData);
 
             fw.close();
-
+//              dataDecompress(treeRoot,extraBits,byteArray,resultFilePath);
 
         } catch (IOException |ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -72,13 +71,80 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
         return resultFilePath;
     }
 
+    public void dataDecompress(TreeNode root,int extraBits,byte[] byteArray,String filePath){
+        try {
+            //maintain a flag
+            boolean flag = true;
+            // set temp to root
+            TreeNode temp  = root;
+
+            //obtain last index
+            int n =  byteArray.length;
+
+            String curCode = "";
+
+            FileWriter fw = new FileWriter(filePath);
+            PrintWriter pw = new PrintWriter(fw);
+
+            for(int i=0;i<n;i++){
+
+                // obtain a byte
+                int val = (int) byteArray[i];
+
+                if(val<0)
+                    val = (val+256)%256;
+
+                // store binary in string
+                curCode = method.getBinaryFromInt(val);
+                System.out.println(curCode);
+
+                // check for last byte
+                if(i==n-1){
+                    curCode = curCode.substring(0,8-extraBits);
+                }
+
+                for(char ch:curCode.toCharArray()){
+                    // for tree with a single node
+                    if (temp.getLeftChild() == null && temp.getRightChild() == null) {
+                        pw.print(temp.getChar());
+                        temp = root;
+                        continue;
+                    }
+
+                    if (ch == '0') // left move
+                        temp = temp.getLeftChild();
+                    else // right move
+                        temp = temp.getRightChild();
+
+                    // reached leaf
+                    if (temp.getLeftChild() == null && temp.getRightChild() == null) {
+                        pw.print(temp.getChar());
+                        temp = root;
+                    }
+                }
+
+            }
+
+            pw.close();
+            fw.close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
     @Override
     public String dataDecompression(String binaryCode, TreeNode root, int extraBits) {
         StringBuilder uncompressedData = new StringBuilder();
 
-
+        System.out.println(binaryCode.toString());
+        System.out.println(binaryCode.length());
+        System.out.println(extraBits);
         int length = binaryCode.length() - extraBits;
         TreeNode temp = root;
+
+        System.out.println(length);
 
         for(int i=0;i<length;i++) {
             char ch = binaryCode.charAt(i);
@@ -134,3 +200,4 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
 
 
 }
+

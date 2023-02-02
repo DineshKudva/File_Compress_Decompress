@@ -9,4 +9,6 @@ public interface IHuffmanDecompress {
 
         String dataDecompression(String compressedData, TreeNode root, int size);
 
+        void dataDecompress(TreeNode root,int extraBits,byte[] byteArray,String filePath);
+
 }
