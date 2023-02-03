@@ -39,28 +39,28 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
             fin.close();
 
             treeRoot = deserialize(huffTree);
-            StringBuilder binaryCode = new StringBuilder();
-            int val;
-
-            for(byte myByte:byteArray){
-                val = (int) myByte;
-
-                if(val<0)
-                    val = (val+256)%256;
-
-                String binaryEqui = method.getBinaryFromInt(val);
-
-                binaryCode.append(binaryEqui);
-        }
-
-            String decompressedData = dataDecompression(binaryCode.toString(),treeRoot,extraBits);
-
-            FileWriter fw = new FileWriter(resultFilePath);
-
-            fw.write(decompressedData);
-
-            fw.close();
-//              dataDecompress(treeRoot,extraBits,byteArray,resultFilePath);
+//            StringBuilder binaryCode = new StringBuilder();
+//            int val;
+//
+//            for(byte myByte:byteArray){
+//                val = (int) myByte;
+//
+//                if(val<0)
+//                    val = (val+256)%256;
+//
+//                String binaryEqui = method.getBinaryFromInt(val);
+//
+//                binaryCode.append(binaryEqui);
+//        }
+//
+//            String decompressedData = dataDecompression(binaryCode.toString(),treeRoot,extraBits);
+//
+//            FileWriter fw = new FileWriter(resultFilePath);
+//
+//            fw.write(decompressedData);
+//
+//            fw.close();
+              dataDecompress(treeRoot,extraBits,byteArray,resultFilePath);
 
         } catch (IOException |ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -73,8 +73,6 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
 
     public void dataDecompress(TreeNode root,int extraBits,byte[] byteArray,String filePath){
         try {
-            //maintain a flag
-            boolean flag = true;
             // set temp to root
             TreeNode temp  = root;
 
@@ -96,7 +94,6 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
 
                 // store binary in string
                 curCode = method.getBinaryFromInt(val);
-                System.out.println(curCode);
 
                 // check for last byte
                 if(i==n-1){
