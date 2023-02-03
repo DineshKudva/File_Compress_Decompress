@@ -55,7 +55,7 @@ public class GeneralMethods implements IGeneralMethods{
             result = rem + result;
         }
 
-        while (result.length() != 7)
+        while (result.length() != 8)
             result = '0' + result;
 
         return result;
