@@ -121,9 +121,11 @@ public class HuffmanCompressor implements IHuffmanCompress {
                     continue;
                 }
                 else{
-                    byte curByte =(byte) Integer.parseInt(curCode.substring(0,8),2);
-                    curCode = curCode.substring(8,curCode.length());
-                    byteArray[idx++] = curByte;
+                    while(curCode.length()>8){
+                        byte curByte =(byte) Integer.parseInt(curCode.substring(0,8),2);
+                        curCode = curCode.substring(8,curCode.length());
+                        byteArray[idx++] = curByte;
+                    }
                 }
 
                 val=fileScanner.read();
@@ -131,12 +133,6 @@ public class HuffmanCompressor implements IHuffmanCompress {
 
 
             fileScanner.close();
-
-            while(curCode.length()>8){
-                byte curByte =(byte) Integer.parseInt(curCode.substring(0,8),2);
-                curCode = curCode.substring(8,curCode.length());
-                byteArray[idx++] = curByte;
-            }
 
             if(!curCode.equals("")){
                 extraBits = 8 - curCode.length();
