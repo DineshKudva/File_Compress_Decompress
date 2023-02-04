@@ -5,8 +5,8 @@
 /home/dineshkudwa/IdeaProjects/File_Compress_Decompress/src/main/java/com/cap_ex/auxiliary/IGeneralMethods.java
 /home/dineshkudwa/IdeaProjects/File_Compress_Decompress/src/main/java/com/cap_ex/auxiliary/GeneralMethods.java
 /home/dineshkudwa/IdeaProjects/File_Compress_Decompress/src/main/java/com/cap_ex/compression/IHuffmanCompress.java
-/home/dineshkudwa/IdeaProjects/File_Compress_Decompress/src/main/java/com/cap_ex/auxiliary/TreeNode.java
 /home/dineshkudwa/IdeaProjects/File_Compress_Decompress/src/main/java/com/cap_ex/File_handle/File_Handler.java
+/home/dineshkudwa/IdeaProjects/File_Compress_Decompress/src/main/java/com/cap_ex/auxiliary/TreeNode.java
 /home/dineshkudwa/IdeaProjects/File_Compress_Decompress/src/main/java/com/cap_ex/zipUnzipOp/IZipperUnzipper.java
 /home/dineshkudwa/IdeaProjects/File_Compress_Decompress/src/main/java/com/cap_ex/compression/HuffmanCompressor.java
 /home/dineshkudwa/IdeaProjects/File_Compress_Decompress/src/main/java/com/cap_ex/decompression/HuffmanDecompressor.java

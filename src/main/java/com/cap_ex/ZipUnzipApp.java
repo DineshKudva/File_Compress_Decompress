@@ -24,7 +24,6 @@ public class ZipUnzipApp {
             IZipperUnzipper fileZipUnzip = new HuffmanZipperUnzipper();
 
         long start = System.currentTimeMillis();
-
             switch (choice){
                 case "1" :
                     inputFilePath = "src/textFiles/"+inputFilePath+".txt";
