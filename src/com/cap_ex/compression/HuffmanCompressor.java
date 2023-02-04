@@ -128,10 +128,6 @@ public class HuffmanCompressor implements IHuffmanCompress {
                         byteArray[idx++] = curByte;
                     }
 
-//                    byte curByte =(byte) Integer.parseInt(curCode.substring(0,8),2);
-//                    curCode = curCode.substring(8,curCode.length());
-//                    byteArray[idx++] = curByte;
-
                 }
 
                 val=fileScanner.read();
@@ -139,13 +135,7 @@ public class HuffmanCompressor implements IHuffmanCompress {
 
             fileScanner.close();
 
-            while(curCode.length()>8){
-                byte curByte =(byte) Integer.parseInt(curCode.substring(0,8),2);
-                curCode = curCode.substring(8,curCode.length());
-                byteArray[idx++] = curByte;
-            }
 
-            System.out.println("Curcode: "+curCode+"\nLength:"+curCode.length());
             if(!curCode.equals("")){
                 extraBits = 8 - curCode.length();
                 for(int i=0;i<extraBits;i++)

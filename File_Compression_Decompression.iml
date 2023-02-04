@@ -18,6 +18,8 @@
       <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/d" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/e" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/f" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/3" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/4" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
