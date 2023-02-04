@@ -99,7 +99,7 @@ public class HuffmanCompressor implements IHuffmanCompress {
         System.out.println("Enter name for compressed file:(without any extensions)");
         String outputFilePath = fileName.nextLine();
 
-        outputFilePath = "/home/dineshkudwa/Desktop/text_files/"+outputFilePath+".txt";
+        outputFilePath = "src/textFiles/compressedFiles/"+outputFilePath+".txt";
         File newFile = new File(outputFilePath);
         try {
             FileReader fileScanner = new FileReader(fileObj);

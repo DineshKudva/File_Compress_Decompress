@@ -20,7 +20,6 @@ public class ZipUnzipApp {
 
             System.out.println("Enter name of file to be compressed or decompressed:");
             inputFilePath = inp.nextLine();
-            inputFilePath = "/home/dineshkudwa/Desktop/text_files/"+inputFilePath+".txt";
 
             IZipperUnzipper fileZipUnzip = new HuffmanZipperUnzipper();
 
@@ -28,9 +27,11 @@ public class ZipUnzipApp {
 
             switch (choice){
                 case "1" :
+                    inputFilePath = "src/textFiles/"+inputFilePath+".txt";
                     resultPath = fileZipUnzip.compressFile(inputFilePath);
                     break;
                 case "2":
+                    inputFilePath = "src/textFiles/compressedFiles/"+inputFilePath+".txt";
                     resultPath = fileZipUnzip.decompressFile(inputFilePath);
                     break;
                 default:

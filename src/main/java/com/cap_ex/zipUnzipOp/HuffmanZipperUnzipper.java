@@ -50,7 +50,7 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
         File fileObj = new File(outputFilePath);
 
         if(!fileObj.exists())
-            return "";
+            return "nan";
         else if(fileObj.length() == 0)
             return "empty";
 
