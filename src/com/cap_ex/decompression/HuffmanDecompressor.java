@@ -39,28 +39,8 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
             fin.close();
 
             treeRoot = deserialize(huffTree);
-//            StringBuilder binaryCode = new StringBuilder();
-//            int val;
-//
-//            for(byte myByte:byteArray){
-//                val = (int) myByte;
-//
-//                if(val<0)
-//                    val = (val+256)%256;
-//
-//                String binaryEqui = method.getBinaryFromInt(val);
-//
-//                binaryCode.append(binaryEqui);
-//        }
-//
-//            String decompressedData = dataDecompression(binaryCode.toString(),treeRoot,extraBits);
-//
-//            FileWriter fw = new FileWriter(resultFilePath);
-//
-//            fw.write(decompressedData);
-//
-//            fw.close();
-              dataDecompress(treeRoot,extraBits,byteArray,resultFilePath);
+
+            dataDecompress(treeRoot,extraBits,byteArray,resultFilePath);
 
         } catch (IOException |ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -73,10 +53,8 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
 
     public void dataDecompress(TreeNode root,int extraBits,byte[] byteArray,String filePath){
         try {
-            // set temp to root
             TreeNode temp  = root;
 
-            //obtain last index
             int n =  byteArray.length;
 
             String curCode = "";
@@ -86,22 +64,18 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
 
             for(int i=0;i<n;i++){
 
-                // obtain a byte
                 int val = (int) byteArray[i];
 
                 if(val<0)
                     val = (val+256)%256;
 
-                // store binary in string
                 curCode = method.getBinaryFromInt(val);
 
-                // check for last byte
                 if(i==n-1){
                     curCode = curCode.substring(0,8-extraBits);
                 }
 
                 for(char ch:curCode.toCharArray()){
-                    // for tree with a single node
                     if (temp.getLeftChild() == null && temp.getRightChild() == null) {
                         pw.print(temp.getChar());
                         temp = root;
@@ -113,7 +87,6 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
                     else // right move
                         temp = temp.getRightChild();
 
-                    // reached leaf
                     if (temp.getLeftChild() == null && temp.getRightChild() == null) {
                         pw.print(temp.getChar());
                         temp = root;
@@ -131,42 +104,7 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
 
     }
 
-    @Override
-    public String dataDecompression(String binaryCode, TreeNode root, int extraBits) {
-        StringBuilder uncompressedData = new StringBuilder();
 
-        System.out.println(binaryCode.toString());
-        System.out.println(binaryCode.length());
-        System.out.println(extraBits);
-        int length = binaryCode.length() - extraBits;
-        TreeNode temp = root;
-
-        System.out.println(length);
-
-        for(int i=0;i<length;i++) {
-            char ch = binaryCode.charAt(i);
-
-            if (temp.getLeftChild() == null && temp.getRightChild() == null) {
-                uncompressedData.append(temp.getChar());
-                temp = root;
-                continue;
-            }
-
-            if (ch == '1')
-                temp = temp.getRightChild();
-            else
-                temp = temp.getLeftChild();
-
-
-            if (temp.getLeftChild() == null && temp.getRightChild() == null) {
-                uncompressedData.append(temp.getChar());
-                temp = root;
-            }
-
-        }
-
-        return uncompressedData.toString();
-    }
 
     public TreeNode deserialize(String nodeList){
         if(nodeList == null)

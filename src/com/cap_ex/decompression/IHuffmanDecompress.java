@@ -7,8 +7,6 @@ import java.io.File;
 public interface IHuffmanDecompress {
         String decompress(File fileObj);
 
-        String dataDecompression(String compressedData, TreeNode root, int size);
-
         void dataDecompress(TreeNode root,int extraBits,byte[] byteArray,String filePath);
 
 }
