@@ -2,10 +2,10 @@ com/cap_ex/decompression/IHuffmanDecompress.class
 com/cap_ex/ZipUnzipApp.class
 com/cap_ex/zipUnzipOp/IZipperUnzipper.class
 com/cap_ex/Main.class
-com/cap_ex/auxiliary/CharComparator.class
 com/cap_ex/auxiliary/GeneralMethods.class
-com/cap_ex/decompression/HuffmanDecompressor.class
+com/cap_ex/auxiliary/CharComparator.class
 com/cap_ex/zipUnzipOp/HuffmanZipperUnzipper.class
+com/cap_ex/decompression/HuffmanDecompressor.class
 com/cap_ex/File_handle/File_Handler.class
 com/cap_ex/compression/HuffmanCompressor.class
 com/cap_ex/File_handle/IFile_Handler.class
