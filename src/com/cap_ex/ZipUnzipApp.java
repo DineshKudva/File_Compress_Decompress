@@ -20,7 +20,7 @@ public class ZipUnzipApp {
 
             System.out.println("Enter name of file to be compressed or decompressed:");
             inputFilePath = inp.nextLine();
-            inputFilePath = "/home/dineshkudwa/Desktop/text_files/"+inputFilePath+".txt";
+            inputFilePath = "src/textFiles/"+inputFilePath+".txt";
 
             IZipperUnzipper fileZipUnzip = new HuffmanZipperUnzipper();
 

@@ -19,7 +19,7 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
         String resultFilePath = fileName.nextLine();
 
 
-        resultFilePath = "/home/dineshkudwa/Desktop/text_files/"+resultFilePath+".txt";
+        resultFilePath = "src/textFiles/"+resultFilePath+".txt";
         File newFile = new File(resultFilePath);
 
 
