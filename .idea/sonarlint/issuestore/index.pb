@@ -5,7 +5,7 @@
 -src/com/cap_ex/File_handle/IFile_Handler.java,e\2\e2af709bf21d30acf332a2b8dfdf8284338a8075
 ]
 -src/com/cap_ex/auxiliary/IGeneralMethods.java,6\0\600130bd725f934ea78bed5fd43e46aacac2c818
-d
-4src/com/cap_ex/decompression/IHuffmanDecompress.java,b\6\b69cc530ce247b6edec5298c3f445cd9a4cba6f3
 ^
 .src/com/cap_ex/zipUnzipOp/IZipperUnzipper.java,5\c\5cbf5a5b03118cba5562db00461c4802859b0d06
+R
+"File_Compression_Decompression.iml,3/b/3bb7ad877bc5c1599edbb21295a40488cd853d9e
