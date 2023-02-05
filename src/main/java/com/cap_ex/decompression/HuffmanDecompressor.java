@@ -13,11 +13,12 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
     int nodeListIdx;
     @Override
     public String decompress(File fileObj) {
-        System.out.println("\nEnter name for decompressed file:(without any extensions)");
-        String resultFilePath = fileName.nextLine();
-
-
-        resultFilePath = "src/textFiles/decompressedFiles/"+resultFilePath+".txt";
+//        System.out.println("\nEnter name for decompressed file:(without any extensions)");
+//        String resultFilePath = fileName.nextLine();
+//
+//
+//        resultFilePath = "src/textFiles/decompressedFiles/"+resultFilePath+".txt";
+        String resultFilePath = "src/textFiles/decompressedFiles/decompressed.txt";
         File newFile = new File(resultFilePath);
 
 

@@ -96,10 +96,11 @@ public class HuffmanCompressor implements IHuffmanCompress {
     @Override
     public String compress(Map<Character,String> characterCodes, File fileObj, TreeNode root,int size) {
 
-        System.out.println("Enter name for compressed file:(without any extensions)");
-        String outputFilePath = fileName.nextLine();
+//        System.out.println("Enter name for compressed file:(without any extensions)");
+//        String outputFilePath = fileName.nextLine();
 
-        outputFilePath = "src/textFiles/compressedFiles/"+outputFilePath+".txt";
+//        outputFilePath = "src/textFiles/compressedFiles/"+outputFilePath+".txt";
+        String outputFilePath = "src/textFiles/compressedFiles/compressed.txt";
         File newFile = new File(outputFilePath);
         try {
             FileReader fileScanner = new FileReader(fileObj);
