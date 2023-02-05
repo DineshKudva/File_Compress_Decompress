@@ -19,4 +19,5 @@ public class CharComparatorTest {
         expected = -1;
         assertEquals(expected,actual);
     }
+
 }
