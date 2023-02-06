@@ -82,6 +82,10 @@ public class GeneralMethods implements IGeneralMethods{
 
     @Override
     public String getBinaryFromInt(int decival) {
+
+        if(decival<0)
+            throw new ArithmeticException();
+
         String result = "";
 
         while (decival != 0) {
