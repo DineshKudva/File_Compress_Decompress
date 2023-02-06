@@ -1,5 +1,6 @@
 package com.cap_ex.auxiliary;
 
+import org.junit.Before;
 import org.junit.Test;
 import sun.reflect.generics.tree.Tree;
 
@@ -8,11 +9,15 @@ import static org.junit.Assert.*;
 public class TreeNodeTest {
 
 
-    TreeNode testLeft = new TreeNode('#',1,null,null);
-    TreeNode testRight = new TreeNode('#',1,null,null);
+    TreeNode testLeft, testRight, testChild, testNode, actual, expected;
 
-    TreeNode testChild = new TreeNode('x',2,null,null);
-    TreeNode testNode = new TreeNode('a',2,testLeft,testRight);
+    @Before
+    public void setup(){
+        testLeft = new TreeNode('#',1,null,null);
+        testRight = new TreeNode('#',1,null,null);
+        testChild = new TreeNode('x',2,null,null);
+        testNode = new TreeNode('a',2,testLeft,testRight);
+    }
 
     @Test
     public void testGetChar() {
@@ -36,26 +41,39 @@ public class TreeNodeTest {
     }
 
     @Test
+    public void testGetLeftForNull(){
+        actual = testChild.getLeftChild();
+        assertEquals(null,actual);
+    }
+    @Test
     public void testGetLeft(){
-        TreeNode actual = testNode.getLeftChild();
-        TreeNode expected = testLeft;
+        actual = testNode.getLeftChild();
+        expected = testLeft;
         assertEquals(expected,actual);
     }
 
     @Test
+    public void testGetRightForNull(){
+        actual = testChild.getRightChild();
+        assertEquals(null,actual);
+    }
+    @Test
     public void testGetRight(){
-        TreeNode actual = testNode.getRightChild();
-        TreeNode expected = testRight;
+        actual = testNode.getRightChild();
+        expected = testRight;
         assertEquals(expected,actual);
+    }
+
+    @Test
+    public void testSetLeftForNull(){
+        testNode.setRight(null);
+        actual = testNode.getRightChild();
+        assertEquals(null,actual);
+
     }
 
     @Test
     public void testSetLeft(){
-        testNode.setLeft(null);
-        TreeNode actual = testNode.getLeftChild();
-        TreeNode expected = null;
-        assertEquals(expected,actual);
-
         testNode.setLeft(testChild);
         actual = testNode.getLeftChild();
         expected = testChild;
@@ -63,11 +81,15 @@ public class TreeNodeTest {
     }
 
     @Test
-    public void testSetRight(){
+    public void testSetRightForNull(){
         testNode.setRight(null);
-        TreeNode actual = testNode.getRightChild();
-        TreeNode expected = null;
-        assertEquals(expected,actual);
+        actual = testNode.getRightChild();
+        assertEquals(null,actual);
+
+    }
+
+    @Test
+    public void testSetRight(){
 
         testNode.setRight(testChild);
         actual = testNode.getRightChild();
