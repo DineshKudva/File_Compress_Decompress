@@ -12,7 +12,7 @@ public interface IHuffmanCompress {
 
     TreeNode buildTree(Queue<TreeNode> nodeQueue);
 
-    Map<Character, String> getCodes(TreeNode root);
+    void getCodes(TreeNode root, String code, Map<Character, String> characterCodes);
 
     String compress(Map<Character,String> characterCodes, File fileObj, TreeNode root,int size);
 

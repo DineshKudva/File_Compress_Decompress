@@ -73,15 +73,7 @@ public class HuffmanCompressor implements IHuffmanCompress {
     }
 
     @Override
-    public Map<Character, String> getCodes(TreeNode root) {
-        Map<Character, String> characterCodes = new HashMap<>();
-
-        buildCode(root,"",characterCodes);
-
-        return characterCodes;
-    }
-
-    public static void buildCode(TreeNode root, String code, Map<Character, String> characterCodes) {
+    public void getCodes(TreeNode root,String code,Map<Character,String> characterCodes) {
         if (root == null)
             return;
         else if (root.getLeftChild() == null && root.getRightChild() == null) {
@@ -89,9 +81,11 @@ public class HuffmanCompressor implements IHuffmanCompress {
             return;
         }
 
-        buildCode(root.getLeftChild(), code + '0',characterCodes);
-        buildCode(root.getRightChild(), code + '1',characterCodes);
+        getCodes(root.getLeftChild(), code + '0',characterCodes);
+        getCodes(root.getRightChild(), code + '1',characterCodes);
     }
+
+
 
     @Override
     public String compress(Map<Character,String> characterCodes, File fileObj, TreeNode root,int size) {

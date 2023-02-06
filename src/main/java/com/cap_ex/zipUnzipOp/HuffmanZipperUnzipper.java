@@ -35,7 +35,9 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
         root = compressor.buildTree(nodeQueue);
 
         // getting the codes of the characters using the huffman tree
-        Map<Character,String> characterCodes = compressor.getCodes(root);
+        Map<Character,String> characterCodes = new HashMap<>();
+
+        compressor.getCodes(root,"",characterCodes);
 
         int byteArraySize = method.getArraySize(characterCodes,freqTable);
 
