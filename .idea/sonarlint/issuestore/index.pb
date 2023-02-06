@@ -15,10 +15,6 @@ f
 6src/main/java/com/cap_ex/auxiliary/CharComparator.java,3/1/3120eae640f00881ec5ac670a727e3c6ee8c1bb9
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
-j
-:src/test/java/com/cap_ex/auxiliary/CharComparatorTest.java,5/e/5ebab3a59198f48136fd365cd419f2ceb10c7cf0
-R
-"File_Compression_Decompression.iml,3/b/3bb7ad877bc5c1599edbb21295a40488cd853d9e
 r
 Bsrc/test/java/com/cap_ex/zipUnzipOp/HuffmanZipperUnzipperTest.java,6/b/6b8ad86df54f1873bbcfe8482fc8d08321d73911
 `
