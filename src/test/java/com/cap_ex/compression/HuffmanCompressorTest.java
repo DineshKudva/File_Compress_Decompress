@@ -15,7 +15,6 @@ import static org.junit.Assert.*;
 public class HuffmanCompressorTest {
     File fileObj;
     IHuffmanCompress testRef = new HuffmanCompressor();
-    HuffmanCompressorTest testObj = new HuffmanCompressorTest();
     Map<Character,Integer> testFreqMap = new HashMap<>();
     Queue<TreeNode> testQueue = new PriorityQueue<>(new CharComparator()) ;
     TreeNode root = new TreeNode('$','5',null,null);
