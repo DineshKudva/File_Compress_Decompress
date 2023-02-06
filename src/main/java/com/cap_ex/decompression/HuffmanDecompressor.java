@@ -31,11 +31,13 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
             ObjectInputStream obj = new ObjectInputStream(fin);
 
             String huffTree = (String) obj.readObject();
-            treeRoot = deserialize(huffTree);
-
             extraBits = obj.readInt();
-
             byte[] byteArray = (byte[]) obj.readObject();
+
+            obj.close();
+            fin.close();
+
+            treeRoot = deserialize(huffTree);
 
             StringBuilder binaryCode = new StringBuilder();
 
@@ -52,8 +54,6 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
                 binaryCode.append(binaryEqui);
         }
 
-            obj.close();
-            fin.close();
 
             String decompressedData = dataDecompression(binaryCode.toString(),treeRoot,extraBits);
 
@@ -64,7 +64,7 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
             fw.close();
 
 
-        } catch (IOException |ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
