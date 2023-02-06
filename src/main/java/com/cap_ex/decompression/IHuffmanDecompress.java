@@ -9,4 +9,7 @@ public interface IHuffmanDecompress {
 
         String dataDecompression(String compressedData, TreeNode root, int size);
 
+        public TreeNode deserialize(String nodeList);
+
+
 }
