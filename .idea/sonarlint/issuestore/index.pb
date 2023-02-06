@@ -15,9 +15,6 @@ f
 6src/main/java/com/cap_ex/auxiliary/CharComparator.java,3/1/3120eae640f00881ec5ac670a727e3c6ee8c1bb9
 7
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
-:
-
-.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 j
 :src/test/java/com/cap_ex/auxiliary/CharComparatorTest.java,5/e/5ebab3a59198f48136fd365cd419f2ceb10c7cf0
 R
