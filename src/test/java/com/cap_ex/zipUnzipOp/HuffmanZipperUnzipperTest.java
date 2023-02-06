@@ -1,47 +1,70 @@
 package com.cap_ex.zipUnzipOp;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class HuffmanZipperUnzipperTest {
 
-    String inputFilePath="src/textFiles/nonexistent.txt";
-    String compressedFilePath="src/textFiles/compressedFiles/nonexistent.txt";
-    IZipperUnzipper testRef = new HuffmanZipperUnzipper();
+    String inputFilePath;
+    String compressedFilePath;
+    IZipperUnzipper testRef;
+    @Before
+    public void setup(){
+        inputFilePath="src/textFiles/nonexistent.txt";
+        compressedFilePath="src/textFiles/compressedFiles/nonexistent.txt";
+        testRef = new HuffmanZipperUnzipper();
+    }
 
     @Test
-    public void testCompressFile() {
+    public void testCompressFileForNonExistentFile(){
         String actual = testRef.compressFile(inputFilePath);
         String expected = "nan";
-        assertEquals(expected,actual);
+        assertEquals("check for non existent file",expected,actual);
+
+    }
+
+    @Test
+    public void testCompressFileForEmptyFile(){
 
         inputFilePath = "src/textFiles/empty.txt";
-        actual = testRef.compressFile(inputFilePath);
-        expected = "empty";
-        assertEquals(expected,actual);
-
-        inputFilePath = "src/textFiles/largeTest2.txt";
-        actual = testRef.compressFile(inputFilePath);
-        expected = "src/textFiles/compressedFiles/compressed.txt";
+        String actual = testRef.compressFile(inputFilePath);
+        String expected = "empty";
         assertEquals(expected,actual);
     }
 
     @Test
-    public void testDecompressFile() {
+    public void testCompressFile() {
 
+        inputFilePath = "src/textFiles/largeTest2.txt";
+        String actual = testRef.compressFile(inputFilePath);
+        String expected = "src/textFiles/compressedFiles/compressed.txt";
+        assertEquals(expected,actual);
+    }
+    @Test
+    public void testDecompressFileforNonExistentFile(){
         String actual = testRef.decompressFile(compressedFilePath);
         String expected = "nan";
         assertEquals(expected,actual);
 
+    }
+
+    @Test
+    public void testDecompressFileForEmptyFile(){
         compressedFilePath = "src/textFiles/compressedFiles/empty.txt";
-        actual = testRef.decompressFile(compressedFilePath);
-        expected = "empty";
+        String actual = testRef.decompressFile(compressedFilePath);
+        String expected = "empty";
         assertEquals(expected,actual);
 
+    }
+
+
+    @Test
+    public void testDecompressFile() {
         compressedFilePath = "src/textFiles/compressedFiles/compressed.txt";
-        actual = testRef.decompressFile(compressedFilePath);
-        expected = "src/textFiles/decompressedFiles/decompressed.txt";
+        String actual = testRef.decompressFile(compressedFilePath);
+        String expected = "src/textFiles/decompressedFiles/decompressed.txt";
         assertEquals(expected,actual);
     }
 }
