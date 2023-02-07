@@ -9,7 +9,6 @@ public interface IGeneralMethods {
 
     public String getBinaryFromChar(char ch);
 
-    public int getArraySize(Map<Character,String> charMap, Map<Character,Integer> freqMap);
 
     public String getBinaryFromInt(int val);
 
