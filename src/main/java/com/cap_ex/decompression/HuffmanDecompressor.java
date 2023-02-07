@@ -77,22 +77,15 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
     public String dataDecompression(String binaryCode, TreeNode root, int extraBits) {
         StringBuilder uncompressedData = new StringBuilder();
 
-
         int length = binaryCode.length() - extraBits;
         TreeNode temp = root;
 
         for(int i=0;i<length;i++) {
             char ch = binaryCode.charAt(i);
 
-            if (temp.getLeftChild() == null && temp.getRightChild() == null) {
-                uncompressedData.append(temp.getChar());
-                temp = root;
-                continue;
-            }
-
-            if (ch == '1')
+            if (ch == '1' && temp.getRightChild() != null)
                 temp = temp.getRightChild();
-            else
+            else if(ch == '0' && temp.getLeftChild() != null)
                 temp = temp.getLeftChild();
 
 
