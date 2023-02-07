@@ -31,6 +31,7 @@ public class HuffmanCompressor implements IHuffmanCompress {
         }
         catch(IOException e){
             System.out.println("File not found");
+            throw new RuntimeException();
         }
 
 
@@ -39,6 +40,10 @@ public class HuffmanCompressor implements IHuffmanCompress {
 
     @Override
     public Queue<TreeNode> buildNodeQueue(Map<Character, Integer> freqTable) {
+
+        if(freqTable == null)
+            throw new NullPointerException();
+
         Queue<TreeNode> nodeQueue = new PriorityQueue<>(new CharComparator());
 
         for(Map.Entry<Character, Integer> mapEle : freqTable.entrySet()){
@@ -90,14 +95,15 @@ public class HuffmanCompressor implements IHuffmanCompress {
     @Override
     public String compress(Map<Character,String> characterCodes, File fileObj, TreeNode root,int size) {
 
-//        System.out.println("Enter name for compressed file:(without any extensions)");
+        try {
+            FileReader fileScanner = new FileReader(fileObj);
+
+//            System.out.println("Enter name for compressed file:(without any extensions)");
 //        String outputFilePath = fileName.nextLine();
 
 //        outputFilePath = "src/textFiles/compressedFiles/"+outputFilePath+".txt";
-        String outputFilePath = "src/textFiles/compressedFiles/compressed.txt";
-        File newFile = new File(outputFilePath);
-        try {
-            FileReader fileScanner = new FileReader(fileObj);
+            String outputFilePath = "src/textFiles/compressedFiles/compressed.txt";
+            File newFile = new File(outputFilePath);
 
             byte[] byteArray = new byte[size];
             String curCode= "";
@@ -146,20 +152,41 @@ public class HuffmanCompressor implements IHuffmanCompress {
             obj.writeInt(extraBits);
             obj.writeObject(byteArray);
 
+            obj.flush();
 
             obj.close();
             fout.close();
+
+            System.out.println("Size of original file:"+fileObj.length()/1024+" Kb");
+            System.out.println("Size of compressed file:"+newFile.length()/1024+" Kb");
+            float compRate = (fileObj.length() - newFile.length())*100/ fileObj.length();
+            System.out.println("Compression rate:"+compRate+"%");
+
+            return outputFilePath;
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        System.out.println("Size of original file:"+fileObj.length()/1024+" Kb");
-        System.out.println("Size of compressed file:"+newFile.length()/1024+" Kb");
-        float compRate = (fileObj.length() - newFile.length())*100/ fileObj.length();
-        System.out.println("Compression rate:"+compRate+"%");
 
-        return outputFilePath;
+    }
+
+    public int getArraySize(Map<Character, String> charMap, Map<Character, Integer> freqMap) {
+        int size =0;
+        for(Map.Entry<Character,String> mapEle : charMap.entrySet()){
+            char ch = mapEle.getKey();
+            int len = mapEle.getValue().length();
+            int freq = freqMap.get(ch);
+
+            size += (len*freq);
+        }
+
+        if(size%8 ==0)
+            size /= 8;
+        else
+            size = (size/8) + 1;
+
+        return size;
     }
 
 
