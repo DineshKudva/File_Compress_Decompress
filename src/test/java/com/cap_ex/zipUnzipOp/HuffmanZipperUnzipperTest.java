@@ -3,6 +3,8 @@ package com.cap_ex.zipUnzipOp;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
+
 import static org.junit.Assert.*;
 
 public class HuffmanZipperUnzipperTest {
@@ -39,7 +41,12 @@ public class HuffmanZipperUnzipperTest {
 
         inputFilePath = "src/textFiles/largeTest2.txt";
         String actual = testRef.compressFile(inputFilePath);
-        String expected = "src/textFiles/compressedFiles/compressed.txt";
+        String expected = "src/textFiles/compressedFiles/testCompressed.txt";
+        File file1 = new File(actual);
+        File file2 = new File(expected);
+
+
+
         assertEquals(expected,actual);
     }
     @Test

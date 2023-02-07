@@ -39,7 +39,7 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
         compressor.getCodes(root,"",characterCodes);
 
-        int byteArraySize = method.getArraySize(characterCodes,freqTable);
+        int byteArraySize = compressor.getArraySize(characterCodes,freqTable);
 
 
         return compressor.compress(characterCodes, fileObj,root,byteArraySize);
