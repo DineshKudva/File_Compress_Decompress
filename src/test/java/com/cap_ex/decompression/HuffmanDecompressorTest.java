@@ -13,13 +13,13 @@ public class HuffmanDecompressorTest {
     IHuffmanDecompress testRef = new HuffmanDecompressor();
     File fileObj = new File("src/textFiles/compressedFiles/nonExistent.txt");
 
-    TreeNode root = new TreeNode('$',5,null,null);
+    TreeNode root = new TreeNode('$',13,null,null);
 
 
     @Before
     public void setup(){
-        root.setLeft(new TreeNode('a',2,null,null));
-        root.setRight(new TreeNode('b',3,null,null));
+        root.setLeft(new TreeNode('a',6,null,null));
+        root.setRight(new TreeNode('b',7,null,null));
     }
 
     @Test(expected = RuntimeException.class)
@@ -81,10 +81,10 @@ public class HuffmanDecompressorTest {
     @Test
     public void dataDecompression() {
         String binaryCode = "10101000";
-        int extraBits = 3;
+        int extraBits = 1;
 
         String actual = testRef.dataDecompression(binaryCode,root,extraBits);
-        String expected = "babab";
+        String expected = "bababaa";
 
         assertEquals(expected,actual);
     }
