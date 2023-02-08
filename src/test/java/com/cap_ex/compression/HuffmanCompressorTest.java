@@ -7,10 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import sun.reflect.generics.tree.Tree;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 import static org.junit.Assert.*;
@@ -26,14 +23,14 @@ public class HuffmanCompressorTest {
 
     @Before
     public void setup(){
-        testFreqMap.put('a',2);
-        testFreqMap.put('b',3);
+        testFreqMap.put('a',6);
+        testFreqMap.put('b',7);
 
-        testQueue.add(new TreeNode('a',2,null,null));
-        testQueue.add(new TreeNode('b',3,null,null));
+        testQueue.add(new TreeNode('a',6,null,null));
+        testQueue.add(new TreeNode('b',7,null,null));
 
-        root.setLeft(new TreeNode('a',2,null,null));
-        root.setRight(new TreeNode('b',3,null,null));
+        root.setLeft(new TreeNode('a',6,null,null));
+        root.setRight(new TreeNode('b',7,null,null));
 
         testCodes.put('a',"0");
         testCodes.put('b',"1");
@@ -58,11 +55,34 @@ public class HuffmanCompressorTest {
         Queue<TreeNode> actual = testRef.buildNodeQueue(null);
     }
 
+    @Test(expected = RuntimeException.class)
+    public void testBuildNodeQueueForEmpty(){
+        Map<Character,Integer> emptyMap = new HashMap<>();
+        Queue<TreeNode> actual = testRef.buildNodeQueue(emptyMap);
+    }
+
     @Test
     public void testBuildNodeQueue() {
-
+            boolean flag = true;
             Queue<TreeNode> actual = testRef.buildNodeQueue(testFreqMap);
+
             assertEquals(testQueue.size(),actual.size());
+
+            StringBuilder exp = new StringBuilder();
+            for(TreeNode node : testQueue){
+                exp.append(node.getChar());
+            }
+            for(TreeNode node:actual){
+                if(node.getChar() != exp.charAt(0))
+                {
+                    flag = false;
+                    break;
+                }
+                exp.deleteCharAt(0);
+            }
+            assertTrue(flag);
+
+
     }
 
     @Test
@@ -188,6 +208,49 @@ public class HuffmanCompressorTest {
             throw new RuntimeException(e);
         }
 
+
+        assertTrue(identityFlag);
+
+    }
+
+    @Test
+    public void testCompress2() {
+        fileObj = new File("src/textFiles/testFile.txt");
+
+        testFreqMap = testRef.generateFrequency(fileObj);
+        testQueue = testRef.buildNodeQueue(testFreqMap);
+        root = testRef.buildTree(testQueue);
+        testCodes.clear();
+        testRef.getCodes(root,"",testCodes);
+        int size = testRef.getArraySize(testCodes,testFreqMap);
+
+        String actual = testRef.compress(testCodes,fileObj,root,size);
+
+        boolean identityFlag = true;
+        byte[] expectedByteArray = {82,120};
+        File newFile = new File(actual);
+        try {
+            ObjectInputStream obj = new ObjectInputStream(new FileInputStream(newFile));
+            String myRoot = (String) obj.readObject();
+            int arrSize = obj.readInt();
+            byte[] actualByteArray = (byte[]) obj.readObject();
+
+            if(expectedByteArray.length!=actualByteArray.length)
+                identityFlag = false;
+
+            if(identityFlag){
+                for(int i=0;i<expectedByteArray.length;i++){
+                    if(expectedByteArray[i] != actualByteArray[i])
+                    {
+                        identityFlag = false;
+                        break;
+                    }
+                }
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
         assertTrue(identityFlag);
 
