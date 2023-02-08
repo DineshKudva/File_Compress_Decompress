@@ -43,6 +43,8 @@ public class HuffmanCompressor implements IHuffmanCompress {
 
         if(freqTable == null)
             throw new NullPointerException();
+        else if(freqTable.isEmpty())
+            throw new RuntimeException();
 
         Queue<TreeNode> nodeQueue = new PriorityQueue<>(new CharComparator());
 
