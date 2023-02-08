@@ -15,3 +15,11 @@ n
 >src/main/java/com/cap_ex/decompression/IHuffmanDecompress.java,4/8/486cd26dce1e1263595ecfda7c3cea3d89105453
 f
 6src/main/java/com/cap_ex/auxiliary/CharComparator.java,3/1/3120eae640f00881ec5ac670a727e3c6ee8c1bb9
+n
+>src/main/java/com/cap_ex/zipUnzipOp/HuffmanZipperUnzipper.java,8/5/85c0c7894a727996cd4caccdf402501f46919f0e
+Y
+)src/main/java/com/cap_ex/ZipUnzipApp.java,2/f/2fdab461d465785f90eb744bc6bea195b29e55aa
+o
+?src/test/java/com/cap_ex/compression/HuffmanCompressorTest.java,c/7/c7c259019161690fc30d0b5f7782f93dbc195377
+k
+;src/main/java/com/cap_ex/compression/HuffmanCompressor.java,9/0/901d69e36a99ad1bc85a84ef7212617fe90102a9
