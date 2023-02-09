@@ -19,7 +19,5 @@ n
 >src/main/java/com/cap_ex/zipUnzipOp/HuffmanZipperUnzipper.java,8/5/85c0c7894a727996cd4caccdf402501f46919f0e
 Y
 )src/main/java/com/cap_ex/ZipUnzipApp.java,2/f/2fdab461d465785f90eb744bc6bea195b29e55aa
-o
-?src/test/java/com/cap_ex/compression/HuffmanCompressorTest.java,c/7/c7c259019161690fc30d0b5f7782f93dbc195377
 j
 :src/main/java/com/cap_ex/compression/IHuffmanCompress.java,d/6/d609523e88724dbb0afde2b9e7c2ab5a2ac4bc8f
