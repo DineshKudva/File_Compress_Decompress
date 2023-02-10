@@ -17,3 +17,13 @@ f
 6src/main/java/com/cap_ex/auxiliary/GeneralMethods.java,f/7/f75b430147a9dfb8418e62bf01186fb9ebe7c17b
 g
 7src/main/java/com/cap_ex/auxiliary/IGeneralMethods.java,2/b/2ba83b24a177a9fc638c0cd9548cd3097b9db9d8
+R
+"File_Compression_Decompression.iml,3/b/3bb7ad877bc5c1599edbb21295a40488cd853d9e
+r
+Bsrc/test/java/com/cap_ex/zipUnzipOp/HuffmanZipperUnzipperTest.java,6/b/6b8ad86df54f1873bbcfe8482fc8d08321d73911
+s
+Csrc/test/java/com/cap_ex/decompression/HuffmanDecompressorTest.java,f/9/f90d83b8ce6d3f7c5348f4fd2202e68e5ec9d62d
+f
+6src/main/java/com/cap_ex/File_handle/File_Handler.java,b/c/bcfb38865564d7daa42d9016b2335b041eb5111e
+o
+?src/main/java/com/cap_ex/decompression/HuffmanDecompressor.java,9/3/93e924523b130cd241220302cbd313bd290cb23c
