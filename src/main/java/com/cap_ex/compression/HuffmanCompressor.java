@@ -11,7 +11,15 @@ public class HuffmanCompressor implements IHuffmanCompress {
     Scanner fileName = new Scanner(System.in);
     public int extraBits;
 
-    IGeneralMethods method = new GeneralMethods();
+    IGeneralMethods method;
+
+    public HuffmanCompressor(){
+        method = new GeneralMethods();
+    }
+
+    public HuffmanCompressor(IGeneralMethods method){
+        this.method = method;
+    }
 
     @Override
     public Map<Character, Integer> generateFrequency(File fileObj) {
