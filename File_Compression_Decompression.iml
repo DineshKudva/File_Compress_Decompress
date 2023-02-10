@@ -21,12 +21,12 @@
       <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/d" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/e" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/f" />
-      <excludeFolder url="file://$MODULE_DIR$/src/textFiles" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/4" />
-      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/6" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/3" />
-      <excludeFolder url="file://$MODULE_DIR$/.idea/libraries" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
+      <excludeFolder url="file://$MODULE_DIR$/src/textFiles" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/sonarlint/issuestore/6" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea/libraries" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
