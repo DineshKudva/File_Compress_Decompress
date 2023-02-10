@@ -93,6 +93,20 @@ public class HuffmanDecompressorTest {
     }
 
     @Test
+    public void testGetBinaryDataForNegativeBytes(){
+
+        Mockito.when(method.getBinaryFromInt(52)).thenReturn("00110100");
+        Mockito.when(method.getBinaryFromInt(131)).thenReturn("10000011");
+
+
+        byte[] byteArray = {52,-125};
+        String expected = "0011010010000011";
+        String actual = testRef.getBinaryData(byteArray);
+
+        assertEquals("binary string returned does the not match the expected result",expected,actual);
+    }
+
+    @Test
     public void dataDecompression() {
         String binaryCode = "10101000";
         int extraBits = 1;
