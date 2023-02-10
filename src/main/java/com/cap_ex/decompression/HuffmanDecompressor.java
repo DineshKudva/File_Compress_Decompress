@@ -8,73 +8,75 @@ import java.util.*;
 
 public class HuffmanDecompressor implements IHuffmanDecompress {
 
-    IGeneralMethods method = new GeneralMethods();
+    IGeneralMethods method;
     Scanner fileName = new Scanner(System.in);
-    int nodeListIdx;
-    @Override
-    public String decompress(File fileObj) {
-//        System.out.println("\nEnter name for decompressed file:(without any extensions)");
-//        String resultFilePath = fileName.nextLine();
-//
-//
-//        resultFilePath = "src/textFiles/decompressedFiles/"+resultFilePath+".txt";
-        String resultFilePath = "src/textFiles/decompressedFiles/decompressed.txt";
-        File newFile = new File(resultFilePath);
+    public int nodeListIdx;
 
+    public HuffmanDecompressor(){
+        nodeListIdx = 0;
+        method = new GeneralMethods();
+    }
+
+    public HuffmanDecompressor(IGeneralMethods method){
+        nodeListIdx = 0;
+        this.method = method;
+    }
+
+    @Override
+    public IFileContents extractContents(File fileObj) {
+
+        IFileContents fileContents;
 
         try {
-
-            TreeNode treeRoot = null;
-            int extraBits;
 
             FileInputStream fin = new FileInputStream(fileObj);
             ObjectInputStream obj = new ObjectInputStream(fin);
 
-            String huffTree = (String) obj.readObject();
-            extraBits = obj.readInt();
-            byte[] byteArray = (byte[]) obj.readObject();
+            fileContents = new FileContents();
+
+            fileContents.setHuffTree((String)obj.readObject());
+            fileContents.setExtraBits((int) obj.readInt());
+            fileContents.setByteArray((byte[]) obj.readObject());
 
             obj.close();
             fin.close();
-
-            treeRoot = deserialize(huffTree);
-
-            StringBuilder binaryCode = new StringBuilder();
-
-            int val;
-
-            for(byte myByte:byteArray){
-                val = (int) myByte;
-
-                if(val<0)
-                    val = (val+256)%256;
-
-                String binaryEqui = method.getBinaryFromInt(val);
-
-                binaryCode.append(binaryEqui);
-        }
-
-
-            String decompressedData = dataDecompression(binaryCode.toString(),treeRoot,extraBits);
-
-            FileWriter fw = new FileWriter(resultFilePath);
-
-            fw.write(decompressedData);
-
-            fw.close();
 
 
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
+        return fileContents;
 
-        System.out.println("Size of decompressed file:"+newFile.length()/1024+" Kb");
-        return resultFilePath;
+    }
+
+    @Override
+    public String getBinaryData(byte[] byteArray) {
+        StringBuilder binaryCode = new StringBuilder();
+
+        int val;
+
+        for(byte myByte:byteArray){
+            val = (int) myByte;
+
+            if(val<0)
+                val = val+256;
+
+            String binaryEqui = method.getBinaryFromInt(val);
+
+            binaryCode.append(binaryEqui);
+        }
+
+        return binaryCode.toString();
+
     }
 
     @Override
     public String dataDecompression(String binaryCode, TreeNode root, int extraBits) {
+
+        String resultFilePath = "src/textFiles/decompressedFiles/decompressed.txt";
+        File newFile = new File(resultFilePath);
+
         StringBuilder uncompressedData = new StringBuilder();
 
         int length = binaryCode.length() - extraBits;
@@ -96,16 +98,30 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
 
         }
 
-        return uncompressedData.toString();
+        try {
+            FileWriter fw = new FileWriter(newFile);
+            fw.write(uncompressedData.toString());
+            fw.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("Size of decompressed file:"+newFile.length()/1024+" Kb");
+
+        return resultFilePath;
     }
 
     public TreeNode deserialize(String nodeList){
-        if(nodeList == null)
+        if(nodeList == null || nodeList.length() == 0)
             return null;
        nodeListIdx= 0;
-        String[] arr = nodeList.split(",");
+       String[] arr = nodeList.split(",");
 
-        return treeBuilder(arr);
+       TreeNode root = null;
+       if(arr.length!=0)
+        root = this.treeBuilder(arr);
+
+        return root;
     }
 
     public TreeNode treeBuilder(String[] arr){
@@ -123,7 +139,8 @@ public class HuffmanDecompressor implements IHuffmanDecompress {
         root.setLeft(treeBuilder(arr));
        nodeListIdx++;
           root.setRight(treeBuilder(arr));
-        return root;
+
+       return root;
     }
 
 
