@@ -1,6 +1,4 @@
 
-f
-6src/main/java/com/cap_ex/File_handle/File_Handler.java,b/c/bcfb38865564d7daa42d9016b2335b041eb5111e
 g
 7src/main/java/com/cap_ex/File_handle/IFile_Handler.java,c/a/ca9e248e94bbdd98705e2bf11bb52afc5e47a1f1
 h
