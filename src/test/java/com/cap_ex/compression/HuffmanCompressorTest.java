@@ -1,20 +1,24 @@
 package com.cap_ex.compression;
 
 import com.cap_ex.auxiliary.CharComparator;
+import com.cap_ex.auxiliary.IGeneralMethods;
 import com.cap_ex.auxiliary.TreeNode;
-import junit.framework.TestResult;
 import org.junit.Before;
 import org.junit.Test;
-import sun.reflect.generics.tree.Tree;
+import org.junit.runner.RunWith;
+import static org.mockito.Mockito.*;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.*;
 import java.util.*;
 
 import static org.junit.Assert.*;
 
+@RunWith(MockitoJUnitRunner.class)
 public class HuffmanCompressorTest {
     File fileObj;
-    IHuffmanCompress testRef = new HuffmanCompressor();
+    IGeneralMethods method;
+    IHuffmanCompress testRef;
     Map<Character,Integer> testFreqMap = new HashMap<>();
     Queue<TreeNode> testQueue = new PriorityQueue<>(new CharComparator()) ;
     TreeNode root = new TreeNode('$','5',null,null);
@@ -23,6 +27,10 @@ public class HuffmanCompressorTest {
 
     @Before
     public void setup(){
+
+        method = mock(IGeneralMethods.class);
+        testRef = new HuffmanCompressor();
+
         testFreqMap.put('a',6);
         testFreqMap.put('b',7);
 
@@ -41,6 +49,14 @@ public class HuffmanCompressorTest {
         fileObj = new File("src/textFiles/nonexistent.txt");
         Map<Character, Integer> actual = testRef.generateFrequency(fileObj);
     }
+
+    @Test
+    public void testGenerateFrequencyForEmpty(){
+        fileObj = new File("src/textFiles/empty.txt");
+        Map<Character, Integer> actual = testRef.generateFrequency(fileObj);
+        assertTrue(actual.isEmpty());
+    }
+
     @Test
     public void testGenerateFrequency() {
         fileObj = new File("src/textFiles/testFile.txt");
@@ -134,22 +150,16 @@ public class HuffmanCompressorTest {
 
     @Test
     public void testGetArraySizeZero(){
-        testCodes.clear();
-        testFreqMap.clear();
-        int actaul = testRef.getArraySize(testCodes,testFreqMap);
+        Map<Character,Integer> emptyFreqMap = new HashMap<>();
+        Map<Character,String> emptyCodeMap = new HashMap<>();
+        int actaul = testRef.getArraySize(emptyCodeMap,emptyFreqMap);
         assertEquals(0,actaul);
     }
 
     @Test
     public void testGetArraySize(){
-        testFreqMap.put('a',2);
-        testFreqMap.put('b',3);
-
-        testCodes.put('a',"0");
-        testCodes.put('b',"1");
-
         int actaul = testRef.getArraySize(testCodes,testFreqMap);
-        int expected = 1;
+        int expected = 2;
         assertEquals(expected, actaul);
     }
 
@@ -161,68 +171,13 @@ public class HuffmanCompressorTest {
 
     @Test
     public void testCompress() {
-        fileObj = new File("src/textFiles/largeTest2.txt");
 
-        testFreqMap = testRef.generateFrequency(fileObj);
-        testQueue = testRef.buildNodeQueue(testFreqMap);
-        root = testRef.buildTree(testQueue);
-        testCodes.clear();
-        testRef.getCodes(root,"",testCodes);
-        int size = testRef.getArraySize(testCodes,testFreqMap);
+        testRef = new HuffmanCompressor(method);
 
-        String actual = testRef.compress(testCodes,fileObj,root,size);
-        String expected = "src/textFiles/compressedFiles/testCompressed.txt";
-
-        boolean identityFlag = true;
-
-        FileReader f1,f2;
-        BufferedReader br1,br2;
-
-        try {
-            f1 = new FileReader(new File(actual));
-            br1 = new BufferedReader(f1);
-
-            f2 = new FileReader(new File(expected));
-            br2 = new BufferedReader(f2);
-
-//            String line1 = br1.readLine();
-
-            while(br1.ready() && br2.ready()){
-                if(!br1.readLine().equals(br2.readLine())){
-                    identityFlag = false;
-                    break;
-                }
-
-            }
-
-            if(br1.ready() || br2.ready())
-                identityFlag = false;
-
-            br2.close();
-            br1.close();
-
-            f2.close();
-            f1.close();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        assertTrue(identityFlag);
-
-    }
-
-    @Test
-    public void testCompress2() {
         fileObj = new File("src/textFiles/testFile.txt");
 
-        testFreqMap = testRef.generateFrequency(fileObj);
-        testQueue = testRef.buildNodeQueue(testFreqMap);
-        root = testRef.buildTree(testQueue);
-        testCodes.clear();
-        testRef.getCodes(root,"",testCodes);
-        int size = testRef.getArraySize(testCodes,testFreqMap);
+        int size = 2;
+        when(method.serialize(root)).thenReturn("$,97,#,#,98,#,#");
 
         String actual = testRef.compress(testCodes,fileObj,root,size);
 
