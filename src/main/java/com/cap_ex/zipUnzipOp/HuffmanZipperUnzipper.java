@@ -39,7 +39,7 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
         compressor.getCodes(root,"",characterCodes);
 
-        int byteArraySize = method.getArraySize(characterCodes,freqTable);
+        int byteArraySize = compressor.getArraySize(characterCodes,freqTable);
 
 
         return compressor.compress(characterCodes, fileObj,root,byteArraySize);
@@ -58,7 +58,21 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
         IHuffmanDecompress decompressor = new HuffmanDecompressor();
 
-        String resultPath = decompressor.decompress(fileObj);
+
+        IFileContents fileContents = decompressor.extractContents(fileObj);
+
+        String huffTree = fileContents.getHuffTree();
+        int extraBits = fileContents.getExtraBits();
+        byte[] byteArray = fileContents.getByteArray();
+
+//        System.out.println(huffTree+"\t"+extraBits);
+
+
+        TreeNode root = decompressor.deserialize(huffTree);
+
+        String binaryData = decompressor.getBinaryData(byteArray);
+
+        String resultPath = decompressor.dataDecompression(binaryData,root,extraBits);
 
         return resultPath;
     }

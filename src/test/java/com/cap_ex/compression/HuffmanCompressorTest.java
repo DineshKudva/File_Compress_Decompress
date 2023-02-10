@@ -1,21 +1,24 @@
 package com.cap_ex.compression;
 
 import com.cap_ex.auxiliary.CharComparator;
+import com.cap_ex.auxiliary.IGeneralMethods;
 import com.cap_ex.auxiliary.TreeNode;
-import junit.framework.TestResult;
 import org.junit.Before;
 import org.junit.Test;
-import sun.reflect.generics.tree.Tree;
+import org.junit.runner.RunWith;
+import static org.mockito.Mockito.*;
+import org.mockito.junit.MockitoJUnitRunner;
 
-import java.io.File;
+import java.io.*;
 import java.util.*;
 
 import static org.junit.Assert.*;
 
+@RunWith(MockitoJUnitRunner.class)
 public class HuffmanCompressorTest {
     File fileObj;
-    IHuffmanCompress testRef = new HuffmanCompressor();
-    HuffmanCompressorTest testObj = new HuffmanCompressorTest();
+    IGeneralMethods method;
+    IHuffmanCompress testRef;
     Map<Character,Integer> testFreqMap = new HashMap<>();
     Queue<TreeNode> testQueue = new PriorityQueue<>(new CharComparator()) ;
     TreeNode root = new TreeNode('$','5',null,null);
@@ -24,17 +27,34 @@ public class HuffmanCompressorTest {
 
     @Before
     public void setup(){
-        testFreqMap.put('a',2);
-        testFreqMap.put('b',3);
 
-        testQueue.add(new TreeNode('a',2,null,null));
-        testQueue.add(new TreeNode('b',3,null,null));
+        method = mock(IGeneralMethods.class);
+        testRef = new HuffmanCompressor();
 
-        root.setLeft(new TreeNode('a',2,null,null));
-        root.setRight(new TreeNode('b',3,null,null));
+        testFreqMap.put('a',6);
+        testFreqMap.put('b',7);
+
+        testQueue.add(new TreeNode('a',6,null,null));
+        testQueue.add(new TreeNode('b',7,null,null));
+
+        root.setLeft(new TreeNode('a',6,null,null));
+        root.setRight(new TreeNode('b',7,null,null));
 
         testCodes.put('a',"0");
         testCodes.put('b',"1");
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testGenerateFrequencyForNull(){
+        fileObj = new File("src/textFiles/nonexistent.txt");
+        Map<Character, Integer> actual = testRef.generateFrequency(fileObj);
+    }
+
+    @Test
+    public void testGenerateFrequencyForEmpty(){
+        fileObj = new File("src/textFiles/empty.txt");
+        Map<Character, Integer> actual = testRef.generateFrequency(fileObj);
+        assertTrue(actual.isEmpty());
     }
 
     @Test
@@ -46,11 +66,39 @@ public class HuffmanCompressorTest {
         assertEquals(testFreqMap,actual);
     }
 
+    @Test(expected = NullPointerException.class)
+    public void testBuildNodeQueueForNull(){
+        Queue<TreeNode> actual = testRef.buildNodeQueue(null);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testBuildNodeQueueForEmpty(){
+        Map<Character,Integer> emptyMap = new HashMap<>();
+        Queue<TreeNode> actual = testRef.buildNodeQueue(emptyMap);
+    }
+
     @Test
     public void testBuildNodeQueue() {
-
+            boolean flag = true;
             Queue<TreeNode> actual = testRef.buildNodeQueue(testFreqMap);
+
             assertEquals(testQueue.size(),actual.size());
+
+            StringBuilder exp = new StringBuilder();
+            for(TreeNode node : testQueue){
+                exp.append(node.getChar());
+            }
+            for(TreeNode node:actual){
+                if(node.getChar() != exp.charAt(0))
+                {
+                    flag = false;
+                    break;
+                }
+                exp.deleteCharAt(0);
+            }
+            assertTrue(flag);
+
+
     }
 
     @Test
@@ -100,10 +148,68 @@ public class HuffmanCompressorTest {
         assertTrue("The map generated is incorrect",flag);
     }
 
+    @Test
+    public void testGetArraySizeZero(){
+        Map<Character,Integer> emptyFreqMap = new HashMap<>();
+        Map<Character,String> emptyCodeMap = new HashMap<>();
+        int actaul = testRef.getArraySize(emptyCodeMap,emptyFreqMap);
+        assertEquals(0,actaul);
+    }
 
+    @Test
+    public void testGetArraySize(){
+        int actaul = testRef.getArraySize(testCodes,testFreqMap);
+        int expected = 2;
+        assertEquals(expected, actaul);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testCompressForNull(){
+        fileObj = new File("src/textFiles/nonExistent.txt");
+        String actual = testRef.compress(testCodes,fileObj,root,20);
+    }
 
     @Test
     public void testCompress() {
 
+        testRef = new HuffmanCompressor(method);
+
+        fileObj = new File("src/textFiles/testFile.txt");
+
+        int size = 2;
+        when(method.serialize(root)).thenReturn("$,97,#,#,98,#,#");
+
+        String actual = testRef.compress(testCodes,fileObj,root,size);
+
+        boolean identityFlag = true;
+        byte[] expectedByteArray = {82,120};
+        File newFile = new File(actual);
+        try {
+            ObjectInputStream obj = new ObjectInputStream(new FileInputStream(newFile));
+            String myRoot = (String) obj.readObject();
+            int arrSize = obj.readInt();
+            byte[] actualByteArray = (byte[]) obj.readObject();
+
+            if(expectedByteArray.length!=actualByteArray.length)
+                identityFlag = false;
+
+            if(identityFlag){
+                for(int i=0;i<expectedByteArray.length;i++){
+                    if(expectedByteArray[i] != actualByteArray[i])
+                    {
+                        identityFlag = false;
+                        break;
+                    }
+                }
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        assertTrue(identityFlag);
+
     }
+
+
 }

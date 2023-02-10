@@ -1,3 +1,4 @@
+com/cap_ex/decompression/FileContents.class
 com/cap_ex/decompression/IHuffmanDecompress.class
 com/cap_ex/ZipUnzipApp.class
 com/cap_ex/zipUnzipOp/IZipperUnzipper.class
@@ -11,4 +12,5 @@ com/cap_ex/compression/HuffmanCompressor.class
 com/cap_ex/File_handle/IFile_Handler.class
 com/cap_ex/auxiliary/IGeneralMethods.class
 com/cap_ex/auxiliary/TreeNode.class
+com/cap_ex/decompression/IFileContents.class
 com/cap_ex/compression/IHuffmanCompress.class

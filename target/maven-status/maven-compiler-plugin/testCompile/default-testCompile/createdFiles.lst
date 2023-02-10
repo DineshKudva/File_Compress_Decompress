@@ -1,1 +1,6 @@
+com/cap_ex/zipUnzipOp/HuffmanZipperUnzipperTest.class
+com/cap_ex/auxiliary/TreeNodeTest.class
+com/cap_ex/compression/HuffmanCompressorTest.class
+com/cap_ex/decompression/HuffmanDecompressorTest.class
+com/cap_ex/auxiliary/CharComparatorTest.class
 com/cap_ex/auxiliary/GeneralMethodsTest.class

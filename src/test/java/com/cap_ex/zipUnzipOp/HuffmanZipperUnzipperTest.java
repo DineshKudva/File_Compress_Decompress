@@ -3,6 +3,8 @@ package com.cap_ex.zipUnzipOp;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.*;
+
 import static org.junit.Assert.*;
 
 public class HuffmanZipperUnzipperTest {
@@ -37,10 +39,42 @@ public class HuffmanZipperUnzipperTest {
     @Test
     public void testCompressFile() {
 
-        inputFilePath = "src/textFiles/largeTest2.txt";
+        inputFilePath = "src/textFiles/testFile.txt";
         String actual = testRef.compressFile(inputFilePath);
-        String expected = "src/textFiles/compressedFiles/compressed.txt";
-        assertEquals(expected,actual);
+        String expected = "src/textFiles/compressedFiles/testCompressed.txt";
+
+        boolean flag = true;
+
+
+        try {
+
+            BufferedReader br1 = new BufferedReader(new FileReader(actual));
+            BufferedReader br2 = new BufferedReader(new FileReader(expected));
+
+            String line1 = br1.readLine();
+            String line2 = br2.readLine();
+
+            while(line1 != null){
+                if(!line1.equals(line2)){
+                    flag = false;
+                    break;
+                }
+                line1 = br1.readLine();
+                line2 = br2.readLine();
+            }
+
+            if (line1!=null || line2!=null)
+                flag = false;
+
+            br2.close();
+            br1.close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        assertTrue(flag);
     }
     @Test
     public void testDecompressFileforNonExistentFile(){
@@ -65,6 +99,37 @@ public class HuffmanZipperUnzipperTest {
         compressedFilePath = "src/textFiles/compressedFiles/compressed.txt";
         String actual = testRef.decompressFile(compressedFilePath);
         String expected = "src/textFiles/decompressedFiles/decompressed.txt";
-        assertEquals(expected,actual);
+        boolean flag = true;
+
+
+        try {
+
+            BufferedReader br1 = new BufferedReader(new FileReader(actual));
+            BufferedReader br2 = new BufferedReader(new FileReader(expected));
+
+            String line1 = br1.readLine();
+            String line2 = br2.readLine();
+
+            while(line1 != null){
+                if(!line1.equals(line2)){
+                    flag = false;
+                    break;
+                }
+                line1 = br1.readLine();
+                line2 = br2.readLine();
+            }
+
+            if (line1!=null || line2!=null)
+                flag = false;
+
+            br2.close();
+            br1.close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        assertTrue(flag);
     }
 }

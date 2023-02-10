@@ -67,22 +67,4 @@ public class GeneralMethodsTest {
         assertEquals(expected,actual);
     }
 
-    @Test
-    public void testGetArraySizeZero(){
-        int actaul = testRef.getArraySize(codeMap,freqMap);
-        assertEquals(0,actaul);
-    }
-
-    @Test
-    public void testGetArraySize(){
-        freqMap.put('a',2);
-        freqMap.put('b',3);
-
-        codeMap.put('a',"0");
-        codeMap.put('b',"1");
-
-        int actaul = testRef.getArraySize(codeMap,freqMap);
-        int expected = 1;
-        assertEquals(expected, actaul);
-    }
 }

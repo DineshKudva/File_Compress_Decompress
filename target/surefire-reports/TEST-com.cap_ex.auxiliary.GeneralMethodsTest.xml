@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="com.cap_ex.auxiliary.GeneralMethodsTest" time="0.007" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="com.cap_ex.auxiliary.GeneralMethodsTest" time="0.005" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.17+8-post-Ubuntu-1ubuntu222.04"/>
@@ -32,7 +32,7 @@
     <property name="java.class.version" value="55.0"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="5.15.0-58-generic"/>
+    <property name="os.version" value="5.15.0-60-generic"/>
     <property name="library.jansi.path" value="/usr/local/apache-maven-3.5.4/lib/jansi-native"/>
     <property name="user.home" value="/home/dineshkudwa"/>
     <property name="user.timezone" value="Asia/Kolkata"/>
@@ -61,7 +61,10 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="com.cap_ex.auxiliary.GeneralMethodsTest" name="testGetAscii" time="0.005"/>
-  <testcase classname="com.cap_ex.auxiliary.GeneralMethodsTest" name="testGetBinaryFromInt" time="0.001"/>
-  <testcase classname="com.cap_ex.auxiliary.GeneralMethodsTest" name="testGetBinaryFromChar" time="0.001"/>
+  <testcase classname="com.cap_ex.auxiliary.GeneralMethodsTest" name="testGetAscii" time="0.003"/>
+  <testcase classname="com.cap_ex.auxiliary.GeneralMethodsTest" name="testSerializeForNull" time="0.001"/>
+  <testcase classname="com.cap_ex.auxiliary.GeneralMethodsTest" name="testGetBinaryFromInt" time="0"/>
+  <testcase classname="com.cap_ex.auxiliary.GeneralMethodsTest" name="getBinaryFromIntNegative" time="0"/>
+  <testcase classname="com.cap_ex.auxiliary.GeneralMethodsTest" name="testGetBinaryFromChar" time="0"/>
+  <testcase classname="com.cap_ex.auxiliary.GeneralMethodsTest" name="testSerialize" time="0.001"/>
 </testsuite>
