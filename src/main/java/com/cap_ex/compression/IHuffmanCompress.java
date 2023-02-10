@@ -1,12 +1,13 @@
 package com.cap_ex.compression;
 
+import com.cap_ex.File_handle.IData_Handle;
 import com.cap_ex.auxiliary.TreeNode;
 
 import java.io.File;
 import java.util.*;
 
 public interface IHuffmanCompress {
-    Map<Character, Integer> generateFrequency(File fileObj);
+    Map<Character, Integer> generateFrequency(IData_Handle dataObj);
 
     Queue<TreeNode> buildNodeQueue(Map<Character, Integer> freqTable);
 
@@ -16,7 +17,7 @@ public interface IHuffmanCompress {
 
     int getArraySize(Map<Character, String> charMap, Map<Character, Integer> freqMap);
 
-    String compress(Map<Character,String> characterCodes, File fileObj, TreeNode root,int size);
+    String compress(Map<Character,String> characterCodes, IData_Handle dataObj, TreeNode root, int size);
 
 
 
