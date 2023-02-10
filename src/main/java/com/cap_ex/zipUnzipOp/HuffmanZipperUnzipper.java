@@ -1,5 +1,7 @@
 package com.cap_ex.zipUnzipOp;
 
+import com.cap_ex.File_handle.FileHandler;
+import com.cap_ex.File_handle.IData_Handle;
 import com.cap_ex.auxiliary.GeneralMethods;
 import com.cap_ex.auxiliary.TreeNode;
 import com.cap_ex.compression.*;
@@ -25,8 +27,13 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
         IHuffmanCompress compressor = new HuffmanCompressor();
 
+        IData_Handle dataObj = new FileHandler(inputFilePath);
+
         // frequency table for the characters of the file
-        Map<Character,Integer> freqTable = compressor.generateFrequency(fileObj);
+//        Map<Character,Integer> freqTable = compressor.generateFrequency(fileObj);
+
+        Map<Character,Integer> freqTable = compressor.generateFrequency(dataObj);
+
 
         // nodes of the Huffman tree
         Queue<TreeNode> nodeQueue = compressor.buildNodeQueue(freqTable);
@@ -42,7 +49,10 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
         int byteArraySize = compressor.getArraySize(characterCodes,freqTable);
 
 
-        return compressor.compress(characterCodes, fileObj,root,byteArraySize);
+//        return compressor.compress(characterCodes, fileObj,root,byteArraySize);
+
+        return compressor.compress(characterCodes, dataObj,root,byteArraySize);
+
 
     }
     
