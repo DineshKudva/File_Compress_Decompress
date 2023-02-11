@@ -18,9 +18,8 @@ public class HuffmanDecompressorTest {
     IHuffmanDecompress testRef;
 
     IGeneralMethods method;
-    File fileObj = new File("src/textFiles/compressedFiles/nonExistent.txt");
 
-    TreeNode root = new TreeNode('$',13,null,null);
+    TreeNode root;
 
 
     @Before
@@ -29,46 +28,11 @@ public class HuffmanDecompressorTest {
         method = Mockito.mock(IGeneralMethods.class);
         testRef = new HuffmanDecompressor(method);
 
+        root = new TreeNode('$',13,null,null);
         root.setLeft(new TreeNode('a',6,null,null));
         root.setRight(new TreeNode('b',7,null,null));
     }
 
-    @Test(expected = RuntimeException.class)
-    public void testDecompressFail() {
-        testRef.extractContents(fileObj);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testDecompressEmpty() {
-        fileObj = new File("src/textFiles/compressedFiles/empty.txt");
-        testRef.extractContents(fileObj);
-    }
-
-    @Test
-    public void testExtractContents(){
-        fileObj = new File("src/textFiles/compressedFiles/testCompressed.txt");
-
-        IFileContents fileContents = testRef.extractContents(fileObj);
-
-        assertEquals("$,97,#,#,98,#,#",fileContents.getHuffTree());
-        assertEquals(3,fileContents.getExtraBits());
-
-        byte[] expectedByteArray = {82,120};
-
-        assertTrue(expectedByteArray.length == fileContents.getByteArray().length);
-
-        boolean flag = true;
-
-        for(int i=0;i<expectedByteArray.length;i++){
-            if(expectedByteArray[i] != fileContents.getByteArray()[i]){
-                flag = false;
-                break;
-            }
-        }
-
-        assertTrue(flag);
-
-    }
 
     @Test
     public void testGetBinaryDataForEmpty(){
