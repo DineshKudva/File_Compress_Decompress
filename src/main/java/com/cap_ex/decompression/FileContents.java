@@ -1,26 +1,26 @@
 package com.cap_ex.decompression;
 
-public class FileContents implements IFileContents{
+public class FileContents implements IFileContents {
     private String huffTree;
     private int extraBits;
 
     private byte[] byteArray;
 
-    public FileContents(){
-        this.huffTree="";
+    public FileContents() {
+        this.huffTree = "";
         this.extraBits = 0;
-        this.byteArray= new byte[]{};
+        this.byteArray = new byte[]{};
     }
 
-    public String getHuffTree(){
+    public String getHuffTree() {
         return this.huffTree;
     }
 
-    public int getExtraBits(){
+    public int getExtraBits() {
         return this.extraBits;
     }
 
-    public byte[] getByteArray(){
+    public byte[] getByteArray() {
         return this.byteArray;
     }
 

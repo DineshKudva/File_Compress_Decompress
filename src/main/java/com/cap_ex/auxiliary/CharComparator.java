@@ -1,6 +1,6 @@
 package com.cap_ex.auxiliary;
 
-import java.util.*;
+import java.util.Comparator;
 
 public class CharComparator implements Comparator<TreeNode> {
 
