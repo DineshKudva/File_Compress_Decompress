@@ -2,18 +2,18 @@ package com.cap_ex.File_handle;
 
 public class StringHandler implements IData_Handle {
 
-    String content;
+    StringBuilder content;
 
-    public StringHandler(String source){
-        content = source;
+    public StringHandler(String source) {
+        content = new StringBuilder(source);
     }
 
-    public StringHandler(byte[] byteArray){
-        content = new String(byteArray);
+    public StringHandler(byte[] byteArray) {
+        content = new StringBuilder(new String(byteArray));
     }
 
     @Override
-    public String readContent() {
+    public StringBuilder readContent() {
         return this.content;
     }
 }
