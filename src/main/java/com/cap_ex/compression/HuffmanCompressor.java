@@ -2,9 +2,15 @@ package com.cap_ex.compression;
 
 
 import com.cap_ex.File_handle.IData_Handle;
-import com.cap_ex.auxiliary.*;
+import com.cap_ex.auxiliary.CharComparator;
+import com.cap_ex.auxiliary.GeneralMethods;
+import com.cap_ex.auxiliary.IGeneralMethods;
+import com.cap_ex.auxiliary.TreeNode;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 public class HuffmanCompressor implements IHuffmanCompress {
@@ -14,39 +20,23 @@ public class HuffmanCompressor implements IHuffmanCompress {
 
     IGeneralMethods method;
 
-    public HuffmanCompressor(){
+    public HuffmanCompressor() {
         method = new GeneralMethods();
     }
 
-    public HuffmanCompressor(IGeneralMethods method){
+    public HuffmanCompressor(IGeneralMethods method) {
         this.method = method;
     }
 
     @Override
     public Map<Character, Integer> generateFrequency(IData_Handle dataObj) {
 
-        Map<Character,Integer> freqTable = new HashMap<>();
-//        try{
-//            FileReader fileScanner = new FileReader(fileObj);
-//            int val = fileScanner.read();
-//            char character;
-//            while(val!=-1){
-//                    character = (char) val;
-//                    freqTable.put(character, freqTable.getOrDefault(character, 0) + 1);
-//                    val =fileScanner.read();
-//            }
-//
-//            fileScanner.close();
-//        }
-//        catch(IOException e){
-//            System.out.println("File not found");
-//            throw new RuntimeException();
-//        }
+        Map<Character, Integer> freqTable = new HashMap<>();
 
-        String fileContents = dataObj.readContent();
-        for(char character:fileContents.toCharArray()){
+        String fileContents = dataObj.readContent().toString();
+
+        for (char character : fileContents.toCharArray())
             freqTable.put(character, freqTable.getOrDefault(character, 0) + 1);
-        }
 
 
         return freqTable;
@@ -55,18 +45,18 @@ public class HuffmanCompressor implements IHuffmanCompress {
     @Override
     public Queue<TreeNode> buildNodeQueue(Map<Character, Integer> freqTable) {
 
-        if(freqTable == null)
+        if (freqTable == null)
             throw new NullPointerException();
-        else if(freqTable.isEmpty())
+        else if (freqTable.isEmpty())
             throw new RuntimeException();
 
         Queue<TreeNode> nodeQueue = new PriorityQueue<>(new CharComparator());
 
-        for(Map.Entry<Character, Integer> mapEle : freqTable.entrySet()){
+        for (Map.Entry<Character, Integer> mapEle : freqTable.entrySet()) {
             char character = mapEle.getKey();
             int freq = mapEle.getValue();
 
-            TreeNode node = new TreeNode(character,freq,null,null);
+            TreeNode node = new TreeNode(character, freq, null, null);
 
             nodeQueue.add(node);
         }
@@ -82,7 +72,7 @@ public class HuffmanCompressor implements IHuffmanCompress {
             TreeNode leftNode = nodeQueue.poll();
             TreeNode rightNode = nodeQueue.poll();
 
-            TreeNode resultNode = new TreeNode('$', leftNode.getFreq() + rightNode.getFreq(),leftNode,rightNode);
+            TreeNode resultNode = new TreeNode('$', leftNode.getFreq() + rightNode.getFreq(), leftNode, rightNode);
 
             resultNode.addAsciiVal(leftNode.getAsciiVal(), rightNode.getAsciiVal());
 
@@ -94,7 +84,7 @@ public class HuffmanCompressor implements IHuffmanCompress {
     }
 
     @Override
-    public void getCodes(TreeNode root,String code,Map<Character,String> characterCodes) {
+    public void getCodes(TreeNode root, String code, Map<Character, String> characterCodes) {
         if (root == null)
             return;
         else if (root.getLeftChild() == null && root.getRightChild() == null) {
@@ -102,78 +92,48 @@ public class HuffmanCompressor implements IHuffmanCompress {
             return;
         }
 
-        getCodes(root.getLeftChild(), code + '0',characterCodes);
-        getCodes(root.getRightChild(), code + '1',characterCodes);
+        getCodes(root.getLeftChild(), code + '0', characterCodes);
+        getCodes(root.getRightChild(), code + '1', characterCodes);
     }
 
 
-
     @Override
-    public String compress(Map<Character,String> characterCodes, IData_Handle dataObj, TreeNode root,int size) {
+    public String compress(Map<Character, String> characterCodes, IData_Handle dataObj, TreeNode root, int size) {
 
         try {
-//            FileReader fileScanner = new FileReader(fileObj);
-            String fileContents = dataObj.readContent();
+
+            String fileContents = dataObj.readContent().toString();
 //            System.out.println("Enter name for compressed file:(without any extensions)");
 //        String outputFilePath = fileName.nextLine();
-
 //        outputFilePath = "src/textFiles/compressedFiles/"+outputFilePath+".txt";
             String outputFilePath = "src/textFiles/compressedFiles/compressed.txt";
             File newFile = new File(outputFilePath);
 
             byte[] byteArray = new byte[size];
-            String curCode= "";
+            String curCode = "";
             int idx = 0;
 
-//            int val = fileScanner.read();
-//            char character;
-
-//            while(val!=-1){
-//                character = (char) val;
-//
-//                curCode += characterCodes.get(character);
-//
-//                if(curCode.length()<8){
-//                    val = fileScanner.read();
-//                    continue;
-//                }
-//                else{
-//                    while(curCode.length()>8){
-//                        byte curByte =(byte) Integer.parseInt(curCode.substring(0,8),2);
-//                        curCode = curCode.substring(8,curCode.length());
-//                        byteArray[idx++] = curByte;
-//                    }
-//                }
-//
-//                val=fileScanner.read();
-//            }
-
-
-//            fileScanner.close();
-
-
-            for(char character: fileContents.toCharArray()){
+            for (char character : fileContents.toCharArray()) {
 
                 curCode += characterCodes.get(character);
 
-                if(curCode.length()<8){
+                if (curCode.length() < 8) {
                     continue;
-                }
-                else{
-                    while(curCode.length()>8){
-                        byte curByte =(byte) Integer.parseInt(curCode.substring(0,8),2);
-                        curCode = curCode.substring(8,curCode.length());
+                } else {
+                    while (curCode.length() > 8) {
+                        byte curByte = (byte) Integer.parseInt(curCode.substring(0, 8), 2);
+                        curCode = curCode.substring(8);
                         byteArray[idx++] = curByte;
                     }
                 }
 
             }
 
-            if(!curCode.equals("")){
+            if (!curCode.equals("")) {
                 extraBits = 8 - curCode.length();
-                for(int i=0;i<extraBits;i++)
+                for (int i = 0; i < extraBits; i++)
                     curCode += '0';
-                byteArray[idx] = (byte) Integer.parseInt(curCode.substring(0,8),2);
+                byteArray[idx] = (byte) Integer.parseInt(curCode.substring(0, 8), 2);
             }
 
 
@@ -190,17 +150,7 @@ public class HuffmanCompressor implements IHuffmanCompress {
 
             obj.close();
             fout.close();
-//
-//            System.out.println("Size of original file:"+fileObj.length()/1024+" Kb");
-//            System.out.println("Size of compressed file:"+newFile.length()/1024+" Kb");
-//            float compRate = (fileObj.length() - newFile.length())*100/ fileObj.length();
 
-
-            System.out.println("Size of original file:"+fileContents.length()/1024+" Kb");
-            System.out.println("Size of compressed file:"+newFile.length()/1024+" Kb");
-            float compRate = (float)(fileContents.length() - newFile.length())*100/ fileContents.length();
-
-            System.out.println("Compression rate:"+compRate+"%");
 
             return outputFilePath;
 
@@ -209,24 +159,22 @@ public class HuffmanCompressor implements IHuffmanCompress {
         }
 
 
-
-
     }
 
     public int getArraySize(Map<Character, String> charMap, Map<Character, Integer> freqMap) {
-        int size =0;
-        for(Map.Entry<Character,String> mapEle : charMap.entrySet()){
+        int size = 0;
+        for (Map.Entry<Character, String> mapEle : charMap.entrySet()) {
             char ch = mapEle.getKey();
             int len = mapEle.getValue().length();
             int freq = freqMap.get(ch);
 
-            size += (len*freq);
+            size += (len * freq);
         }
 
-        if(size%8 ==0)
+        if (size % 8 == 0)
             size /= 8;
         else
-            size = (size/8) + 1;
+            size = (size / 8) + 1;
 
         return size;
     }
