@@ -1,16 +1,14 @@
 package com.cap_ex.auxiliary;
 
-import java.io.Serializable;
-
-public class TreeNode{
-    private Character ch;
-    private Integer frequency;
+public class TreeNode {
+    private final Character ch;
+    private final Integer frequency;
     private Integer asciiVal;
 
     private TreeNode left;
     private TreeNode right;
 
-    public TreeNode(char a, int b,TreeNode left,TreeNode right) {
+    public TreeNode(char a, int b, TreeNode left, TreeNode right) {
 
         this.ch = a;
         this.frequency = b;
@@ -32,23 +30,23 @@ public class TreeNode{
         return this.asciiVal;
     }
 
-    public void addAsciiVal(int a,int b){
-        this.asciiVal = a+b;
+    public void addAsciiVal(int a, int b) {
+        this.asciiVal = a + b;
     }
 
-    public TreeNode getLeftChild(){
+    public TreeNode getLeftChild() {
         return this.left;
     }
 
-    public TreeNode getRightChild(){
+    public TreeNode getRightChild() {
         return this.right;
     }
 
-    public void setLeft(TreeNode node){
+    public void setLeft(TreeNode node) {
         this.left = node;
     }
 
-    public void setRight(TreeNode node){
+    public void setRight(TreeNode node) {
         this.right = node;
     }
 

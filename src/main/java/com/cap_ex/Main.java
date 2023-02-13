@@ -3,9 +3,13 @@ package com.cap_ex;
 import com.cap_ex.auxiliary.CharComparator;
 import com.cap_ex.auxiliary.TreeNode;
 
-import java.io.*;
-import java.util.*;
-import java.util.logging.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
 
 
 public class Main {
@@ -37,7 +41,7 @@ public class Main {
             char ch = mapElement.getKey();
             int freq = mapElement.getValue();
 
-            TreeNode newNode = new TreeNode(ch, freq,null,null);
+            TreeNode newNode = new TreeNode(ch, freq, null, null);
             nodeArrayList.add(newNode);
         }
 
@@ -59,7 +63,7 @@ public class Main {
             TreeNode rightNode = nodeArrayList.get(0);
             nodeArrayList.remove(0);
 
-            TreeNode resultNode = new TreeNode('$', leftNode.getFreq() + rightNode.getFreq(),leftNode,rightNode);
+            TreeNode resultNode = new TreeNode('$', leftNode.getFreq() + rightNode.getFreq(), leftNode, rightNode);
 
             int a = leftNode.getAsciiVal();
             int b = rightNode.getAsciiVal();
@@ -78,7 +82,7 @@ public class Main {
     public static void buildCode(TreeNode root, String code) {
         if (root == null)
             return;
-        else if (root.getLeftChild()== null && root.getRightChild()== null) {
+        else if (root.getLeftChild() == null && root.getRightChild() == null) {
             characterCodes.put(root.getChar(), code.length() > 0 ? code : "1");
             return;
         }
@@ -87,7 +91,7 @@ public class Main {
         buildCode(root.getRightChild(), code + '1');
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         try {
             fileHandler = new FileHandler("MyLog.log", false);
@@ -147,7 +151,7 @@ public class Main {
 
         logger.info("obtained uncompressed data:" + uncompressedData);
 
-        System.out.println("Compressed data :"+compressedData);
+        System.out.println("Compressed data :" + compressedData);
 
         if (uncompressedData.equals(sourceData)) {
             logger.info("Compression-Decompression carried out successfully");
@@ -237,25 +241,25 @@ public class Main {
             compressedData += remCharacter;
         }
 
-        System.out.println("Size of compressed data : "+size_of_compressed_string);
+        System.out.println("Size of compressed data : " + size_of_compressed_string);
 
         return compressedData;
     }
 
 
-    public static void computeSize(){
+    public static void computeSize() {
         int size = 0;
 
-        for(Map.Entry<Character,Integer> mapEle : freqTable.entrySet()){
+        for (Map.Entry<Character, Integer> mapEle : freqTable.entrySet()) {
             char ch = mapEle.getKey();
             int freq = mapEle.getValue();
             int bitSize = characterCodes.get(ch).length();
 
-            size += (freq*bitSize);
+            size += (freq * bitSize);
 
         }
 
-        System.out.println("Size called in main:"+size);
+        System.out.println("Size called in main:" + size);
     }
 
 
@@ -275,7 +279,7 @@ public class Main {
 
         for (char ch : binaryStr.toCharArray()) {
 
-            if (temp.getLeftChild()== null && temp.getRightChild()== null) {
+            if (temp.getLeftChild() == null && temp.getRightChild() == null) {
                 uncompressedData.append(temp.getChar());
                 temp = root;
                 continue;
@@ -287,7 +291,7 @@ public class Main {
                 temp = temp.getLeftChild();
 
 
-            if (temp.getLeftChild()== null && temp.getRightChild()== null) {
+            if (temp.getLeftChild() == null && temp.getRightChild() == null) {
                 uncompressedData.append(temp.getChar());
                 temp = root;
             }

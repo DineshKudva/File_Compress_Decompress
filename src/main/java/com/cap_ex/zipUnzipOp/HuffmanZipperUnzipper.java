@@ -1,12 +1,19 @@
 package com.cap_ex.zipUnzipOp;
 
+import com.cap_ex.File_handle.FileHandler;
+import com.cap_ex.File_handle.IData_Handle;
 import com.cap_ex.auxiliary.GeneralMethods;
 import com.cap_ex.auxiliary.TreeNode;
-import com.cap_ex.compression.*;
-import com.cap_ex.decompression.*;
+import com.cap_ex.compression.HuffmanCompressor;
+import com.cap_ex.compression.IHuffmanCompress;
+import com.cap_ex.decompression.HuffmanDecompressor;
+import com.cap_ex.decompression.IFileContents;
+import com.cap_ex.decompression.IHuffmanDecompress;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Queue;
 
 public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
@@ -18,15 +25,18 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
 
         File fileObj = new File(inputFilePath);
 
-        if(!fileObj.exists())
+        if (!fileObj.exists())
             return "nan";
-        else if(fileObj.length() == 0)
+        else if (fileObj.length() == 0)
             return "empty";
+
+        IData_Handle dataObj = new FileHandler(inputFilePath);
+
 
         IHuffmanCompress compressor = new HuffmanCompressor();
 
         // frequency table for the characters of the file
-        Map<Character,Integer> freqTable = compressor.generateFrequency(fileObj);
+        Map<Character, Integer> freqTable = compressor.generateFrequency(dataObj);
 
         // nodes of the Huffman tree
         Queue<TreeNode> nodeQueue = compressor.buildNodeQueue(freqTable);
@@ -35,44 +45,44 @@ public class HuffmanZipperUnzipper implements IZipperUnzipper {
         root = compressor.buildTree(nodeQueue);
 
         // getting the codes of the characters using the huffman tree
-        Map<Character,String> characterCodes = new HashMap<>();
+        Map<Character, String> characterCodes = new HashMap<>();
 
-        compressor.getCodes(root,"",characterCodes);
+        compressor.getCodes(root, "", characterCodes);
 
-        int byteArraySize = compressor.getArraySize(characterCodes,freqTable);
+        int byteArraySize = compressor.getArraySize(characterCodes, freqTable);
 
+        String resultPath = compressor.compress(characterCodes, dataObj, root, byteArraySize);
 
-        return compressor.compress(characterCodes, fileObj,root,byteArraySize);
+        method.getStats(inputFilePath, resultPath);
+
+        return resultPath;
 
     }
-    
+
 
     @Override
     public String decompressFile(String outputFilePath) {
         File fileObj = new File(outputFilePath);
 
-        if(!fileObj.exists())
+        if (!fileObj.exists())
             return "nan";
-        else if(fileObj.length() == 0)
+        else if (fileObj.length() == 0)
             return "empty";
 
-        IHuffmanDecompress decompressor = new HuffmanDecompressor();
 
-
-        IFileContents fileContents = decompressor.extractContents(fileObj);
+        IFileContents fileContents = method.extractContents(fileObj);
 
         String huffTree = fileContents.getHuffTree();
         int extraBits = fileContents.getExtraBits();
         byte[] byteArray = fileContents.getByteArray();
 
-//        System.out.println(huffTree+"\t"+extraBits);
-
+        IHuffmanDecompress decompressor = new HuffmanDecompressor();
 
         TreeNode root = decompressor.deserialize(huffTree);
 
         String binaryData = decompressor.getBinaryData(byteArray);
 
-        String resultPath = decompressor.dataDecompression(binaryData,root,extraBits);
+        String resultPath = decompressor.dataDecompression(binaryData, root, extraBits);
 
         return resultPath;
     }

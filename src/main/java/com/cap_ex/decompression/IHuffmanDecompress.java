@@ -2,17 +2,15 @@ package com.cap_ex.decompression;
 
 import com.cap_ex.auxiliary.TreeNode;
 
-import java.io.File;
-
 public interface IHuffmanDecompress {
-        IFileContents extractContents(File fileObj);
 
-        String getBinaryData(byte[] fileContents);
 
-        String dataDecompression(String compressedData, TreeNode root, int size);
+    String getBinaryData(byte[] fileContents);
 
-        public TreeNode deserialize(String nodeList);
+    String dataDecompression(String compressedData, TreeNode root, int size);
 
-        public TreeNode treeBuilder(String[] arr);
+    TreeNode deserialize(String nodeList);
+
+    TreeNode treeBuilder(String[] arr);
 
 }

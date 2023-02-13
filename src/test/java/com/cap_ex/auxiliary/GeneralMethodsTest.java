@@ -1,8 +1,10 @@
 package com.cap_ex.auxiliary;
 
+import com.cap_ex.decompression.IFileContents;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,14 +16,20 @@ public class GeneralMethodsTest {
     Map<Character, Integer> freqMap;
     Map<Character, String> codeMap;
 
+    File fileObj;
+
 
     @Before
     public void setup() {
+        fileObj = new File("src/textFiles/nonExistentFile.txt");
+
         child1 = new TreeNode('a', 1, null, null);
         child2 = new TreeNode('b', 2, null, null);
+
         root = new TreeNode('$', child1.getFreq() + child2.getFreq(), child1, child2);
         freqMap = new HashMap<>();
         codeMap = new HashMap<>();
+
         testRef = new GeneralMethods();
 
     }
@@ -66,5 +74,43 @@ public class GeneralMethodsTest {
         String expected = "$,97,#,#,98,#,#";
         assertEquals(expected,actual);
     }
+
+    @Test(expected = RuntimeException.class)
+    public void testExtractContentsFail() {
+        testRef.extractContents(fileObj);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testExtractContentsEmpty() {
+        fileObj = new File("src/textFiles/compressedFiles/empty.txt");
+        testRef.extractContents(fileObj);
+    }
+
+    @Test
+    public void testExtractContents(){
+        fileObj = new File("src/textFiles/compressedFiles/testCompressed.txt");
+
+        IFileContents fileContents = testRef.extractContents(fileObj);
+
+        assertEquals("$,97,#,#,98,#,#",fileContents.getHuffTree());
+        assertEquals(3,fileContents.getExtraBits());
+
+        byte[] expectedByteArray = {82,120};
+
+        assertTrue(expectedByteArray.length == fileContents.getByteArray().length);
+
+        boolean flag = true;
+
+        for(int i=0;i<expectedByteArray.length;i++){
+            if(expectedByteArray[i] != fileContents.getByteArray()[i]){
+                flag = false;
+                break;
+            }
+        }
+
+        assertTrue(flag);
+
+    }
+
 
 }

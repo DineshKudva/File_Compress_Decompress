@@ -1,16 +1,22 @@
 package com.cap_ex.auxiliary;
 
-import java.util.Map;
+import com.cap_ex.decompression.IFileContents;
+
+import java.io.File;
 
 public interface IGeneralMethods {
-    public char getAscii(String curCode);
+    char getAscii(String curCode);
 
-    public String serialize(TreeNode root);
+    String serialize(TreeNode root);
 
-    public String getBinaryFromChar(char ch);
+    String getBinaryFromChar(char ch);
 
 
-    public String getBinaryFromInt(int val);
+    String getBinaryFromInt(int val);
+
+    IFileContents extractContents(File fileObj);
+
+    void getStats(String path1, String path2);
 
 
 }
