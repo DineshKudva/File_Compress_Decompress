@@ -162,6 +162,10 @@ public class HuffmanCompressor implements IHuffmanCompress {
     }
 
     public int getArraySize(Map<Character, String> charMap, Map<Character, Integer> freqMap) {
+        if(charMap == null || freqMap == null)
+            throw new NullPointerException();
+
+
         int size = 0;
         for (Map.Entry<Character, String> mapEle : charMap.entrySet()) {
             char ch = mapEle.getKey();
