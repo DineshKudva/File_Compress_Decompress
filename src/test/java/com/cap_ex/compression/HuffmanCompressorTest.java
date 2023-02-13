@@ -167,6 +167,13 @@ public class HuffmanCompressorTest {
         assertTrue("The map generated is incorrect",flag);
     }
 
+    @Test(expected = NullPointerException.class)
+        public void testGetArraySizeForNulls(){
+            int actual = testRef.getArraySize(null,testFreqMap);
+
+        }
+
+
     @Test
     public void testGetArraySizeZero(){
         Map<Character,Integer> emptyFreqMap = new HashMap<>();
