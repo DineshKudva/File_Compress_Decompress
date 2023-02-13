@@ -1,15 +1,9 @@
 package com.capexercise.compression;
 
-import com.capexercise.filehandle.FileHandler;
-import com.capexercise.filehandle.IData_Handle;
-import com.capexercise.filehandle.StringHandler;
-import com.capexercise.huffmanimplement.auxiliary.CharComparator;
-import com.capexercise.huffmanimplement.auxiliary.IGeneralMethods;
-import com.capexercise.huffmanimplement.auxiliary.TreeNode;
-import com.capexercise.huffmanimplement.compression.HuffmanCompressor;
-import com.capexercise.huffmanimplement.compression.IHuffmanCompress;
-import org.junit.Before;
-import org.junit.Test;
+import com.capexercise.filehandle.*;
+import com.capexercise.huffmanimplement.auxiliary.*;
+import com.capexercise.huffmanimplement.compression.*;
+import org.junit.*;
 import org.junit.runner.RunWith;
 import static org.mockito.Mockito.*;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -196,7 +190,7 @@ public class HuffmanCompressorTest {
     @Test(expected = RuntimeException.class)
     public void testCompressForNull(){
         dataObj = new FileHandler("src/textFiles/nonExistent.txt");
-        String actual = testRef.compress(testCodes,dataObj,root,20);
+        IFileContents fileContents = testRef.compress(testCodes,dataObj,root,20);
     }
 
     @Test
@@ -209,35 +203,24 @@ public class HuffmanCompressorTest {
         int size = 2;
         when(method.serialize(root)).thenReturn("$,97,#,#,98,#,#");
 
-        String actual = testRef.compress(testCodes,dataObj,root,size);
+        IFileContents fileContents = testRef.compress(testCodes,dataObj,root,size);
+
+        byte[] expectedByteArray = {82,120};
+        byte[] actualByteArray = fileContents.getByteArray();
+
 
         boolean identityFlag = true;
-        byte[] expectedByteArray = {82,120};
-        File newFile = new File(actual);
-        try {
-            ObjectInputStream obj = new ObjectInputStream(new FileInputStream(newFile));
-            String myRoot = (String) obj.readObject();
-            int arrSize = obj.readInt();
-            byte[] actualByteArray = (byte[]) obj.readObject();
 
-            if(expectedByteArray.length!=actualByteArray.length)
+        assertEquals("length of expected and actual byte array not equal",expectedByteArray.length,actualByteArray.length);
+
+        for(int i=0;i<expectedByteArray.length;i++){
+            if(actualByteArray[i]!=expectedByteArray[i]){
                 identityFlag = false;
-
-            if(identityFlag){
-                for(int i=0;i<expectedByteArray.length;i++){
-                    if(expectedByteArray[i] != actualByteArray[i])
-                    {
-                        identityFlag = false;
-                        break;
-                    }
-                }
+                break;
             }
-
-        } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
 
-        assertTrue(identityFlag);
+        assertTrue("byte array formed is incorrect",identityFlag);
 
     }
 
@@ -251,36 +234,23 @@ public class HuffmanCompressorTest {
         int size = 2;
         when(method.serialize(root)).thenReturn("$,97,#,#,98,#,#");
 
-        String actual = testRef.compress(testCodes,dataObj,root,size);
+        IFileContents fileContents = testRef.compress(testCodes,dataObj,root,size);
+
+        byte[] expectedByteArray = {82,120};
+        byte[] actualByteArray = fileContents.getByteArray();
 
         boolean identityFlag = true;
-        byte[] expectedByteArray = {82,120};
-        File newFile = new File(actual);
-        try {
-            ObjectInputStream obj = new ObjectInputStream(new FileInputStream(newFile));
-            String myRoot = (String) obj.readObject();
-            int arrSize = obj.readInt();
-            byte[] actualByteArray = (byte[]) obj.readObject();
 
-            if(expectedByteArray.length!=actualByteArray.length)
+        assertEquals("length of expected and actual byte array not equal",expectedByteArray.length,actualByteArray.length);
+
+        for(int i=0;i<expectedByteArray.length;i++){
+            if(actualByteArray[i]!=expectedByteArray[i]){
                 identityFlag = false;
-
-            if(identityFlag){
-                for(int i=0;i<expectedByteArray.length;i++){
-                    if(expectedByteArray[i] != actualByteArray[i])
-                    {
-                        identityFlag = false;
-                        break;
-                    }
-                }
+                break;
             }
-
-        } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
 
-        assertTrue(identityFlag);
-
+        assertTrue("byte array formed is incorrect",identityFlag);
     }
 
 
