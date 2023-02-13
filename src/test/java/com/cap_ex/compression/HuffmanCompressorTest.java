@@ -78,6 +78,7 @@ public class HuffmanCompressorTest {
         assertEquals(testFreqMap,actual);
     }
 
+    @Test
     public void testGenerateFrequencyForByteArray(){
         byte[] byteArray = "ababaabaabbbb".getBytes();
         dataObj = new StringHandler(byteArray);
@@ -90,10 +91,11 @@ public class HuffmanCompressorTest {
         Queue<TreeNode> actual = testRef.buildNodeQueue(null);
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test
     public void testBuildNodeQueueForEmpty(){
         Map<Character,Integer> emptyMap = new HashMap<>();
         Queue<TreeNode> actual = testRef.buildNodeQueue(emptyMap);
+        assertTrue(actual.size() == 0);
     }
 
     @Test
