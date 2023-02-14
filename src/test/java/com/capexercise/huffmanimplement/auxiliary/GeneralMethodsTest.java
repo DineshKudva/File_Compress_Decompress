@@ -1,4 +1,4 @@
-package com.capexercise.auxiliary;
+package com.capexercise.huffmanimplement.auxiliary;
 
 import com.capexercise.huffmanimplement.auxiliary.GeneralMethods;
 import com.capexercise.huffmanimplement.auxiliary.IGeneralMethods;

@@ -1,4 +1,4 @@
-package com.capexercise.decompression;
+package com.capexercise.huffmanimplement.decompression;
 
 import com.capexercise.huffmanimplement.auxiliary.IGeneralMethods;
 import com.capexercise.huffmanimplement.auxiliary.TreeNode;
