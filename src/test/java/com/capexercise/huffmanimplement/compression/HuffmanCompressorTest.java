@@ -1,4 +1,4 @@
-package com.capexercise.compression;
+package com.capexercise.huffmanimplement.compression;
 
 import com.capexercise.filehandle.*;
 import com.capexercise.huffmanimplement.auxiliary.*;
