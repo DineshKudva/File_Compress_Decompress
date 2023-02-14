@@ -8,25 +8,13 @@ Bsrc/test/java/com/cap_ex/zipUnzipOp/HuffmanZipperUnzipperTest.java,6/b/6b8ad86
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
-f
-6src/main/java/com/cap_ex/auxiliary/CharComparator.java,3/1/3120eae640f00881ec5ac670a727e3c6ee8c1bb9
 h
 8src/main/java/com/cap_ex/decompression/FileContents.java,b/0/b0991042d128e808777171fecd6d331966b14f66
 R
 "src/main/java/com/cap_ex/Main.java,c/6/c68766e600a249791826c936b381d8f26d636f64
-`
-0src/main/java/com/cap_ex/auxiliary/TreeNode.java,a/3/a32f9e170430ccff627069b3e50981ad496bb19c
-Y
-)src/main/java/com/cap_ex/ZipUnzipApp.java,2/f/2fdab461d465785f90eb744bc6bea195b29e55aa
 n
 >src/main/java/com/cap_ex/decompression/IHuffmanDecompress.java,4/8/486cd26dce1e1263595ecfda7c3cea3d89105453
 i
 9src/main/java/com/cap_ex/decompression/IFileContents.java,5/e/5e83928d8ab9d9e04b3c32fecb66bdb1f5d431ac
-j
-:src/main/java/com/cap_ex/compression/IHuffmanCompress.java,d/6/d609523e88724dbb0afde2b9e7c2ab5a2ac4bc8f
 o
 ?src/main/java/com/cap_ex/decompression/HuffmanDecompressor.java,9/3/93e924523b130cd241220302cbd313bd290cb23c
-g
-7src/main/java/com/cap_ex/auxiliary/IGeneralMethods.java,2/b/2ba83b24a177a9fc638c0cd9548cd3097b9db9d8
-f
-6src/main/java/com/cap_ex/File_handle/IData_Handle.java,1/9/1974d2572f656a859d0955ddad8ac00744fe36b6
