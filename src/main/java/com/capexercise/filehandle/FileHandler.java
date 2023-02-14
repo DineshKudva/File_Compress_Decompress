@@ -1,7 +1,6 @@
 package com.capexercise.filehandle;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -29,8 +28,6 @@ public class FileHandler implements IData_Handle {
 
             fileReader.close();
 
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
